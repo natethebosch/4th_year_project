@@ -2,6 +2,8 @@
 
 To run design-descisions:
 	
-'''php descisions.php'''
+```
+php descisions.php
+```
 
-(requires php - http://php.net):
+(requires php - [http://php.net](http://php.net))
