@@ -3,7 +3,7 @@
  * @Author: Nate Bosscher
  * @Date:   2015-09-24 18:54:22
  * @Last Modified by:   Nate Bosscher
- * @Last Modified time: 2015-09-24 18:54:28
+ * @Last Modified time: 2015-09-24 19:00:57
  */
 
 $software = new Descision("Software");
@@ -118,6 +118,33 @@ $software = new Descision("Software");
             });
 
         $su_data = new Descision("Data Access");
+        $su_data
+        	->addOption(function(){
+        		$opt = new Option("Rolling network CSV file");
+        		$opt
+        			->addPro("Simple to implement")
+        			->addPro("Simple to access");
+
+        		return $opt;
+        	})
+        	->addOption(function(){
+        		$opt = new Option("USB auto download");
+        		$opt
+        			->addCon("Requires USB access")
+        			->addCon("Requires USB auto save (dangerous)")
+        			->addReliesOn("Processor");
+
+        		return $opt;
+        	});
+
+        $su
+	        ->addSubDescision($su_data)
+	        ->addSubDescision($su_admin);
     }
 
+    $software
+    	->addSubDescision($s_calibration)
+    	->addSubDescision($s_code_public_access)
+    	->addSubDescision($s_language)
+    	->addSubDescision($su);
 }
