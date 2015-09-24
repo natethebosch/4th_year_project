@@ -17,6 +17,7 @@ Class Descision{
     $this->sub_descisions = array();
     $this->affects = array();
     $this->relies = array();
+    $this->influences = array();
   }
 
   function addOption($option){
