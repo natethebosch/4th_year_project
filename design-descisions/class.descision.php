@@ -18,6 +18,8 @@ Class Descision{
     $this->affects = array();
     $this->relies = array();
     $this->influences = array();
+
+    Compiler::registerDescision($this);
   }
 
   function addOption($option){

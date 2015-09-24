@@ -3,7 +3,7 @@
  * @Author: Nate Bosscher
  * @Date:   2015-09-24 19:02:47
  * @Last Modified by:   Nate Bosscher
- * @Last Modified time: 2015-09-24 19:05:34
+ * @Last Modified time: 2015-09-24 19:32:07
  */
 
 $power = new Descision("Power");
@@ -13,7 +13,7 @@ $power
 		$opt
 			->addReliesOn("Weather")
 			->addCon("Poor performance in cold weather")
-			->addPro("No wired power required");
+			->addPro("No wired power required")
 			->addPro("Easy setup");
 
 		return $opt;

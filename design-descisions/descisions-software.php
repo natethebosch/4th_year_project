@@ -3,7 +3,7 @@
  * @Author: Nate Bosscher
  * @Date:   2015-09-24 18:54:22
  * @Last Modified by:   Nate Bosscher
- * @Last Modified time: 2015-09-24 19:00:57
+ * @Last Modified time: 2015-09-24 19:33:51
  */
 
 $software = new Descision("Software");
@@ -28,7 +28,7 @@ $software = new Descision("Software");
                 ->addReliesOn("Processor");
 
             return $opt;
-        });
+        })
         ->addOption(function(){
             $opt = new Option("Calibration-Mode-Button-Routine");
             $opt
