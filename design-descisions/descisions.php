@@ -9,4 +9,7 @@
 // get the framework
 include __dir__."/include.php";
 
+include __dir__."/descisions-processor.php";
+include __dir__."/descisions-software.php";
+
 $cost = new Descision("Cost");
