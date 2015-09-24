@@ -6,11 +6,12 @@
  * Nate Bosscher (c) 2015
  */
 
+// get the framework
 include __dir__."/include.php";
 
 $cost = new Descision("Cost");
 
-$processor = new Descision("Processor");
+$processor = new Descision("Processor"); // all $p_AAAA are items which pertain to the processor
 {
     $p_cost = new Descision("Processor Size");
     $p_cost->addAffects($cost);
