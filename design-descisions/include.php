@@ -7,5 +7,6 @@ function warning($str){
 define("VERBOSE", true);
 
   include __dir__."/class.compiler.php";
+  include __dir__."/class.descision-registry.php";
   include __dir__."/class.option.php";
   include __dir__."/class.descision.php";

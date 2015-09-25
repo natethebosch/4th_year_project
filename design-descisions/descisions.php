@@ -18,3 +18,4 @@ include __dir__."/descisions-software.php";
 
 $cost = new Descision("Cost");
 
+$compiler = new Compiler(DescisionRegistry::$options, DescisionRegistry::$descisions);

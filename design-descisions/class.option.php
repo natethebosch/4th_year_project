@@ -4,16 +4,16 @@ class Option{
   public $name;
   public $pros;
   public $cons;
-  public $relies;
+  public $relies_on;
 
   function __construct($name){
     $this->name = $name;
 
     $this->pros = array();
     $this->cons = array();
-    $this->relies = array();
+    $this->relies_on = array();
 
-    Compiler::registerOption($this);
+    DescisionRegistry::registerOption($this);
   }
 
   function addPro($string){
@@ -27,7 +27,7 @@ class Option{
   }
 
   function addReliesOn($string, $choice = false){
-    $this->relies[] = array("name" => $string, "option" => $choice);
+    $this->relies_on[] = array("name" => $string, "option" => $choice);
     return $this;
   }
 }

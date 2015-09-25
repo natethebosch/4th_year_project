@@ -4,10 +4,9 @@ Class Descision{
   public $name;
   public $category;
   public $relies_on;
-  public $_affects;
+  public $affects;
   public $options;
   public $sub_descisions;
-  public $_relies;
 
   function __construct($name, $category = false){
     $this->name = $name;
@@ -16,10 +15,10 @@ Class Descision{
     $this->options = array();
     $this->sub_descisions = array();
     $this->affects = array();
-    $this->relies = array();
+    $this->relies_on = array();
     $this->influences = array();
 
-    Compiler::registerDescision($this);
+    DescisionRegistry::registerDescision($this);
   }
 
   function addOption($option){
@@ -45,7 +44,7 @@ Class Descision{
     return $this;
   }
   function addReliesOn($descision){
-    $this->relies[]= $descision;
+    $this->relies_on[]= $descision;
     return $this;
   }
 }
