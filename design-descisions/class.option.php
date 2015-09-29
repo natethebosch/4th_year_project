@@ -6,6 +6,8 @@ class Option{
   public $cons;
   public $relies_on;
 
+  private $created_location;
+
   function __construct($name){
     $this->name = $name;
 
@@ -29,5 +31,9 @@ class Option{
   function addReliesOn($string, $choice = false){
     $this->relies_on[] = array("name" => $string, "option" => $choice);
     return $this;
+  }
+
+  function dependsOn(Descision $d){
+    return in_array($d, $this->relies_on);
   }
 }

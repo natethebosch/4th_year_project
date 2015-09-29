@@ -8,6 +8,8 @@ Class Descision{
   public $options;
   public $sub_descisions;
 
+  private $created_location;
+
   function __construct($name, $category = false){
     $this->name = $name;
     $this->category = $category;
@@ -46,5 +48,32 @@ Class Descision{
   function addReliesOn($descision){
     $this->relies_on[]= $descision;
     return $this;
+  }
+
+  /**
+   * [isDependant description]
+   * @return boolean
+   */
+  function isDependant(){
+    return (count($this->relies_on) === 0);
+  }
+
+  /**
+   * [dependsOn description]
+   * @param  Descision $d [description]
+   * @return boolean
+   */
+  function dependsOn(Descision $d){
+    if(in_array($d, $this->sub_descisions))
+      return true;
+
+    if(in_array($d, $this->relies_on))
+      return true;
+
+    foreach($this->options as $v)
+      if($v->dependsOn($d))
+        return true;
+
+    return false;
   }
 }

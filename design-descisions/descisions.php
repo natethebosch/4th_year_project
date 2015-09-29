@@ -15,7 +15,14 @@ include __dir__."/descisions-scan-method.php";
 include __dir__."/descisions-sensor-arrangement.php";
 include __dir__."/descisions-setup.php";
 include __dir__."/descisions-software.php";
+include __dir__."/descisions-input.php";
 
 $cost = new Descision("Cost");
 
-$compiler = new Compiler(DescisionRegistry::$options, DescisionRegistry::$descisions);
+if(VERBOSE){
+	$compiler = new Compiler(DescisionRegistry::$options, DescisionRegistry::$descisions, DescisionRegistry::$debug);
+}else{
+	$compiler = new Compiler(DescisionRegistry::$options, DescisionRegistry::$descisions);
+}
+
+$compiler->compile();
