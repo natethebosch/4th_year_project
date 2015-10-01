@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Bifacial Solar Characterizer" company="Nate and Tyler" webLink="http://" view-date="2015-09-06" view-index="0" gantt-divider-location="433" resource-divider-location="322" version="2.0" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="Bifacial Solar Characterizer" company="Nate and Tyler" webLink="http://" view-date="2015-09-30" view-index="0" gantt-divider-location="433" resource-divider-location="322" version="2.0" locale="en_US">
     <description/>
-    <view zooming-state="default:7" id="gantt-chart">
+    <view zooming-state="default:3" id="gantt-chart">
         <field id="tpd3" name="Name" width="64" order="0"/>
         <field id="tpd4" name="Begin date" width="17" order="1"/>
         <field id="tpd5" name="End date" width="17" order="2"/>
-        <timeline><![CDATA[1,1,1,1,1,1,1,100,1,1,1,100,1,1,1,100,1,1,1,1,1,100,1,1,1,100,1,100,1]]></timeline>
+        <timeline><![CDATA[100,100,1,1]]></timeline>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="50" order="0"/>
@@ -85,13 +85,13 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="1" name="Draft Proposal" color="#8cb6ce" meeting="false" start="2015-09-30" duration="3" complete="0" expand="true">
+        <task id="1" name="Draft Proposal" color="#8cb6ce" meeting="false" start="2015-09-30" duration="3" complete="50" expand="true">
             <depend id="5" type="2" difference="0" hardness="Strong"/>
-            <task id="28" name="Schedule" color="#8cb6ce" meeting="false" start="2015-09-30" duration="1" complete="0" expand="true"/>
+            <task id="28" name="Schedule" color="#8cb6ce" meeting="false" start="2015-09-30" duration="1" complete="100" expand="true"/>
             <task id="30" name="Background" color="#8cb6ce" meeting="false" start="2015-10-02" duration="1" complete="0" expand="true"/>
         </task>
         <task id="5" name="Proposal" color="#8cb6ce" meeting="false" start="2015-10-05" duration="4" complete="0" expand="true"/>
-        <task id="46" name="Identify Customer Requirements" color="#8cb6ce" meeting="false" start="2015-09-28" duration="5" complete="0" expand="true">
+        <task id="46" name="Identify Customer Requirements" color="#8cb6ce" meeting="false" start="2015-09-28" duration="5" complete="90" expand="true">
             <depend id="47" type="2" difference="0" hardness="Strong"/>
             <depend id="53" type="2" difference="0" hardness="Strong"/>
             <depend id="72" type="2" difference="0" hardness="Strong"/>
@@ -173,12 +173,12 @@
             </task>
             <task id="146" name="Implement Mechanical Design" meeting="false" start="2015-12-03" duration="1" complete="0" expand="true"/>
         </task>
-        <task id="53" name="Electronic / Interface design" meeting="false" start="2015-10-06" duration="56" complete="0" expand="true">
-            <task id="157" name="Processor" meeting="false" start="2015-10-06" duration="19" complete="0" expand="true">
-                <task id="176" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-06" duration="3" complete="0" expand="true">
+        <task id="53" name="Electronic / Interface design" meeting="false" start="2015-10-06" duration="56" complete="5" expand="true">
+            <task id="157" name="Processor" meeting="false" start="2015-10-06" duration="19" complete="21" expand="true">
+                <task id="176" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-06" duration="3" complete="100" expand="true">
                     <depend id="199" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="199" name="Choose" color="#8cb6ce" meeting="false" start="2015-10-12" duration="1" complete="0" expand="true">
+                <task id="199" name="Choose" color="#8cb6ce" meeting="false" start="2015-10-12" duration="1" complete="100" expand="true">
                     <depend id="178" type="2" difference="0" hardness="Strong"/>
                 </task>
                 <task id="178" name="Procure component" color="#8cb6ce" meeting="false" start="2015-10-13" duration="10" complete="0" expand="true">
