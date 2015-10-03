@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Bifacial Solar Characterizer" company="Nate and Tyler" webLink="http://" view-date="2015-09-30" view-index="0" gantt-divider-location="433" resource-divider-location="322" version="2.0" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="Bifacial Solar Characterizer" company="Nate and Tyler" webLink="http://" view-date="2015-09-30" view-index="0" gantt-divider-location="522" resource-divider-location="322" version="2.0" locale="en_US">
     <description/>
     <view zooming-state="default:3" id="gantt-chart">
-        <field id="tpd3" name="Name" width="64" order="0"/>
-        <field id="tpd4" name="Begin date" width="17" order="1"/>
-        <field id="tpd5" name="End date" width="17" order="2"/>
+        <field id="tpd3" name="Name" width="59" order="0"/>
+        <field id="tpd4" name="Begin date" width="20" order="1"/>
+        <field id="tpd5" name="End date" width="20" order="2"/>
         <timeline><![CDATA[100,100,1,1]]></timeline>
     </view>
     <view id="resource-table">
@@ -262,9 +262,9 @@
         <displaycolumn property-id="tpd9" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd1" order="-1" width="75" visible="false"/>
         <displaycolumn property-id="tpd0" order="-1" width="75" visible="false"/>
-        <displaycolumn property-id="tpd3" order="0" width="267" visible="true"/>
-        <displaycolumn property-id="tpd4" order="1" width="71" visible="true"/>
-        <displaycolumn property-id="tpd5" order="2" width="74" visible="true"/>
+        <displaycolumn property-id="tpd3" order="0" width="297" visible="true"/>
+        <displaycolumn property-id="tpd4" order="1" width="101" visible="true"/>
+        <displaycolumn property-id="tpd5" order="2" width="103" visible="true"/>
     </taskdisplaycolumns>
     <previous>
         <previous-tasks name="">
