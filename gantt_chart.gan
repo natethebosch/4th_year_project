@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><project name="Bifacial Solar Characterizer" company="Nate and Tyler" webLink="http://" view-date="2015-09-30" view-index="0" gantt-divider-location="522" resource-divider-location="322" version="2.0" locale="en_US">
+<?xml version="1.0" encoding="UTF-8"?><project name="Bifacial Solar Characterizer" company="Nate and Tyler" webLink="http://" view-date="2015-10-01" view-index="0" gantt-divider-location="522" resource-divider-location="322" version="2.0" locale="en_US">
     <description/>
-    <view zooming-state="default:3" id="gantt-chart">
+    <view zooming-state="default:9" id="gantt-chart">
         <field id="tpd3" name="Name" width="59" order="0"/>
         <field id="tpd4" name="Begin date" width="20" order="1"/>
         <field id="tpd5" name="End date" width="20" order="2"/>
-        <timeline><![CDATA[100,100,1,1]]></timeline>
+        <timeline><![CDATA[1,100,89]]></timeline>
     </view>
     <view id="resource-table">
         <field id="0" name="Name" width="50" order="0"/>
@@ -85,12 +85,12 @@
             <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
             <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
         </taskproperties>
-        <task id="1" name="Draft Proposal" color="#8cb6ce" meeting="false" start="2015-09-30" duration="3" complete="50" expand="true">
+        <task id="1" name="Draft Proposal" color="#8cb6ce" meeting="false" start="2015-09-30" duration="3" complete="100" expand="true">
             <depend id="5" type="2" difference="0" hardness="Strong"/>
             <task id="28" name="Schedule" color="#8cb6ce" meeting="false" start="2015-09-30" duration="1" complete="100" expand="true"/>
-            <task id="30" name="Background" color="#8cb6ce" meeting="false" start="2015-10-02" duration="1" complete="0" expand="true"/>
+            <task id="30" name="Background" color="#8cb6ce" meeting="false" start="2015-10-02" duration="1" complete="100" expand="true"/>
         </task>
-        <task id="5" name="Proposal" color="#8cb6ce" meeting="false" start="2015-10-05" duration="4" complete="0" expand="true"/>
+        <task id="5" name="Proposal" color="#8cb6ce" meeting="false" start="2015-10-05" duration="4" complete="100" expand="true"/>
         <task id="46" name="Identify Customer Requirements" color="#8cb6ce" meeting="false" start="2015-09-28" duration="5" complete="90" expand="true">
             <depend id="47" type="2" difference="0" hardness="Strong"/>
             <depend id="53" type="2" difference="0" hardness="Strong"/>
@@ -99,16 +99,16 @@
             <depend id="109" type="2" difference="0" hardness="Strong"/>
             <depend id="138" type="2" difference="0" hardness="Strong"/>
         </task>
-        <task id="47" name="Physical - Mechanical Design" meeting="false" start="2015-10-05" duration="43" complete="0" expand="true">
-            <task id="88" name="Linear motion" meeting="false" start="2015-10-05" duration="24" complete="0" expand="true">
-                <task id="100" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-05" duration="2" complete="0" expand="true">
+        <task id="47" name="Physical - Mechanical Design" meeting="false" start="2015-10-05" duration="43" complete="56" expand="true">
+            <task id="88" name="Linear motion" meeting="false" start="2015-10-05" duration="24" complete="70" expand="true">
+                <task id="100" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-05" duration="2" complete="100" expand="true">
                     <depend id="103" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="103" name="Design" color="#8cb6ce" meeting="false" start="2015-10-07" duration="5" complete="0" expand="true">
+                <task id="103" name="Design" color="#8cb6ce" meeting="false" start="2015-10-07" duration="5" complete="100" expand="true">
                     <depend id="102" type="2" difference="0" hardness="Strong"/>
                     <depend id="160" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="102" name="Procure components" color="#8cb6ce" meeting="false" start="2015-10-15" duration="10" complete="0" expand="true">
+                <task id="102" name="Procure components" color="#8cb6ce" meeting="false" start="2015-10-15" duration="10" complete="100" expand="true">
                     <depend id="105" type="2" difference="0" hardness="Strong"/>
                     <depend id="215" type="2" difference="0" hardness="Strong"/>
                 </task>
@@ -118,7 +118,7 @@
                 </task>
                 <task id="118" name="Document" color="#8cb6ce" meeting="false" start="2015-11-05" duration="2" complete="0" expand="true"/>
             </task>
-            <task id="89" name="Rotational motion" meeting="false" start="2015-10-05" duration="29" complete="0" expand="true">
+            <task id="89" name="Rotational motion" color="#000000" meeting="false" start="2015-10-05" duration="29" complete="0" expand="false">
                 <task id="107" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-05" duration="3" complete="0" expand="true">
                     <depend id="109" type="2" difference="0" hardness="Strong"/>
                 </task>
@@ -136,15 +136,15 @@
                 </task>
                 <task id="116" name="Document" color="#8cb6ce" meeting="false" start="2015-11-12" duration="2" complete="0" expand="true"/>
             </task>
-            <task id="90" name="Position determination" color="#000000" meeting="false" start="2015-10-09" duration="31" complete="0" expand="true">
-                <task id="111" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-09" duration="5" complete="0" expand="true">
+            <task id="90" name="Position determination" color="#000000" meeting="false" start="2015-10-09" duration="31" complete="70" expand="true">
+                <task id="111" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-09" duration="5" complete="100" expand="true">
                     <depend id="138" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="138" name="Design" color="#8cb6ce" meeting="false" start="2015-10-16" duration="7" complete="0" expand="true">
+                <task id="138" name="Design" color="#8cb6ce" meeting="false" start="2015-10-16" duration="7" complete="100" expand="true">
                     <depend id="140" type="2" difference="0" hardness="Strong"/>
                     <depend id="160" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="140" name="Procure components" color="#8cb6ce" meeting="false" start="2015-10-27" duration="10" complete="0" expand="true">
+                <task id="140" name="Procure components" color="#8cb6ce" meeting="false" start="2015-10-27" duration="10" complete="100" expand="true">
                     <depend id="142" type="2" difference="0" hardness="Strong"/>
                     <depend id="215" type="2" difference="0" hardness="Strong"/>
                 </task>
@@ -152,16 +152,16 @@
                     <depend id="144" type="2" difference="0" hardness="Strong"/>
                     <depend id="146" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="144" name="pDocument" color="#8cb6ce" meeting="false" start="2015-11-19" duration="2" complete="0" expand="true"/>
+                <task id="144" name="Document" color="#8cb6ce" meeting="false" start="2015-11-19" duration="2" complete="0" expand="true"/>
             </task>
-            <task id="158" name="Frame / Mounting" meeting="false" start="2015-10-06" duration="41" complete="0" expand="true">
-                <task id="159" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-06" duration="2" complete="0" expand="true">
+            <task id="158" name="Frame / Mounting" meeting="false" start="2015-10-06" duration="41" complete="81" expand="true">
+                <task id="159" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-06" duration="2" complete="100" expand="true">
                     <depend id="160" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="160" name="Design" color="#8cb6ce" meeting="false" start="2015-10-27" duration="5" complete="0" expand="true">
+                <task id="160" name="Design" color="#8cb6ce" meeting="false" start="2015-10-27" duration="5" complete="75" expand="true">
                     <depend id="161" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="161" name="Procure components" color="#8cb6ce" meeting="false" start="2015-11-03" duration="20" complete="0" expand="true">
+                <task id="161" name="Procure components" color="#8cb6ce" meeting="false" start="2015-11-03" duration="20" complete="90" expand="true">
                     <depend id="162" type="2" difference="0" hardness="Strong"/>
                 </task>
                 <task id="162" name="Test" color="#8cb6ce" meeting="false" start="2015-12-01" duration="1" complete="0" expand="true">
@@ -171,52 +171,52 @@
                     <depend id="146" type="2" difference="0" hardness="Strong"/>
                 </task>
             </task>
-            <task id="146" name="Implement Mechanical Design" meeting="false" start="2015-12-03" duration="1" complete="0" expand="true"/>
+            <task id="146" name="Implement Mechanical Design" color="#8cb6ce" meeting="false" start="2015-12-03" duration="1" complete="10" expand="true"/>
         </task>
-        <task id="53" name="Electronic / Interface design" meeting="false" start="2015-10-06" duration="56" complete="5" expand="true">
-            <task id="157" name="Processor" meeting="false" start="2015-10-06" duration="19" complete="21" expand="true">
+        <task id="53" name="Electronic / Interface design" meeting="false" start="2015-10-06" duration="56" complete="78" expand="true">
+            <task id="157" name="Processor" meeting="false" start="2015-10-06" duration="19" complete="84" expand="true">
                 <task id="176" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-06" duration="3" complete="100" expand="true">
                     <depend id="199" type="2" difference="0" hardness="Strong"/>
                 </task>
                 <task id="199" name="Choose" color="#8cb6ce" meeting="false" start="2015-10-12" duration="1" complete="100" expand="true">
                     <depend id="178" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="178" name="Procure component" color="#8cb6ce" meeting="false" start="2015-10-13" duration="10" complete="0" expand="true">
+                <task id="178" name="Procure component" color="#8cb6ce" meeting="false" start="2015-10-13" duration="10" complete="100" expand="true">
                     <depend id="180" type="2" difference="0" hardness="Strong"/>
                     <depend id="215" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="180" name="Test" color="#8cb6ce" meeting="false" start="2015-10-27" duration="2" complete="0" expand="true">
+                <task id="180" name="Test" color="#8cb6ce" meeting="false" start="2015-10-27" duration="2" complete="100" expand="true">
                     <depend id="182" type="2" difference="0" hardness="Strong"/>
                 </task>
                 <task id="182" name="Document" color="#8cb6ce" meeting="false" start="2015-10-29" duration="3" complete="0" expand="true"/>
             </task>
-            <task id="184" name="Solar Sensor" meeting="false" start="2015-10-06" duration="26" complete="0" expand="true">
-                <task id="185" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-06" duration="5" complete="0" expand="true">
+            <task id="184" name="Solar Sensor" meeting="false" start="2015-10-06" duration="26" complete="93" expand="true">
+                <task id="185" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-10-06" duration="5" complete="100" expand="true">
                     <depend id="206" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="206" name="Choose" color="#8cb6ce" meeting="false" start="2015-10-14" duration="2" complete="0" expand="true">
+                <task id="206" name="Choose" color="#8cb6ce" meeting="false" start="2015-10-14" duration="2" complete="100" expand="true">
                     <depend id="186" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="186" name="Procure component" color="#8cb6ce" meeting="false" start="2015-10-16" duration="15" complete="0" expand="true">
+                <task id="186" name="Procure component" color="#8cb6ce" meeting="false" start="2015-10-16" duration="15" complete="100" expand="true">
                     <depend id="187" type="2" difference="0" hardness="Strong"/>
                     <depend id="215" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="187" name="Test" color="#8cb6ce" meeting="false" start="2015-11-06" duration="2" complete="0" expand="true">
+                <task id="187" name="Test" color="#8cb6ce" meeting="false" start="2015-11-06" duration="2" complete="100" expand="true">
                     <depend id="188" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="188" name="Document" color="#8cb6ce" meeting="false" start="2015-11-10" duration="2" complete="0" expand="true"/>
+                <task id="188" name="Document" color="#8cb6ce" meeting="false" start="2015-11-10" duration="2" complete="10" expand="true"/>
             </task>
-            <task id="213" name="Electronic Connections / Interfacing" color="#000000" meeting="false" start="2015-11-10" duration="32" complete="0" expand="true">
-                <task id="215" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-11-10" duration="2" complete="0" expand="true">
+            <task id="213" name="Electronic Connections / Interfacing" color="#000000" meeting="false" start="2015-11-10" duration="32" complete="64" expand="true">
+                <task id="215" name="Identify possible options" color="#8cb6ce" meeting="false" start="2015-11-10" duration="2" complete="100" expand="true">
                     <depend id="217" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="217" name="Design" color="#8cb6ce" meeting="false" start="2015-11-12" duration="7" complete="0" expand="true">
+                <task id="217" name="Design" color="#8cb6ce" meeting="false" start="2015-11-12" duration="7" complete="100" expand="true">
                     <depend id="219" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="219" name="Procure parts / Assemble" color="#8cb6ce" meeting="false" start="2015-11-23" duration="10" complete="0" expand="true">
+                <task id="219" name="Procure parts / Assemble" color="#8cb6ce" meeting="false" start="2015-11-23" duration="10" complete="90" expand="true">
                     <depend id="221" type="2" difference="0" hardness="Strong"/>
                 </task>
-                <task id="221" name="Test" color="#8cb6ce" meeting="false" start="2015-12-07" duration="5" complete="0" expand="true">
+                <task id="221" name="Test" color="#8cb6ce" meeting="false" start="2015-12-07" duration="5" complete="50" expand="true">
                     <depend id="223" type="2" difference="0" hardness="Strong"/>
                 </task>
                 <task id="223" name="Document" color="#8cb6ce" meeting="false" start="2015-12-14" duration="1" complete="0" expand="true">
@@ -227,11 +227,11 @@
                 </task>
             </task>
         </task>
-        <task id="72" name="Software Design" meeting="false" start="2015-12-24" duration="37" complete="0" expand="true">
-            <task id="73" name="Identify Design options" color="#8cb6ce" meeting="false" start="2015-12-24" duration="5" complete="0" expand="true">
+        <task id="72" name="Software Design" meeting="false" start="2015-12-24" duration="37" complete="8" expand="true">
+            <task id="73" name="Identify Design options" color="#8cb6ce" meeting="false" start="2015-12-24" duration="5" complete="50" expand="true">
                 <depend id="74" type="2" difference="0" hardness="Strong"/>
             </task>
-            <task id="74" name="Design" color="#8cb6ce" meeting="false" start="2016-01-04" duration="10" complete="0" expand="true">
+            <task id="74" name="Design" color="#8cb6ce" meeting="false" start="2016-01-04" duration="10" complete="5" expand="true">
                 <depend id="75" type="2" difference="0" hardness="Strong"/>
             </task>
             <task id="75" name="Test" color="#8cb6ce" meeting="false" start="2016-01-18" duration="15" complete="0" expand="true">
