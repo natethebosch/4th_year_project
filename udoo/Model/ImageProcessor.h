@@ -8,10 +8,10 @@
 #ifndef _IMAGEPROCESSOR_H
 #define _IMAGEPROCESSOR_H
 
-#include "Stoppable.h"
+#include "Task.h"
 
 
-class ImageProcessor: public Stoppable {
+class ImageProcessor: public Task {
 };
 
 #endif //_IMAGEPROCESSOR_H

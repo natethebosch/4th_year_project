@@ -27,3 +27,7 @@ void MotorControl::scanHome() {
 void MotorControl::scanAway() {
 
 }
+
+void MotorControl::stopScanner() {
+
+}

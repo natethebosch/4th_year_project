@@ -5,13 +5,13 @@
  */
 
 
-#ifndef _WEBWORKER_H
-#define _WEBWORKER_H
+#ifndef _TASK_H
+#define _TASK_H
 
-#include "Task.h"
-
-
-class WebWorker: public Task {
+class Task {
+public: 
+    
+    void run();
 };
 
-#endif //_WEBWORKER_H
+#endif //_TASK_H

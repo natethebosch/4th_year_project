@@ -8,10 +8,10 @@
 #ifndef _WEBSERVER_H
 #define _WEBSERVER_H
 
-#include "Stoppable.h"
+#include "Task.h"
 
 
-class WebServer: public Stoppable {
+class WebServer: public Task {
 public: 
     void workerPool;
     

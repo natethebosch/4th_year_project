@@ -8,10 +8,10 @@
 #ifndef _SENSORCOMMUNICATOR_H
 #define _SENSORCOMMUNICATOR_H
 
-#include "Stoppable.h"
+#include "Task.h"
 
 
-class SensorCommunicator: public Stoppable {
+class SensorCommunicator: public Task {
 };
 
 #endif //_SENSORCOMMUNICATOR_H

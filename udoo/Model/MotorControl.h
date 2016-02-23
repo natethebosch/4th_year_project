@@ -8,10 +8,10 @@
 #ifndef _MOTORCONTROL_H
 #define _MOTORCONTROL_H
 
-#include "Stoppable.h"
+#include "Task.h"
 
 
-class MotorControl: public Stoppable {
+class MotorControl: public Task {
 public: 
     void controlPort;
     void holeIndex;
@@ -23,6 +23,11 @@ public:
     void scanHome();
     
     void scanAway();
+<<<<<<< HEAD
+=======
+    
+    void stopScanner();
+>>>>>>> nate
 };
 
 #endif //_MOTORCONTROL_H
