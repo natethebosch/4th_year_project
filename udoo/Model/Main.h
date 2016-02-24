@@ -8,13 +8,10 @@
 #ifndef _MAIN_H
 #define _MAIN_H
 
+#include 
+
 class Main {
 public: 
-    MotionGuard guard;
-    MotorControl motorControl;
-    WebServer webServer;
-    SensorCommunicator sensorComm;
-    ImageProcessor imageProcessor;
     
     void initial();
 };
