@@ -2,6 +2,8 @@
 <configurationDescriptor version="97">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <df root="../Model" name="0">
+      <in>BlockingQueue.cpp</in>
+      <in>BlockingQueue.h</in>
       <in>Debug.cpp</in>
       <in>Debug.h</in>
       <in>ImageProcessor.cpp</in>
@@ -10,6 +12,7 @@
       <in>MotorControl.cpp</in>
       <in>SensorCaptureArduino.cpp</in>
       <in>SensorCommunicator.cpp</in>
+      <in>SensorDataPoint.h</in>
       <in>Stopable.cpp</in>
       <in>Task.cpp</in>
       <in>WebServer.cpp</in>
@@ -48,6 +51,10 @@
           <preBuildCommand></preBuildCommand>
         </preBuild>
       </makefileType>
+      <item path="../Model/BlockingQueue.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../Model/BlockingQueue.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="../Model/Debug.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../Model/Debug.h" ex="false" tool="3" flavor2="0">
@@ -63,6 +70,8 @@
       <item path="../Model/SensorCaptureArduino.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="../Model/SensorCommunicator.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="../Model/SensorDataPoint.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../Model/Stopable.cpp" ex="false" tool="1" flavor2="0">
       </item>
