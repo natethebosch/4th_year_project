@@ -8,8 +8,9 @@
 #ifndef _IMAGEPROCESSOR_H
 #define _IMAGEPROCESSOR_H
 
-#include "Task.h"
-#include "SensorDataPoint.h";
+#include "../sys/Task.h"
+#include "../helpers/BlockingQueue.h"
+#include "../type/SensorDataPoint.h";
 
 
 class ImageProcessor: public Task {
