@@ -10,6 +10,8 @@
 
 #include 
 
+ImageProcessor* imgpros[300];
+
 class Main {
 public: 
     

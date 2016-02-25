@@ -70,7 +70,7 @@ public:
     
     void run(void* argc){
         // image processor main logic goes here
-      	  ImageProcessor* imgpros[300];
+
           SensorDataPoint dp;
           int count=0;
           float lasty=0.0;
