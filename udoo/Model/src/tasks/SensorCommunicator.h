@@ -21,6 +21,7 @@
  */
 
 class SensorCommunicator: public Task {
+    
     BlockingQueueSender<SensorDataPoint> pipe;
     
     // Serial Interface stuff

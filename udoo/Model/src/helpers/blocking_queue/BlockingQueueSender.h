@@ -19,11 +19,12 @@ public:
     BlockingQueueSender(RT_PIPE *_pipe){
         pipe = _pipe;
     }
+    
     /**
      * adds an item to the end of the queue
      * @param item
      */
-    void put(T item) throw (int);
+    void put(T item) throw (BlockingQueueStatus);
 };
 
 #endif /* BLOCKINGQUEUESENDER_H */
