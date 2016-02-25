@@ -39,7 +39,7 @@ fwrite($f, '#
 # Nate Bosscher
 #
 
-IDIR=../xenomai-2.6/include
+IDIR=/usr/xenomai/include
 
 CC=gcc
 CFLAGS=-I$(IDIR)
