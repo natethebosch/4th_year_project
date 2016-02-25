@@ -24,7 +24,7 @@ public:
      * @return 
      */
     T take() throw (int);
-    T take(size_t timeout) throw (int);
+    T take(size_t timeout) throw (BlockingQueueStatus);
 };
 
 #endif /* BLOCKINGQUEUERECEIVER_H */

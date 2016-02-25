@@ -7,16 +7,13 @@
 
 #include "BlockingQueueReceiver.h"
 
-BlockingQueueReceiver<T> BlockingQueue::getReceiver(){
-    return new BlockingQueueReceiver<T>(&pipe);
-}
 
-
-T BlockingQueueReceiver::take() throw (BlockingQueueStatus){
+template <class T>
+T BlockingQueueReceiver<T>::take() throw (BlockingQueueStatus){
     return take(TM_INFINITE);
 }
-
-T BlockingQueueReceiver::take(size_t timeout) throw (BlockingQueueStatus){
+template <class T>
+T BlockingQueueReceiver<T>::take(size_t timeout) throw (BlockingQueueStatus){
     RT_PIPE_MSG* msg;
     
     // wait indefinitely for incomming message

@@ -8,7 +8,7 @@
 #ifndef _MOTORCONTROL_H
 #define _MOTORCONTROL_H
 
-#include "Task.h"
+#include "../sys/Task.h"
 
 
 class MotorControl: public Task {

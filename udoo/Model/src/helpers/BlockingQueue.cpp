@@ -43,6 +43,12 @@ BlockingQueue::~BlockingQueue(){
     // no error detection
 }
 
-BlockingQueueSender<T> BlockingQueue::getSender(){
+template <class T>
+BlockingQueueSender<T> BlockingQueue<T>::getSender(){
     return new BlockingQueueSender<T>(&pipe);
+}
+
+template <class T>
+BlockingQueueSender<T> BlockingQueue<T>::getReciever(){
+    return new BlockingQueueReceiver<T>(&pipe);
 }

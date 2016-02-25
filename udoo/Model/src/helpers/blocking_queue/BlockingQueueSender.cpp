@@ -7,7 +7,8 @@
 
 #include "BlockingQueueSender.h"
 
-void BlockingQueueSender::put(T* item) throw (BlockingQueueStatus){
+template <class T>
+void BlockingQueueSender<T>::put(T* item) throw (BlockingQueueStatus){
     RT_PIPE_MSG* msg; 
     
     // allocate a message
