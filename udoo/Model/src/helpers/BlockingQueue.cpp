@@ -51,6 +51,6 @@ BlockingQueueSender<T> BlockingQueue<T>::getSender(){
 }
 
 template <class T>
-BlockingQueueReceiver<T> BlockingQueue<T>::getReciever(){
+BlockingQueueReceiver<T> BlockingQueue<T>::getReceiver(){
     return new BlockingQueueReceiver<T>(&pipe);
 }
