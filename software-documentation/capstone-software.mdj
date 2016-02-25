@@ -6404,12 +6404,12 @@
 							"showShadow": true,
 							"containerChangeable": false,
 							"containerExtending": false,
-							"left": 152,
-							"top": 600,
+							"left": 72,
+							"top": 544,
 							"width": 289,
 							"height": 64,
 							"autoResize": false,
-							"text": "Sensor Serial Data Format:\n;x,y,value;x,y,value;...",
+							"text": "Sensor Serial Data Format:\nx,y,value;x,y,value;...",
 							"wordWrap": true
 						}
 					]
