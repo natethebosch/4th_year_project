@@ -27,7 +27,7 @@ class ImageProcessor {
 		bool first;
 		int currentXCompile;
 		array2d<hsi_pixel> img;
-		double sensorData[HEIGHT][WIDTH];
+		float sensorData[HEIGHT][WIDTH];
 		void yCompile();
 		void xCompileTo(int botY);
 	
@@ -36,7 +36,7 @@ class ImageProcessor {
 	
 	public:
 		ImageProcessor(int i);
-		void addData (int value, int y);
+		void addData (float value, int y);
 		void displayData ();
 		array2d<hsi_pixel>& compileImage();
 		array2d<hsi_pixel>& getImage();

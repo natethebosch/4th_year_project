@@ -24,8 +24,12 @@ public:
     
     void run(void* argc){
         // image processor main logic goes here
-      
+      	  ImageProcessor* imgpros[300];
           SensorDataPoint dp;
+          int count=0;
+          float lasty=0.0;
+          
+          imgpros[0]=new ImageProcessor (0);
           
           // infinite loop
           for(;;){ 
@@ -33,6 +37,19 @@ public:
          
                try{
                   dp = input.take();
+                  imgpros[count].addData(dp.value, int(dp.y/2));
+                  //finishs this image and moves on to the next one
+				  if (lasty>(dp.y+1)){
+                  	imgpros[count].compileImage();
+               		if (count<300){
+               			count++;
+			   		}
+			   		else{
+			   			count=0;
+			   		}
+			   		//creates a new ImageProcessor object to hold the next scan
+			   		imgpros[count]=new ImageProcessor (0);
+				  }
                }catch(BlockingQueueStatus s){
                    if(s == BLOCKING_QUEUE_TIMEOUT){
                        continue;
