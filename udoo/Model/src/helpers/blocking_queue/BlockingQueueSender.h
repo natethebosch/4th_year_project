@@ -10,6 +10,8 @@
 
 #include "BlockingQueueStatus.h"
 
+#include <xenomai/native/pipe.h>
+
 template <class T>
 class BlockingQueueSender{
 private:
