@@ -25,7 +25,7 @@ public:
      * waits forever until there's a new item in the queue
      * @return 
      */
-    T take() throw (int);
+    T take() throw (BlockingQueueStatus);
     T take(size_t timeout) throw (BlockingQueueStatus);
 };
 

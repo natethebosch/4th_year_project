@@ -7,6 +7,8 @@
 
 #include "BlockingQueueReceiver.h"
 
+#include <xenomai/native/pipe.h>
+#include <xenomai/native/timer.h>
 
 template <class T>
 T BlockingQueueReceiver<T>::take() throw (BlockingQueueStatus){
