@@ -9,7 +9,8 @@
 #include "../sys/Debug.h"
 #include <xenomai/native/pipe.h>
 
-BlockingQueue::BlockingQueue(const char* name){
+template <class T>
+BlockingQueue<T>::BlockingQueue(const char* name){
     // create pipe
     int status = rt_pipe_create(&pipe, name, P_MINOR_AUTO, BLOCKING_QUEUE_DEFAULT_SIZE);
     
@@ -38,7 +39,8 @@ BlockingQueue::BlockingQueue(const char* name){
     }
 }
 
-BlockingQueue::~BlockingQueue(){
+template <class T>
+BlockingQueue<T>::~BlockingQueue(){
     rt_pipe_delete(&pipe);
     // no error detection
 }
@@ -49,6 +51,6 @@ BlockingQueueSender<T> BlockingQueue<T>::getSender(){
 }
 
 template <class T>
-BlockingQueueSender<T> BlockingQueue<T>::getReciever(){
+BlockingQueueReceiver<T> BlockingQueue<T>::getReciever(){
     return new BlockingQueueReceiver<T>(&pipe);
 }
