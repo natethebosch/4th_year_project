@@ -16,7 +16,7 @@ T BlockingQueueReceiver<T>::take() throw (BlockingQueueStatus){
 }
 template <class T>
 T BlockingQueueReceiver<T>::take(size_t timeout) throw (BlockingQueueStatus){
-    RT_PIPE_MSG* msg;
+    RT_PIPE_MSG *msg;
     
     // wait indefinitely for incomming message
     ssize_t status = rt_pipe_receive(pipe, &msg, timeout);

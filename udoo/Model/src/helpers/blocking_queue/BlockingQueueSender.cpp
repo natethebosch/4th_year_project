@@ -9,7 +9,7 @@
 
 template <class T>
 void BlockingQueueSender<T>::put(T* item) throw (BlockingQueueStatus){
-    RT_PIPE_MSG* msg; 
+    RT_PIPE_MSG *msg; 
     
     // allocate a message
     msg = rt_pipe_alloc(sizeof(T)); // will be automatically freed
