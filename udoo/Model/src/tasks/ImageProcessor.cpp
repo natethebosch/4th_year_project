@@ -26,7 +26,7 @@ ImageProcessor::ImageProcessor (int i){
 }
 
 /**adds data point collected by sensors*/
-void ImageProcessor::addData(int value, int y){
+void ImageProcessor::addData(float value, int y){
 	
 	currentY[currentX]=y;
 	sensorData[y][currentX*xSpacing]=value;
@@ -117,4 +117,5 @@ array2d<hsi_pixel>& ImageProcessor::compileImage(){
 array2d<hsi_pixel>& ImageProcessor::getImage(){
 	return img;
 }
+
 

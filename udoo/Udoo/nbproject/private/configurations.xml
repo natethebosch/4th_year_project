@@ -4,58 +4,49 @@
     <df root="../Model" name="0">
       <df name="bin">
       </df>
-      <df name="scripts">
-      </df>
-      <df name="src">
-        <df name="helpers">
-          <df name="blocking_queue">
-            <in>BlockingQueueReceiver.cpp</in>
-            <in>BlockingQueueReceiver.h</in>
-            <in>BlockingQueueSender.cpp</in>
-            <in>BlockingQueueSender.h</in>
-            <in>BlockingQueueStatus.h</in>
-          </df>
-          <in>BlockingQueue.cpp</in>
-          <in>BlockingQueue.h</in>
+      <df name="helpers">
+        <df name="blocking_queue">
+          <in>BlockingQueueReceiver.cpp</in>
+          <in>BlockingQueueReceiver.h</in>
+          <in>BlockingQueueSender.cpp</in>
+          <in>BlockingQueueSender.h</in>
+          <in>BlockingQueueStatus.h</in>
         </df>
-        <df name="sys">
-          <in>Debug.cpp</in>
-          <in>Debug.h</in>
-          <in>Stopable.cpp</in>
-          <in>Stopable.h</in>
-          <in>Stoppable.h</in>
-          <in>Task.cpp</in>
-          <in>Task.h</in>
-        </df>
-        <df name="tasks">
-          <in>ImageProcessor.cpp</in>
-          <in>ImageProcessor.h</in>
-          <in>MotionGuard.cpp</in>
-          <in>MotionGuard.h</in>
-          <in>MotorControl.cpp</in>
-          <in>MotorControl.h</in>
-          <in>SensorCaptureArduino.cpp</in>
-          <in>SensorCaptureArduino.h</in>
-          <in>SensorCommunicator.cpp</in>
-          <in>SensorCommunicator.h</in>
-          <in>WebServer.cpp</in>
-          <in>WebServer.h</in>
-          <in>WebWorker.cpp</in>
-          <in>WebWorker.h</in>
-        </df>
-        <df name="type">
-          <in>SensorDataPoint.h</in>
-        </df>
-        <in>Main.cpp</in>
-        <in>Main.h</in>
-        <in>constants.h</in>
+        <in>BlockingQueue.cpp</in>
+        <in>BlockingQueue.h</in>
       </df>
       <df name="sys">
         <in>Debug.cpp</in>
         <in>Debug.h</in>
         <in>Stopable.cpp</in>
+        <in>Stopable.h</in>
+        <in>Stoppable.h</in>
         <in>Task.cpp</in>
+        <in>Task.h</in>
       </df>
+      <df name="tasks">
+        <in>ImageProcessor.cpp</in>
+        <in>ImageProcessor.h</in>
+        <in>ImageProcessorHeader.h</in>
+        <in>MotionGuard.cpp</in>
+        <in>MotionGuard.h</in>
+        <in>MotorControl.cpp</in>
+        <in>MotorControl.h</in>
+        <in>SensorCaptureArduino.cpp</in>
+        <in>SensorCaptureArduino.h</in>
+        <in>SensorCommunicator.cpp</in>
+        <in>SensorCommunicator.h</in>
+        <in>WebServer.cpp</in>
+        <in>WebServer.h</in>
+        <in>WebWorker.cpp</in>
+        <in>WebWorker.h</in>
+      </df>
+      <df name="type">
+        <in>SensorDataPoint.h</in>
+      </df>
+      <in>Main.cpp</in>
+      <in>Main.h</in>
+      <in>constants.h</in>
     </df>
   </logicalFolder>
   <projectmakefile></projectmakefile>
