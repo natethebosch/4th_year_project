@@ -6,8 +6,8 @@
  */
 
 #include "BlockingQueue.h"
-#include "Debug.h"
-#include <native/pipe.h>
+#include "../sys/Debug.h"
+#include <xenomai/native/pipe.h>
 
 BlockingQueue::BlockingQueue(const char* name){
     // create pipe

@@ -10,7 +10,7 @@
 
 #include "../sys/Task.h"
 #include "../helpers/BlockingQueue.h"
-#include "../type/SensorDataPoint.h";
+#include "../type/SensorDataPoint.h"
 #include "ImageProcessorHeader"
 
 
