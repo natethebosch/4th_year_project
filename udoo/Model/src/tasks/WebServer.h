@@ -9,6 +9,7 @@
 #define _WEBSERVER_H
 
 #include "../sys/Task.h"
+#include "./WebWorker.h"
 
 
 class WebServer: public Task {

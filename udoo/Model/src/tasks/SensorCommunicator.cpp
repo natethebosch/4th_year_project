@@ -145,9 +145,9 @@ SensorDataPoint SensorCommunicator::decodeString(char* str){
         }
     }
     
-    sscanf(value, "%f", dp.value);
-    sscanf(x, "%f", dp.x);
-    sscanf(y, "%f", dp.y);
+    sscanf(value, "%f", &dp.value);
+    sscanf(x, "%f", &dp.x);
+    sscanf(y, "%f", &dp.y);
     
     return dp;
 }
