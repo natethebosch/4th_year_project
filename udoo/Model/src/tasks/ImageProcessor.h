@@ -11,9 +11,7 @@
 #include "../sys/Task.h"
 #include "../helpers/BlockingQueue.h"
 #include "../type/SensorDataPoint.h"
-<<<<<<< HEAD:udoo/Model/src/tasks/ImageProcessor.h
-#include "ImageProcessorHeader"
-=======
+
 
 #define HEIGHT 		500
 #define WIDTH 		480
@@ -29,42 +27,22 @@
 #include <dlib\image_io.h>
 #include <dlib\image_transforms.h>
 
-
-
 using namespace std;
 using namespace dlib;
 
-
-class ImageProcessor {
-	private:
-		int currentX;
-		int rowLength;
-		int *lastY;
-		int *currentY;
-		bool first;
-		int currentXCompile;
-		array2d<hsi_pixel> img;
-		float sensorData[HEIGHT][WIDTH];
-		void yCompile();
-		void xCompileTo(int botY);
-	
-		
-		
-	
-	public:
-		ImageProcessor(int i);
-		void addData (float value, int y);
-		void displayData ();
-		array2d<hsi_pixel>& compileImage();
-		array2d<hsi_pixel>& getImage();
-		
-
-};
-
->>>>>>> tyler:udoo/Model/tasks/ImageProcessor.h
-
-
 class ImageProcessor: public Task {
+private:
+    int currentX;
+    int rowLength;
+    int *lastY;
+    int *currentY;
+    bool first;
+    int currentXCompile;
+    array2d<hsi_pixel> img;
+    float sensorData[HEIGHT][WIDTH];
+    void yCompile();
+    void xCompileTo(int botY);
+    
     BlockingQueueReceiver<SensorDataPoint> input;
     
 public:
@@ -72,7 +50,12 @@ public:
         input = _input;
     };
     
-    void run(void* argc){
+    void addData (float value, int y);
+    void displayData ();
+    array2d<hsi_pixel>& compileImage();
+    array2d<hsi_pixel>& getImage();
+    
+    void run(){
         // image processor main logic goes here
 
           SensorDataPoint dp;
