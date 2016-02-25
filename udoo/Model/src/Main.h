@@ -10,6 +10,8 @@
 
 #include "constants.h"
 
+ImageProcessor* imgpros[300];
+
 class Main {
 public: 
     
