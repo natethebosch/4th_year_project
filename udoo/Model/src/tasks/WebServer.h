@@ -13,7 +13,7 @@
 
 class WebServer: public Task {
 public: 
-    void workerPool;
+    WebWorker workerPool[10];
     
     void run();
 };

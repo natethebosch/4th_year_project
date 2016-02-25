@@ -18,7 +18,9 @@
  * SensorCommunicator implementation
  */
 
-SensorCommunicator::SensorCommunicator(BlockingQueueSender<SensorDataPoint> _pipe) : Task("SensorComm", 80){
+SensorCommunicator::SensorCommunicator(BlockingQueueSender<SensorDataPoint> _pipe) {
+    super("SensorComm", 80);
+    
     pipe = _pipe;
     
     /*
@@ -78,11 +80,11 @@ void SensorCommunicator::run(void* args){
             
             // copy buffer to section
             section = (char*)malloc(sizeof(char) * (position + 1));
-            strcpy(section, &buffer);
+            strcpy(section, (const char*)&buffer);
             
             // send off to be decoded
             dp = decodeString(section);
-            pipe.put(dp);
+            pipe->put(dp);
             
             // reset position
             position = 0;
@@ -143,9 +145,9 @@ SensorDataPoint SensorCommunicator::decodeString(char* str){
         }
     }
     
-    dp.value = std::stof(value);
-    dp.x = std::stof(x);
-    dp.y = std::stof(y);
+    sscanf(value, "%f", dp.value);
+    sscanf(x, "%f", dp.x);
+    sscanf(y, "%f", dp.y);
     
     return dp;
 }

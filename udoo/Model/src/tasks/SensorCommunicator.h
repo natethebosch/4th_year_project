@@ -34,6 +34,8 @@ class SensorCommunicator: public Task {
     int position = 0;
     
 public:
+    
+    template<>
     SensorCommunicator(BlockingQueueSender<SensorDataPoint> _pipe);
     ~SensorCommunicator();
     
