@@ -42,7 +42,7 @@ fwrite($f, '#
 IDIR=../xenomai-2.6/include
 
 CC=gcc
-CFLAGS=-I.$(IDIR)
+CFLAGS=-I$(IDIR)
 
 aDEPS='.$headerFiles.'
 OBJ='.$ccFiles.'

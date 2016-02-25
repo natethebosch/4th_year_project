@@ -8,7 +8,7 @@
 #ifndef _WEBWORKER_H
 #define _WEBWORKER_H
 
-#include "Task.h"
+#include "../sys/Task.h"
 
 
 class WebWorker: public Task {

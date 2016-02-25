@@ -8,7 +8,7 @@
 #ifndef _SENSORCOMMUNICATOR_H
 #define _SENSORCOMMUNICATOR_H
 
-#include "Task.h"
+#include "../sys/Task.h"
 #include "../type/SensorDataPoint.h"
 
 /**

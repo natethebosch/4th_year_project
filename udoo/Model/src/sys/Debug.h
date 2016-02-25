@@ -9,6 +9,7 @@
 #define DEBUG_H
 
 #include <iostream>
+#include "../constants.h"
 
 class Debug {
 public:
