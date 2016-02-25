@@ -8,6 +8,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+#define DEBUG true
 #define SENSOR_SERIAL_PERIODIC_WATCH 10000
 #define BAUD_RATE B115200 // 115200
 #define SERIAL_PATH "/dev/tty01"

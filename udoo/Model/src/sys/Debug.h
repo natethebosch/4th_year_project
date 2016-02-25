@@ -15,7 +15,7 @@ class Debug {
 public:
     static void output(const char* msg){
         if(DEBUG){
-            std::cout "DEBUG: " << msg;
+            std::cout << "DEBUG: " << msg;
             std::cout.flush();
         }
     }
