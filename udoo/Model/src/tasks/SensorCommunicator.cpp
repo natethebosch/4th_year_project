@@ -84,7 +84,7 @@ void SensorCommunicator::run(void* args){
             
             // send off to be decoded
             dp = decodeString(section);
-            pipe->put(dp);
+            pipe.put(dp);
             
             // reset position
             position = 0;

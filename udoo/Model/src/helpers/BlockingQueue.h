@@ -9,7 +9,7 @@
 #include <fcntl.h>
 #include <string.h>
 #include <stdio.h>
-#include <native/pipe.h>
+#include <xenomai/native/pipe.h>
 
 #ifndef BLOCKINGQUEUE_H
 #define BLOCKINGQUEUE_H
