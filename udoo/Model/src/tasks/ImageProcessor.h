@@ -22,10 +22,10 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include <dlib/pixel.h>
-#include <dlib/array2d.h>
-#include <dlib/image_io.h>
-#include <dlib/image_transforms.h>
+#include "dlib/pixel.h"
+#include "dlib/array2d.h"
+#include "dlib/image_io.h"
+#include "dlib/image_transforms.h"
 
 using namespace std;
 using namespace dlib;
