@@ -10,6 +10,7 @@
 
 #include "../sys/Task.h"
 #include "../type/SensorDataPoint.h"
+#include "../helpers/BlockingQueue.h"
 
 /**
  * Receives sensor data from the serial port
@@ -22,7 +23,7 @@
 
 class SensorCommunicator: public Task {
     
-    BlockingQueueSender<SensorDataPoint> pipe;
+    BlockingQueueSender<SensorDataPoint> *queue;
     
     // Serial Interface stuff
     int tty_fd;
@@ -32,12 +33,11 @@ class SensorCommunicator: public Task {
     
     // 16 characters * 3 items + 1 null termination character + 10 safety
     char buffer[16*3+1+10];
-    int position = 0;
+    int position;
     
 public:
     
-    template<>
-    SensorCommunicator(BlockingQueueSender<SensorDataPoint> _pipe);
+    SensorCommunicator(BlockingQueueSender<SensorDataPoint> *_queue);
     ~SensorCommunicator();
     
     void run(void* args);

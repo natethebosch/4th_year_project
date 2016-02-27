@@ -3,28 +3,27 @@
 # Created by scripts/configure.php
 # Nate Bosscher
 #
+SHELL = /bin/sh
+CXX = g++
+ 
+FLAGS        = 
+XENO_CFLAGS=-I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__XENO__
+D_LIB_CFLAGS=-I/home/nate/dlib-current
+STD_CFLAGS=-I/usr/include/c++/4.9.2
+CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS)
+SOURCES = $(shell find ./ -name '*.cpp')
+HEADERS = $(shell find ./ -name '*.h')
+OBJECTS = $(SOURCES:.cpp=.o)
+LDFLAGS=-lstdc++ -lnative -lxenomai -L/usr/xenomai/lib -lpthread
+EXEC = a.out
 
-IDIR=/usr/xenomai/include
-
-CC=gcc
-CFLAGS=-I$(IDIR)
-
-aDEPS=/Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/Main.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/constants.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/helpers/BlockingQueue.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/helpers/blocking_queue/BlockingQueueReceiver.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/helpers/blocking_queue/BlockingQueueSender.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/helpers/blocking_queue/BlockingQueueStatus.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/sys/Debug.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/sys/Stopable.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/sys/Stoppable.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/sys/Task.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/ImageProcessor.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/MotionGuard.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/MotorControl.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/SensorCaptureArduino.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/SensorCommunicator.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/WebServer.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/WebWorker.h /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/type/SensorDataPoint.h
-OBJ=/Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/Main.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/helpers/BlockingQueue.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/helpers/blocking_queue/BlockingQueueReceiver.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/helpers/blocking_queue/BlockingQueueSender.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/sys/Debug.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/sys/Stopable.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/sys/Task.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/ImageProcessor.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/MotionGuard.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/MotorControl.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/SensorCaptureArduino.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/SensorCommunicator.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/WebServer.cpp /Users/natebosscher1/Documents/School/4th_year_project/udoo/Model/src/tasks/WebWorker.cpp
-
-ODIR=./bin
-LDIBS=-std
-INCDIR=./
-
-DEPS=$(patsubst %,$(IDIR)/%,$(aDEPS))
-
-%.o: %.c $(DEPS) 
-	$(CC) -c -o $@ $< $(CFLAGS)
-
-make: $(OBJ)
-	gcc -o $@ $^ $(CFLAGS) $(LIBS)
-
-.PHONY: clean
-
+all: $(EXEC)
+	
+$(EXEC) : $(OBJECTS)
+	$(CXX) $(OBJECTS) -o $(EXEC) $(LDFLAGS)
+	
+%.o: %.cpp
+	$(CXX) -c $(CPPFLAGS) $< -o $@
+	
 clean:
-	rm -f $(ODIR)/*.o *~ core $(INCDIR)/*~
+	rm -f $(EXEC) $(OBJECTS)

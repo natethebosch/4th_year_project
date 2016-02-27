@@ -18,10 +18,11 @@
  * SensorCommunicator implementation
  */
 
-SensorCommunicator::SensorCommunicator(BlockingQueueSender<SensorDataPoint> _pipe) {
-    super("SensorComm", 80);
+SensorCommunicator::SensorCommunicator(BlockingQueueSender<SensorDataPoint> *_queue) : Task("SensorComm", 80) {
     
-    pipe = _pipe;
+    position = 0;
+    
+    queue = _queue;
     
     /*
      * Serial interface setup
@@ -84,7 +85,7 @@ void SensorCommunicator::run(void* args){
             
             // send off to be decoded
             dp = decodeString(section);
-            pipe.put(dp);
+//            queue->put(&dp);
             
             // reset position
             position = 0;
@@ -121,7 +122,7 @@ SensorDataPoint SensorCommunicator::decodeString(char* str){
     int section = 0;
     
     // loop over the string
-    for(int i = 0; i < strlen(str); i++){
+    for(int i = 0; i < (int)strlen(str); i++){
         // check for delimiter char
         if(str[i] == ','){
             section++;

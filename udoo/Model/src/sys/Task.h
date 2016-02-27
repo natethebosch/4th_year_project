@@ -13,6 +13,8 @@
 #include <xenomai/native/task.h>
 #include "../sys/Debug.h"
 
+typedef void(*TaskCallback)(void *cookie);
+
 class Task {
     RT_TASK task_desc;
     
@@ -30,14 +32,19 @@ public:
     /**
      * The worker function
      */
-    virtual void run(void* args){
-        Debug::output("Start is not overridden");
-    }
+    TaskCallback run;
     
     /**
      * Starts the Xenomai task
      */
     bool start(void* args);
+    
+    /**
+     * alias for start(void* args);
+     */
+    bool start(){
+        return start(0);
+    }
     
     /**
      * Starts a periodic Xenomai task with given name, priority and period

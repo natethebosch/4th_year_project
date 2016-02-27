@@ -11,8 +11,17 @@
 using namespace std;
 using namespace dlib;
 
+ImageProcessor::ImageProcessor(BlockingQueueReceiver<SensorDataPoint> *_input)
+    :Task("ImageProcessor", 20) {
+    input = _input;
+}
+
 
 /**initialises an image of HEIGHT and WIDTH*/
+/**
+    This needs to be moved inside the constructor above ^^
+ * nb
+ *
 ImageProcessor::ImageProcessor (int i){
 	//HEIGHT=y;
 	//WIDTH=x;
@@ -24,6 +33,7 @@ ImageProcessor::ImageProcessor (int i){
 	currentXCompile=0;
 	first=true;
 }
+*/
 
 /**adds data point collected by sensors*/
 void ImageProcessor::addData(float value, int y){

@@ -13,8 +13,8 @@
 
 class MotorControl: public Task {
 public: 
-    void controlPort;
-    void holeIndex;
+    int controlPort;
+    int holeIndex;
     
     void homeScanner();
     
@@ -23,11 +23,8 @@ public:
     void scanHome();
     
     void scanAway();
-<<<<<<< HEAD
-=======
     
     void stopScanner();
->>>>>>> nate
 };
 
 #endif //_MOTORCONTROL_H

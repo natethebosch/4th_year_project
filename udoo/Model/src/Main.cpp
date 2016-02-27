@@ -13,12 +13,15 @@
 
 #include "Main.h"
 
-#include "tasks/ImageProcessor.h"
-#include "tasks/MotionGuard.h"
-#include "tasks/MotorControl.h"
-#include "tasks/WebServer.h"
-#include "tasks/SensorCommunicator.h"
+#include "./tasks/ImageProcessor.h"
+#include "./tasks/MotionGuard.h"
+#include "./tasks/MotorControl.h"
+#include "./tasks/WebServer.h"
+#include "./tasks/SensorCommunicator.h"
 #include "./helpers/BlockingQueue.h"
+#include "./tasks/MotorControl.h"
+#include "./type/SensorDataPoint.h"
+
 
 /**
  * Main implementation
@@ -37,4 +40,11 @@ void Main::initial() {
     // start tasks
     comm.startPeriodic(SENSOR_SERIAL_PERIODIC_WATCH);
     imgProcessor.start();
+}
+
+int main(int argc, char** argv){
+    Main m;
+    m.initial();
+    
+    return 0;
 }

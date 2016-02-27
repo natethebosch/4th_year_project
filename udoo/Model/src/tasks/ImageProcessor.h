@@ -43,12 +43,10 @@ private:
     void yCompile();
     void xCompileTo(int botY);
     
-    BlockingQueueReceiver<SensorDataPoint> input;
+    BlockingQueueReceiver<SensorDataPoint> *input;
     
 public:
-    ImageProcessor(BlockingQueueReceiver<SensorDataPoint> _input): Task("ImageProcessor", 20){
-        input = _input;
-    };
+    ImageProcessor(BlockingQueueReceiver<SensorDataPoint>* _input);
     
     void addData (float value, int y);
     void displayData ();
@@ -62,14 +60,20 @@ public:
           int count=0;
           float lasty=0.0;
           
-          imgpros[0]=new ImageProcessor (0);
+          /*
+           *
+           * You're allocating 300 ImageProcessors. Somthing's not right
+           * nb
+           * 
+           * 
+          ImageProcessor imgpros(0);
           
           // infinite loop
           for(;;){ 
                // fetch from the buffer
          
                try{
-                  dp = input.take();
+                  dp = input->take();
                   imgpros[count].addData(dp.value, int(dp.y/2));
                   //finishs this image and moves on to the next one
 				  if (lasty>(dp.y+1)){
@@ -92,6 +96,8 @@ public:
                    }
                }
           }
+           * 
+           */
          
          
     }

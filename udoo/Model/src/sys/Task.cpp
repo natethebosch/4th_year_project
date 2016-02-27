@@ -1,13 +1,14 @@
 #include "Task.h"
+#include <xenomai/native/timer.h>
 
 /**
  * Starts a new Xenomai task with the given name and priority
  * @param taskName a unique name for this task
  * @param priority 1..99 (1 = lowest priority)
 */
-Task Task::Task(const char* taskName, int priority){
+Task::Task(const char* taskName, int priority){
    // create task
-   int status = rt_task_create(&task_desc, taskName, NULL, priority);
+   int status = rt_task_create(&this->task_desc, taskName, 0, priority, 0);
 
    // check for errors
    if(status == 0){
@@ -36,7 +37,7 @@ Task Task::Task(const char* taskName, int priority){
 
 Task::~Task(){
     // cleanup task
-    int status = rt_task_delete(&task_desc);
+    int status = rt_task_delete(&this->task_desc);
 
     // check for errors
     if(status != 0){
@@ -61,7 +62,7 @@ Task::~Task(){
 }
 
 bool Task::start(void* args){
-    int status = rt_task_start(&task_desc, &run, args);
+    int status = rt_task_start(&this->task_desc, this->run, args);
     
     // check for errors
     if(status != 0){
