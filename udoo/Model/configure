@@ -1,7 +1,0 @@
-#
-# Configure file
-# Nate Bosscher
-# 2016-Feb-25
-#
-
-php scripts/configure.php
