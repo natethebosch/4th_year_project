@@ -11,13 +11,13 @@
 #include <stdio.h>
 #include <xenomai/native/pipe.h>
 
-#ifndef BLOCKINGQUEUE_H
-#define BLOCKINGQUEUE_H
-
 #include "./blocking_queue/BlockingQueueReceiver.h"
 #include "./blocking_queue/BlockingQueueSender.h"
 #include "./blocking_queue/BlockingQueueStatus.h"
 #include "../sys/Debug.h"
+
+#ifndef BLOCKINGQUEUE_H
+#define BLOCKINGQUEUE_H
 
 #define BLOCKING_QUEUE_DEFAULT_SIZE 10
 
