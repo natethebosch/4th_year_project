@@ -14,10 +14,6 @@ using namespace dlib;
 
 /**initialises an image of HEIGHT and WIDTH*/
 ImageProcessor::ImageProcessor (int i){
-	//HEIGHT=y;
-	//WIDTH=x;
-	//xSpacing=WIDTH/MAJORXS;
-	//assign_image(img, array2d<hsi_pixel> (HEIGHT, (WIDTH-xSpacing)));
 	currentX =0;
 	currentY =new int[MAJORXS];
 	lastY =new int[MAJORXS];
@@ -28,22 +24,25 @@ ImageProcessor::ImageProcessor (int i){
 /**adds data point collected by sensors*/
 void ImageProcessor::addData(float value, int y){
 	
-	currentY[currentX]=y;
-	sensorData[y][currentX*xSpacing]=value;
-	currentX++;
-	if (currentX==MAJORXS){
+	currentY[currentX]=y;//puts the y value into the array of current y values
+	sensorData[y][currentX*xSpacing]=value;//assigns the value to the coresponding spot in the data array
+	currentX++;//moves to the next major column
+	if (currentX==MAJORXS){//if the previous column was the last major colum
 		currentX=0;
+		//if first row don't compile and say its no longer the first row
 		if(first==true){ 
 			first=false;
 		}
+		//if its not the first row compile the major columns then compile the rows to the heighest y data point
 		else{
 			yCompile();
 			xCompileTo(currentY[0]);
 		}
+		//assigns the values of the current row of y values to the array 
 		for (int i=0; i<MAJORXS; i++){
 			lastY[i]=currentY[i];
 		}
-	} 
+	} //end if was last major column
 }
 
 /**interpolates along the major columns*/
@@ -55,14 +54,15 @@ void ImageProcessor::yCompile(){
 	int currentYloc;
 	double topVal;
 	double botVal;
+	//goes through all major columns and interpolates the data for the major columns
 	for (int column=0; column < MAJORXS; column++){
 		row=1.0;
-		subColumn=column*xSpacing;
-		lastYloc=lastY[column];
-		currentYloc=currentY[column];
-		topVal=sensorData[lastYloc][subColumn];
-		botVal=sensorData[currentYloc][subColumn];
-		diff=double(currentYloc-lastYloc);
+		subColumn=column*xSpacing;//index of the major column in the data array
+		lastYloc=lastY[column];//the upper data points y value
+		currentYloc=currentY[column]; //the lower data points y value
+		topVal=sensorData[lastYloc][subColumn];//value of data point above
+		botVal=sensorData[currentYloc][subColumn];//value of data point below
+		diff=double(currentYloc-lastYloc);//number of y values that need to be interpolated
 		while (row<diff){
 			sensorData[int(row+lastYloc)][subColumn]=((diff-row)/diff)*topVal+(row/diff)*botVal;
 			row+=1.0;
@@ -74,8 +74,10 @@ void ImageProcessor::yCompile(){
 void ImageProcessor::xCompileTo(int botY){
 	for (int row = currentXCompile; row<=botY; row++){
 		for (int column=1; column<WIDTH; column++){
-			int leftMajorColumn= (column/xSpacing)*xSpacing;
-			double shift= column%xSpacing; 
+			int leftMajorColumn= (column/xSpacing)*xSpacing;//finds the x value of the major column to the left of the point 
+			int shift= column%xSpacing;//determines how far over from the major column the current column is
+			//if the current column is not a major column set the points value to the weighted average
+			//of the values in the major columns imediatly to its left and right
 			if (shift != 0){
 				sensorData[row][column]= ((xSpacing-shift)/xSpacing)*sensorData[row][leftMajorColumn] +(shift/xSpacing)*sensorData[row][(leftMajorColumn+xSpacing)];
 			}
@@ -97,12 +99,12 @@ void ImageProcessor::displayData(){
 
 /**creates an image from the data and returns a refrence to it*/
 array2d<hsi_pixel>& ImageProcessor::compileImage(){
-	int high=currentY[MAJORXS];
-	assign_image(img, array2d<hsi_pixel> (HEIGHT, (WIDTH-xSpacing)));
+	assign_image(img, array2d<hsi_pixel> (HEIGHT, (WIDTH-xSpacing)));//creates the image
 	hsi_pixel* pixel;
 	for (int row=0; row<HEIGHT; row++){
 		for (int column=0; column<(WIDTH-xSpacing); column++){
 			pixel = &img[row][column];
+			//sets the intensity and sateration to levels to make the colour change visable and sets the hue based on the data collected/interpolated
 			if (sensorData[row][column]){
 				pixel->i=150;
 				pixel->s=255;
@@ -118,4 +120,10 @@ array2d<hsi_pixel>& ImageProcessor::getImage(){
 	return img;
 }
 
+/**returns a refernece to the array containing the numerical data
+*from the scan and the interpolation*/
+
+float ImageProcessor::(&getData())[HEIGHT][WIDTH-xSpacing]{
+	return sensorData;
+}
 
