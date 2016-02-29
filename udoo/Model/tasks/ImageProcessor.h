@@ -21,27 +21,25 @@
 #include <vector>
 #include <iostream>
 #include <string>
-#include <dlib\pixel.h>
-#include <dlib\array2d.h>
-#include <dlib\image_io.h>
-#include <dlib\image_transforms.h>
+#include <pixel.h>
+#include <array2d.h>
+#include <image_io.h>
+#include <image_transforms.h>
 
 
 
 using namespace std;
 using namespace dlib;
 
-
 class ImageProcessor {
 	private:
-		int currentX;
-		int rowLength;
-		int *lastY;
-		int *currentY;
-		bool first;
-		int currentXCompile;
-		array2d<hsi_pixel> img;
-		float sensorData[HEIGHT][WIDTH];
+		int currentX; //hold the x value of the next data point to be added
+		int *lastY; //array holding the y values of the previous row of data points
+		int *currentY; //array holding the y values of the current row of data points
+		bool first; //true if the current row of data points is the first in this image otherwise false
+		int currentXCompile; //holds the y value to which the data array has been completely compiled
+		array2d<hsi_pixel> img; //holds the image
+		float sensorData[HEIGHT][WIDTH-xSpacing]; //holds the added data points as well as the interpolated values between
 		void yCompile();
 		void xCompileTo(int botY);
 	
@@ -49,11 +47,12 @@ class ImageProcessor {
 		
 	
 	public:
-		ImageProcessor(int i);
+		ImageProcessor(int i); //constructor
 		void addData (float value, int y);
 		void displayData ();
 		array2d<hsi_pixel>& compileImage();
 		array2d<hsi_pixel>& getImage();
+		float (&getData())[HEIGHT][WIDTH-xSpacing];
 		
 
 };
@@ -72,10 +71,9 @@ public:
         // image processor main logic goes here
 
           SensorDataPoint dp;
-          int count=0;
           float lasty=0.0;
           
-          imgpros[0]=new ImageProcessor (0);
+          ImageProcessor imgpros=new ImageProcessor (0);
           
           // infinite loop
           for(;;){ 
@@ -83,10 +81,13 @@ public:
          
                try{
                   dp = input.take();
-                  imgpros[count].addData(dp.value, int(dp.y/2));
+                  imgpros[count].addData(dp.value, int(dp.y*5));//y value multiplied by 5 since height is 500 and the scanner is 100cm long
                   //finishs this image and moves on to the next one
 				  if (lasty>(dp.y+1)){
-                  	imgpros[count].compileImage();
+                  	//assigns the data and image to the arrays
+                  	assign_image(images[count,imgpros.compileImage()]);
+                  	dataSets[count]=imgpros.getData();
+                  	//moves to the next space in the data/image arrays
                		if (count<300){
                			count++;
 			   		}
@@ -94,7 +95,7 @@ public:
 			   			count=0;
 			   		}
 			   		//creates a new ImageProcessor object to hold the next scan
-			   		imgpros[count]=new ImageProcessor (0);
+			   		imgpros=new ImageProcessor (0);
 				  }
                }catch(BlockingQueueStatus s){
                    if(s == BLOCKING_QUEUE_TIMEOUT){
