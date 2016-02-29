@@ -11,17 +11,25 @@ XENO_CFLAGS=-I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__XENO__
 D_LIB_CFLAGS=-I/home/nate/dlib-current
 STD_CFLAGS=-I/usr/include/c++/4.9.2
 CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS)
-SOURCES = $(shell find ./ -name '*.cpp')
-HEADERS = $(shell find ./ -name '*.h')
+SOURCES = $(shell find ./src -name '*.cpp')
+T_SOURCES = $(shell find ./src -name '*.cpp' | grep -v 'Main.cpp') $(shell find ./test -name '*.cpp')
+HEADERS = $(shell find ./src -name '*.h')
 OBJECTS = $(SOURCES:.cpp=.o)
+T_OBJECTS = $(T_SOURCES:.cpp=.o)
 LDFLAGS=-lstdc++ -lnative -lxenomai -L/usr/xenomai/lib -lpthread
 EXEC = a.out
+T_EXEC = test.out
 
 all: $(EXEC)
+
+test: $(T_EXEC)
 	
 $(EXEC) : $(OBJECTS)
 	$(CXX) $(OBJECTS) -o $(EXEC) $(LDFLAGS)
-	
+
+$(T_EXEC) : $(T_OBJECTS)
+	$(CXX) $(T_OBJECTS) -o $(T_EXEC) $(LDFLAGS)
+
 %.o: %.cpp
 	$(CXX) -c $(CPPFLAGS) $< -o $@
 	
