@@ -8,6 +8,9 @@
 #ifndef _MAIN_H
 #define _MAIN_H
 
+#include 
+
+ImageProcessor* imgpros[300];
 
 class Main {
 public: 
