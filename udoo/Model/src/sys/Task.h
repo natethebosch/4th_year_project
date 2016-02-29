@@ -10,10 +10,16 @@
 
 #define TASK_WAIT_FOR_FIRST_RUN 1000
 
-#include <xenomai/native/task.h>
+#include <native/task.h>
 #include "../sys/Debug.h"
 
-typedef void(*TaskCallback)(void *cookie);
+class Task;
+
+typedef struct TaskCallbackInfo{
+    Task* task;
+    void* arg;
+} TaskCallbackInfo;
+
 
 class Task {
     RT_TASK task_desc;
@@ -32,7 +38,14 @@ public:
     /**
      * The worker function
      */
-    TaskCallback run;
+    virtual void run(void* cookie){
+        Debug::output("Run is not implemented");
+    }
+    
+    static void _run(void* taskInfo){
+        TaskCallbackInfo _taskInfo* = (TaskCallbackInfo*) taskInfo;
+        _taskInfo->task->run(_taskInfo->arg);
+    }
     
     /**
      * Starts the Xenomai task

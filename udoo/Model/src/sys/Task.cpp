@@ -1,5 +1,5 @@
 #include "Task.h"
-#include <xenomai/native/timer.h>
+#include <native/timer.h>
 
 /**
  * Starts a new Xenomai task with the given name and priority
@@ -62,7 +62,14 @@ Task::~Task(){
 }
 
 bool Task::start(void* args){
-    int status = rt_task_start(&this->task_desc, this->run, args);
+
+    // must wrap the callback information into a struct so we can pass the "this" reference
+    // and the arguements
+    TaskCallbackInfo *tfi = (TaskCallbackInfo*)malloc(sizeof(TaskCallbackInfo));
+    tfi->task = this;
+    tfi->arg = args;
+
+    int status = rt_task_start(&this->task_desc, Task::_run, tfi);
     
     // check for errors
     if(status != 0){
