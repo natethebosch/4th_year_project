@@ -31,7 +31,7 @@ public:
         void* msg;
         
         // allocate a message
-        msg = rt_queue_alloc(queue, sizeof(T)); // will be automatically freed
+        msg = rt_queue_alloc(this->queue, sizeof(T)); // will be automatically freed
         if(!msg){
             throw BLOCKING_QUEUE_NO_ALLOC;
         }
@@ -40,7 +40,7 @@ public:
         memcpy(msg, item, sizeof(T));
         
         // perform send
-        ssize_t status = rt_queue_send(this->pipe, msg, sizeof(T), Q_NORMAL);
+        ssize_t status = rt_queue_send(this->queue, msg, sizeof(T), Q_NORMAL);
         
         // check for errors
         switch(status){

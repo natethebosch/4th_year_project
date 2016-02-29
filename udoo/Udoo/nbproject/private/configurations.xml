@@ -4,8 +4,6 @@
     <df root="../Model" name="0">
       <df name="bin">
       </df>
-      <df name="scripts">
-      </df>
       <df name="src">
         <df name="helpers">
           <df name="blocking_queue">
@@ -49,6 +47,8 @@
         <in>Main.cpp</in>
         <in>Main.h</in>
         <in>constants.h</in>
+      </df>
+      <df name="test">
       </df>
     </df>
   </logicalFolder>
