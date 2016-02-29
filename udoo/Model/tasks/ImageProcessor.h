@@ -15,7 +15,7 @@
 #define HEIGHT 		500
 #define WIDTH 		480
 #define MAJORXS 	24
-#define MAXREADING 	(255*24)
+#define MAXREADING 	(255)
 #define xSpacing	(WIDTH/MAJORXS)
 
 #include <vector>
@@ -47,7 +47,7 @@ class ImageProcessor {
 		
 	
 	public:
-		ImageProcessor(int i); //constructor
+		void empty(); //constructor/reseter
 		void addData (float value, int y);
 		void displayData ();
 		array2d<hsi_pixel>& compileImage();
@@ -64,6 +64,7 @@ class ImageProcessor: public Task {
     
 public:
     ImageProcessor(BlockingQueueReceiver<SensorDataPoint> _input): Task("ImageProcessor", 20){
+    	empty();
         input = _input;
     };
     

@@ -13,12 +13,17 @@ using namespace dlib;
 
 
 /**initialises an image of HEIGHT and WIDTH*/
-ImageProcessor::ImageProcessor (int i){
+ImageProcessor::empty (){
 	currentX =0;
 	currentY =new int[MAJORXS];
 	lastY =new int[MAJORXS];
 	currentXCompile=0;
 	first=true;
+	for (int i=0; i<HEIGHT;i++){
+		for (int n=0; n<WIDTH-xSpacing; n++){
+			sensorData[i][n]=0;
+		}		
+	}
 }
 
 /**adds data point collected by sensors*/
