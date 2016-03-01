@@ -128,11 +128,12 @@ void ImageProcessor::xCompileTo(int botY){
 void ImageProcessor::displayData(){
 	for (int a=0; a<HEIGHT; a++){
 			for (int b=0; b<WIDTH; b++){
-				 cout<<sensorData[a][b]<<"	";
+				 Debug::output((to_string(sensorData[a][b])).c_str());
+				 Debug::output("	");
 			}
-			cout << "\n\n";
+			Debug::output("\n\n");
 		}
-		cout << "\n\n";
+		Debug::output ("\n\n");
 }
 
 /**creates an image from the data and returns a refrence to it*/
