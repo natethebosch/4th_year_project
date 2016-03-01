@@ -9,9 +9,9 @@
 #define _WEBWORKER_H
 
 #include "../sys/Task.h"
-#include <iostream>
-#include <map>
-#include <string>
+//#include <iostream>
+//#include <map>
+//#include <string>
 
 #define SOCKET_BUFFER_SIZE 512
 #define WEB_ROOT "/home/webroot"

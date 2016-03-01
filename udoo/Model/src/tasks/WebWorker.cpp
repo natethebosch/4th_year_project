@@ -8,17 +8,17 @@
 #include "WebServer.h"
 
 #include <algorithm>
-#include <string>
 #include <fstream>
+#include <iostream>
+
 
 #include <sys/socket.h>
-#include<netinet/in.h>
-#include<stdio.h>
-#include<stdlib.h>
-#include<sys/stat.h>
-#include<sys/types.h>
-#include<unistd.h>
-
+#include <netinet/in.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+#include <unistd.h>
 
 /**
  * WebWorker implementation
