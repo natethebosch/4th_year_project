@@ -71,7 +71,7 @@ public:
     //constructor/reseter
     void empty();
     
-    ImageProcessor(BlockingQueueReceiver<SensorDataPoint> _input): Task("ImageProcessor", 20){
+    ImageProcessor(BlockingQueueReceiver<SensorDataPoint>* _input): Task("ImageProcessor", 20){
     	empty();
         input = _input;
     };
@@ -111,10 +111,6 @@ public:
                    }
                }
           }
-           * 
-           */
-         
-         
     }
 };
 
