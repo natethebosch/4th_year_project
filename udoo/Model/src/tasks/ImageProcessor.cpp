@@ -33,20 +33,31 @@ void ImageProcessor::empty (){
  */
 void ImageProcessor::addData(float value, int y){
 	
-	currentY[currentX]=y;//puts the y value into the array of current y values
-	sensorData[y][currentX*xSpacing]=value;//assigns the value to the coresponding spot in the data array
-	currentX++;//moves to the next major column
-	if (currentX==MAJORXS){//if the previous column was the last major colum
+	//puts the y value into the array of current y values
+	currentY[currentX]=y;
+	
+	//assigns the value to the coresponding spot in the data array
+	sensorData[y][currentX*xSpacing]=value;
+	
+	//moves to the next major column
+	currentX++;
+	
+	//if the previous column was the last major colum
+	if (currentX==MAJORXS){
+		
 		currentX=0;
+		
 		//if first row don't compile and say its no longer the first row
 		if(first==true){ 
 			first=false;
 		}
+		
 		//if its not the first row compile the major columns then compile the rows to the heighest y data point
 		else{
 			yCompile();
 			xCompileTo(currentY[0]);
 		}
+		
 		//assigns the values of the current row of y values to the array of the previous row of y values
 		for (int i=0; i<MAJORXS; i++){
 			lastY[i]=currentY[i];
@@ -63,15 +74,28 @@ void ImageProcessor::yCompile(){
 	int currentYloc;
 	double topVal;
 	double botVal;
+	
 	//goes through all major columns and interpolates the data for the major columns
 	for (int column=0; column < MAJORXS; column++){
 		row=1.0;
-		subColumn=column*xSpacing;//index of the major column in the data array
-		lastYloc=lastY[column];//the upper data points y value
-		currentYloc=currentY[column]; //the lower data points y value
-		topVal=sensorData[lastYloc][subColumn];//value of data point above
-		botVal=sensorData[currentYloc][subColumn];//value of data point below
-		diff=double(currentYloc-lastYloc);//number of y values that need to be interpolated
+		
+		//index of the major column in the data array
+		subColumn=column*xSpacing;
+		
+		//the upper data points y value
+		lastYloc=lastY[column];
+		
+		//the lower data points y value
+		currentYloc=currentY[column]; 
+		
+		//value of data point above
+		topVal=sensorData[lastYloc][subColumn];
+		
+		//value of data point below
+		botVal=sensorData[currentYloc][subColumn];
+		
+		//number of y values that need to be interpolated
+		diff=double(currentYloc-lastYloc);
 		while (row<diff){
 			sensorData[int(row+lastYloc)][subColumn]=((diff-row)/diff)*topVal+(row/diff)*botVal;
 			row+=1.0;
@@ -83,8 +107,13 @@ void ImageProcessor::yCompile(){
 void ImageProcessor::xCompileTo(int botY){
 	for (int row = currentXCompile; row<=botY; row++){
 		for (int column=1; column<WIDTH; column++){
-			int leftMajorColumn= (column/xSpacing)*xSpacing;//finds the x value of the major column to the left of the point 
-			int shift= column%xSpacing;//determines how far over from the major column the current column is
+			
+			//finds the x value of the major column to the left of the point 
+			int leftMajorColumn= (column/xSpacing)*xSpacing;
+			
+			//determines how far over from the major column the current column is
+			int shift= column%xSpacing;
+			
 			//if the current column is not a major column set the points value to the weighted average
 			//of the values in the major columns imediatly to its left and right
 			if (shift != 0){
@@ -108,7 +137,10 @@ void ImageProcessor::displayData(){
 
 /**creates an image from the data and returns a refrence to it*/
 array2d<hsi_pixel>& ImageProcessor::compileImage(){
-	assign_image(img, array2d<hsi_pixel> (HEIGHT, (WIDTH-xSpacing)));//creates the image
+	
+	//creates the image
+	assign_image(img, array2d<hsi_pixel> (HEIGHT, (WIDTH-xSpacing)));
+	
 	hsi_pixel* pixel;
 	for (int row=0; row<HEIGHT; row++){
 		for (int column=0; column<(WIDTH-xSpacing); column++){
@@ -132,7 +164,7 @@ array2d<hsi_pixel>& ImageProcessor::getImage(){
 /**returns a refernece to the array containing the numerical data
 *from the scan and the interpolation*/
 
-float ImageProcessor::(&getData())[HEIGHT][WIDTH-xSpacing]{
-	return sensorData;
+float* ImageProcessor::getData(){
+	return *sensorData;
 }
 

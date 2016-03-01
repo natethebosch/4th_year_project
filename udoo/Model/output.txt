@@ -1,0 +1,17 @@
+g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/ImageProcessor.cpp -o src/tasks/ImageProcessor.o
+g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/MotionGuard.cpp -o src/tasks/MotionGuard.o
+g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/MotorControl.cpp -o src/tasks/MotorControl.o
+g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/SensorCaptureArduino.cpp -o src/tasks/SensorCaptureArduino.o
+g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/SensorCommunicator.cpp -o src/tasks/SensorCommunicator.o
+g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/WebServer.cpp -o src/tasks/WebServer.o
+In file included from src/tasks/WebServer.h:13:0,
+                 from src/tasks/WebServer.cpp:8:
+src/tasks/./WebWorker.h:50:10: error: ‘map’ in namespace ‘std’ does not name a template type
+     std::map<std::string, std::string> mimeTypes;
+          ^
+src/tasks/./WebWorker.h: In constructor ‘WebWorker::WebWorker(char*)’:
+src/tasks/./WebWorker.h:53:9: error: ‘mimeTypes’ was not declared in this scope
+         mimeTypes.insert(std::pair<std::string, std::string>("js", "application/javascript"));
+         ^
+makefile:34: recipe for target 'src/tasks/WebServer.o' failed
+make: *** [src/tasks/WebServer.o] Error 1

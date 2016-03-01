@@ -67,6 +67,7 @@ public:
     void displayData ();
     array2d<hsi_pixel>& compileImage();
     array2d<hsi_pixel>& getImage();
+    float* getData();
     
     //constructor/reseter
     void empty();
