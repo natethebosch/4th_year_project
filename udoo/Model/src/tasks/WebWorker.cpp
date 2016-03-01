@@ -5,24 +5,26 @@
  */
 
 #include "WebWorker.h"
-#include "WebServer.h"
 
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-
-
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <sys/stat.h>
+//#include <sys/types.h>
 
 /**
  * WebWorker implementation
  */
+
+// init static variables
+Mutex WebServer::mu_tasks;
+std::queue<WebTask*> WebServer::tasks;
+
+WebWorker::WebWorker(char* name) : Task(name, 10){
+    mimeTypes.insert(std::pair<std::string, std::string>("js", "application/javascript"));
+    mimeTypes.insert(std::pair<std::string, std::string>("json", "application/json"));
+    mimeTypes.insert(std::pair<std::string, std::string>("html", "text/html"));
+    mimeTypes.insert(std::pair<std::string, std::string>("css", "text/css"));
+}
 
 HTTPMethod WebWorker::getMethod(std::string str){
     if(str == std::string("OPTIONS"))
@@ -54,7 +56,7 @@ std::pair<std::string, std::string> WebWorker::getHeaderForString(std::string in
 }
 
 // todo resolve hex values in url
-URL decodeURL(std::string url){
+URL WebWorker::decodeURL(std::string url){
     URL u;
     size_t p0, p1;
     
