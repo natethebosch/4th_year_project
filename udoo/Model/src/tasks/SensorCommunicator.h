@@ -15,11 +15,18 @@
 /**
  * Receives sensor data from the serial port
  * Data is expected in the format 
- * x,y,value;x,y,value...
- * 
+ * Px,y,value\n
+ * Px,y,value\n
+ * ..
+ *
  * each of x, y and value may be 16 characters long
  * 
  */
+
+enum SensorCommunicatorDecoderState{
+    WAITING,NEW_LINE,READ
+};
+
 
 class SensorCommunicator: public Task {
     

@@ -69,27 +69,48 @@ void SensorCommunicator::run(void* args){
     char c;
     char *section;
     SensorDataPoint dp;
+    SensorCommunicatorDecoderState state = WAITING;
     
     // read until there's no more characters
     while(read(tty_fd,&c,1)>0){
-        // if new data is available on the serial port, print it out
-        buffer[position++] = c;
         
-        if(c == ';'){
-            // add null termination
-            buffer[position+1] = '\0';
-            
-            // copy buffer to section
-            section = (char*)malloc(sizeof(char) * (position + 1));
-            strcpy(section, (const char*)&buffer);
-            
-            // send off to be decoded
-            dp = decodeString(section);
-//            queue->put(&dp);
-            
-            // reset position
-            position = 0;
+        // wait for a \nP sequence before recoding
+        switch(state){
+            case WAITING:
+                if(c == '\n')
+                    state = NEW_LINE;
+                break;
+            case NEW_LINE:
+                if(c == 'P')
+                    state = READ;
+                break;
+            case READ:
+                // if new data is available on the serial port, print it out
+                buffer[position++] = c;
+                
+                if(c == '\n'){
+                    // add null termination
+                    buffer[position+1] = '\0';
+                    
+                    // copy buffer to section
+                    section = (char*)malloc(sizeof(char) * (position + 1));
+                    strcpy(section, (const char*)&buffer);
+                    
+                    // send off to be decoded
+                    dp = decodeString(section);
+                    //            queue->put(&dp);
+                    
+                    // reset position
+                    position = 0;
+                    state = NEW_LINE;
+                }
+                break;
+            default:
+                state = WAITING;
+                break;
         }
+        
+        // end while
     }
     
     // done.. wait for next period
