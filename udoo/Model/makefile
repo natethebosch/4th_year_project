@@ -7,7 +7,7 @@ SHELL = /bin/sh
 CXX = g++
  
 FLAGS        = 
-XENO_CFLAGS=-I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__XENO__
+XENO_CFLAGS=-I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__
 D_LIB_CFLAGS=-I/home/nate/dlib-current
 STD_CFLAGS=-I/usr/include/c++/4.9.2
 CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS)
