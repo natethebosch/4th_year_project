@@ -9,14 +9,29 @@
 #define _WEBSERVER_H
 
 #include "../sys/Task.h"
+#include "../sys/Mutex.h"
 #include "./WebWorker.h"
+#include <queue>
+
+struct WebTask{
+    int socket;
+};
 
 
 class WebServer: public Task {
-public: 
-    WebWorker workerPool[10];
+    WebWorker* workerPool[10];
     
-    void run();
+    static Mutex mu_tasks;
+    static std::queue<WebTask*> tasks;
+public:
+    
+    WebServer() : Task("WebServer", 10){
+    }
+    
+    static WebTask* fetchTask(Task *caller);
+    static void addTask(WebTask *tsk);
+    
+    void run(void *args);
 };
 
 #endif //_WEBSERVER_H
