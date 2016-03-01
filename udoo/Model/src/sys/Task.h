@@ -11,6 +11,7 @@
 #define TASK_WAIT_FOR_FIRST_RUN 1000
 
 #include <native/task.h>
+#include <stdlib.h>
 #include "../sys/Debug.h"
 
 class Task;
@@ -43,7 +44,7 @@ public:
     }
     
     static void _run(void* taskInfo){
-        TaskCallbackInfo _taskInfo* = (TaskCallbackInfo*) taskInfo;
+        TaskCallbackInfo *_taskInfo = (TaskCallbackInfo*) taskInfo;
         _taskInfo->task->run(_taskInfo->arg);
     }
     
@@ -80,6 +81,14 @@ public:
      * @param clockTicks long number of ticks to wait.
      */
     void waitForClockTicks(size_t clockTicks);
+    
+    /**
+     * pauses the task for a certain number of clock ticks
+     * @param clockTicks long number of ticks to wait.
+     */
+    void sleep(size_t clockTicks){
+        waitForClockTicks(clockTicks);
+    }
 };
 
 #endif //_TASK_H
