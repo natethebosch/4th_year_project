@@ -20,9 +20,6 @@
 #include "tasks/SensorCommunicator.h"
 #include "./helpers/BlockingQueue.h"
 
-array2d<hsi_pixel>* images[300];//array of images which have been produces
-float dataSets[300][HEIGHT][WIDTH-xSpacing];//array of data set which have been produced
-int count=0;//counter so you know which image/data set in the images/data sets arrays you are on
 
 /**
  * Main implementation

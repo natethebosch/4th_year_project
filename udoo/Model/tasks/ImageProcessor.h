@@ -70,7 +70,6 @@ public:
     
     void run(void* argc){
         // image processor main logic goes here
-
           SensorDataPoint dp;
           float lasty=0.0;
           
@@ -85,16 +84,9 @@ public:
                   imgpros[count].addData(dp.value, int(dp.y*5));//y value multiplied by 5 since height is 500 and the scanner is 100cm long
                   //finishs this image and moves on to the next one
 				  if (lasty>(dp.y+1)){
-                  	//assigns the data and image to the arrays
-                  	assign_image(images[count,imgpros.compileImage()]);
-                  	dataSets[count]=imgpros.getData();
-                  	//moves to the next space in the data/image arrays
-               		if (count<300){
-               			count++;
-			   		}
-			   		else{
-			   			count=0;
-			   		}
+                  	//Sends the image and the numerical data set to the web server
+                  	
+                  	
 			   		//creates a new ImageProcessor object to hold the next scan
 			   		imgpros=new ImageProcessor (0);
 				  }

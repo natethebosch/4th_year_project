@@ -43,7 +43,7 @@ void ImageProcessor::addData(float value, int y){
 			yCompile();
 			xCompileTo(currentY[0]);
 		}
-		//assigns the values of the current row of y values to the array 
+		//assigns the values of the current row of y values to the array of the previous row of y values
 		for (int i=0; i<MAJORXS; i++){
 			lastY[i]=currentY[i];
 		}
