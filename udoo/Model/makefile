@@ -9,7 +9,7 @@ CXX = g++
 FLAGS        = 
 XENO_CFLAGS=-I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__
 D_LIB_CFLAGS=-I/home/nate/dlib-current
-STD_CFLAGS=-I/usr/include/c++/4.9.2
+STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11 
 CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS)
 SOURCES = $(shell find ./src -name '*.cpp')
 T_SOURCES = $(shell find ./src -name '*.cpp' | grep -v 'Main.cpp') $(shell find ./test -name '*.cpp')

@@ -81,7 +81,7 @@ public:
           SensorDataPoint dp;
           float lasty=0.0;
           
-          ImageProcessor imgpros=new ImageProcessor (0);
+          ImageProcessor *imgpros = new ImageProcessor(0);
 
           
           // infinite loop
@@ -89,10 +89,10 @@ public:
                // fetch from the buffer
          
                try{
-                  dp = input.take();
+                  dp = input->take();
                 
                    // y value multiplied by 5 since height is 500 and the scanner is 100cm long
-                  imgpros[count].addData(dp.value, int(dp.y*5));
+                  imgpros->addData(dp.value, int(dp.y*5));
 
                   //finishs this image and moves on to the next one
 				  if (lasty>(dp.y+1)){
@@ -100,7 +100,7 @@ public:
                   	
                   	
 			   		//creates a new ImageProcessor object to hold the next scan
-			   		imgpros=new ImageProcessor (0);
+			   		imgpros = new ImageProcessor (0);
 				  }
                }catch(BlockingQueueStatus s){
                    if(s == BLOCKING_QUEUE_TIMEOUT){

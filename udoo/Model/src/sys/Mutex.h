@@ -10,6 +10,9 @@
 #define Mutex_hpp
 
 #include <stdio.h>
+
+#include <string>
+
 #include <iostream>
 #include <native/mutex.h>
 #include "Debug.h"
@@ -19,10 +22,13 @@ class Mutex{
     static int mutex_count;
 public:
     Mutex(){
-        std::string st("mut_");
-        st += std::to_string(mutex_count);
         
-        int status = rt_mutex_create(&mutex, s.c_str());
+        // make string of format mut_##
+        std::string st("mut_");
+        st += std::to_string(mutex_count++);
+        
+        // create mutex and display messages according to status flag
+        int status = rt_mutex_create(&mutex, st.c_str());
         
         switch(status){
             case 0:

@@ -48,5 +48,8 @@ void Mutex::release(){
         case EINVAL:
         case EIDRM:
         case EPERM:
+            break;
     }
+    
+    return;
 }
