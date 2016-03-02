@@ -29,8 +29,7 @@
 class WebWorker : public Task {
     
     std::map<std::string, std::string> mimeTypes;
-    
-    WebWorker(char* name);
+    std::string _rootDir;
     
     HTTPMethod getMethod(std::string str);
     std::pair<std::string,std::string> getHeaderForString(std::string input);
@@ -41,6 +40,10 @@ class WebWorker : public Task {
     void responseInvalid(int socket);
     
 public:
+    WebWorker(char* dir);
+    
+    static int worker_ct;
+    
     /**
      * Takes WebServer* cookie as parameter to listen for incomming socket
      * connections

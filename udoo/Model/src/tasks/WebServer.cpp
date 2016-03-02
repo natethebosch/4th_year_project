@@ -19,7 +19,17 @@
 /**
  * WebServer implementation
  */
+// init static variables
+Mutex WebServer::mu_tasks;
+std::queue<WebTask*> WebServer::tasks;
 
+WebServer::WebServer(const char* _dir) : Task("WebServer", 10){
+    dir = (char*)_dir;
+    
+    for(int i = 0; i < WEBSERVER_WORKER_POOL_SIZE; i++){
+        workerPool[i] = new WebWorker(dir);
+    }
+}
 
 void WebServer::run(void* args) {
     // variables
