@@ -34,6 +34,7 @@ void Main::initial() {
     
     SensorCommunicator comm(queue.getSender());
     ImageProcessor imgProcessor(queue.getReceiver());
+    WebServer ws("/home/webdir");
     
     // more to go here
     

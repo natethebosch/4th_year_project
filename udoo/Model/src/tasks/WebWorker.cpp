@@ -15,11 +15,16 @@
  * WebWorker implementation
  */
 
-// init static variables
-Mutex WebServer::mu_tasks;
-std::queue<WebTask*> WebServer::tasks;
+int WebWorker::worker_ct = 0;
 
-WebWorker::WebWorker(char* name) : Task(name, 10){
+WebWorker::WebWorker(char* dir) :
+Task(
+     (std::string("webworker_") + std::to_string(WebWorker::worker_ct++)).c_str(),
+     10
+ )
+{
+    _rootDir = std::string(dir);
+    
     mimeTypes.insert(std::pair<std::string, std::string>("js", "application/javascript"));
     mimeTypes.insert(std::pair<std::string, std::string>("json", "application/json"));
     mimeTypes.insert(std::pair<std::string, std::string>("html", "text/html"));
@@ -284,7 +289,7 @@ void WebWorker::run(void *cookie){
         if(url.path == std::string("/"))
             url.path = "/index.html";
         else
-            url.path = WEB_ROOT + url.path;
+            url.path = _rootDir + url.path;
         
         std::ifstream myfile;
         myfile.open (url.path.c_str(), std::ios::in);
