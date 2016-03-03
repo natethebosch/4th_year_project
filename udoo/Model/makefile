@@ -6,8 +6,9 @@
 SHELL = /bin/sh
 CXX = g++
  
-FLAGS        = 
-XENO_CFLAGS=-I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__XENO__
+FLAGS        =
+XENO_CONFIG := /usr/xenomai/bin/xeno-config
+XENO_CFLAGS=$(shell $(XENO_CONFIG) --alchemy --cflags)
 D_LIB_CFLAGS=-I/usr/dlib
 STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11 
 CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall
@@ -16,7 +17,7 @@ T_SOURCES = $(shell find ./src -name '*.cpp' | grep -v 'Main.cpp') $(shell find 
 HEADERS = $(shell find ./src -name '*.h')
 OBJECTS = $(SOURCES:.cpp=.o)
 T_OBJECTS = $(T_SOURCES:.cpp=.o)
-LDFLAGS=-lstdc++ -lnative -lxenomai -L/usr/xenomai/lib -lpthread -Wall
+LDFLAGS=-lstdc++ -lpthread -Wall $(shell $(XENO_CONFIG) --alchemy --ldflags)
 EXEC = a.out
 T_EXEC = test.out
 

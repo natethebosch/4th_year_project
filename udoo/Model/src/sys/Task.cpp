@@ -1,5 +1,7 @@
 #include "Task.h"
-#include <native/timer.h>
+
+// xenomai
+#include <timer.h>
 
 /**
  * Starts a new Xenomai task with the given name and priority

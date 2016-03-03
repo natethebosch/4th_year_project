@@ -9,7 +9,9 @@
 #ifndef TTask_h
 #define TTask_h
 
-#include <native/timer.h>
+// xenomai
+#include <timer.h>
+
 #include "./Test.h"
 #include "../src/sys/Task.h"
 

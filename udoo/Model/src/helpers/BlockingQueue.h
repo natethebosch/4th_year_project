@@ -9,7 +9,9 @@
 #include <fcntl.h>
 #include <string.h>
 #include <stdio.h>
-#include <native/pipe.h>
+
+// xenomai
+#include <queue.h>
 
 #include "./blocking_queue/BlockingQueueReceiver.h"
 #include "./blocking_queue/BlockingQueueSender.h"
