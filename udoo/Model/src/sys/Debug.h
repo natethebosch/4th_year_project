@@ -17,9 +17,12 @@ public:
     static void output(const char* msg){
         if(DEBUG){
             std::cout << "DEBUG: " << msg << "\n";
+            std::cout << "... jumping to stacktrace...\n";
             std::cout.flush();
-            
-            print_stacktrace();
+//            printSomething();
+            std::cout << Backtrace();
+            std::cout << "done stacktrace...\n";
+            std::cout.flush();
         }
     }
 private:

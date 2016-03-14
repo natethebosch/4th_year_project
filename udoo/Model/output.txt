@@ -1,17 +1,21 @@
-g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/ImageProcessor.cpp -o src/tasks/ImageProcessor.o
-g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/MotionGuard.cpp -o src/tasks/MotionGuard.o
-g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/MotorControl.cpp -o src/tasks/MotorControl.o
-g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/SensorCaptureArduino.cpp -o src/tasks/SensorCaptureArduino.o
-g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/SensorCommunicator.cpp -o src/tasks/SensorCommunicator.o
-g++ -c  -I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__ -I/home/nate/dlib-current -I/usr/include/c++/4.9.2 -std=c++11  src/tasks/WebServer.cpp -o src/tasks/WebServer.o
-In file included from src/tasks/WebServer.h:13:0,
-                 from src/tasks/WebServer.cpp:8:
-src/tasks/./WebWorker.h:50:10: error: ‘map’ in namespace ‘std’ does not name a template type
-     std::map<std::string, std::string> mimeTypes;
-          ^
-src/tasks/./WebWorker.h: In constructor ‘WebWorker::WebWorker(char*)’:
-src/tasks/./WebWorker.h:53:9: error: ‘mimeTypes’ was not declared in this scope
-         mimeTypes.insert(std::pair<std::string, std::string>("js", "application/javascript"));
-         ^
-makefile:34: recipe for target 'src/tasks/WebServer.o' failed
-make: *** [src/tasks/WebServer.o] Error 1
+
+*************************************************
+Performing build...
+Please ensure you have /usr/dlib as a symbolic
+link to your dlib location
+*************************************************
+
+g++ -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -I/usr/include/c++/4.9.2 -std=c++11  -Wall test/Testing.cpp -o test/Testing.o
+test/Testing.cpp: In function ‘int main(int, char**)’:
+test/Testing.cpp:36:12: warning: deleting object of polymorphic class type ‘TBlockingQueue’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+     delete tbq;
+            ^
+test/Testing.cpp:51:12: warning: deleting object of polymorphic class type ‘TTask’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+     delete ttk;
+            ^
+g++ ./src/helpers/blocking_queue/BlockingQueueReceiver.o ./src/helpers/blocking_queue/BlockingQueueSender.o ./src/helpers/BlockingQueue.o ./src/helpers/stacktrace.o ./src/sys/Debug.o ./src/sys/Mutex.o ./src/sys/Task.o ./src/tasks/ImageProcessor.o ./src/tasks/MotionGuard.o ./src/tasks/MotorControl.o ./src/tasks/SensorCaptureArduino.o ./src/tasks/SensorCommunicator.o ./src/tasks/WebServer.o ./src/tasks/WebWorker.o ./test/Testing.o -o test.out -lstdc++ -lpthread -Wall -lalchemy  -lcopperplate /usr/xenomai/lib/xenomai/bootstrap.o -Wl,--wrap=main -Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib -lmercury -lpthread -lrt   
+./src/helpers/stacktrace.o: In function `Backtrace[abi:cxx11](int)':
+stacktrace.cpp:(.text+0xce): undefined reference to `dladdr'
+collect2: error: ld returned 1 exit status
+makefile:40: recipe for target 'test.out' failed
+make: *** [test.out] Error 1
