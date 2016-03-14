@@ -13,7 +13,8 @@
 #include <string>
 #include <iostream>
 
-#include <native/mutex.h>
+// xenomai
+#include <mutex.h>
 
 #include "Debug.h"
 

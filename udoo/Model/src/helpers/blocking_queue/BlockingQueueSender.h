@@ -11,7 +11,8 @@
 #include "BlockingQueueStatus.h"
 #include "../../sys/Debug.h"
 
-#include <xenomai/native/queue.h>
+// xenomai
+#include <queue.h>
 
 template <class T>
 class BlockingQueueSender{
