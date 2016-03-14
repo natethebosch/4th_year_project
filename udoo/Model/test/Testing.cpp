@@ -13,6 +13,8 @@
 #include "./TBlockingQueue.h"
 #include "./TTask.h"
 
+using namespace std;
+
 int main(int argc, char** argv){
     
     int test_number = 0;
