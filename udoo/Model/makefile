@@ -17,7 +17,7 @@ T_SOURCES = $(shell find ./src -name '*.cpp' | grep -v 'Main.cpp') $(shell find 
 HEADERS = $(shell find ./src -name '*.h')
 OBJECTS = $(SOURCES:.cpp=.o)
 T_OBJECTS = $(T_SOURCES:.cpp=.o)
-LDFLAGS=-lstdc++ -lpthread -Wall $(shell $(XENO_CONFIG) --alchemy --ldflags)
+LDFLAGS=-lstdc++ -lpthread -Wall -ldl  $(shell $(XENO_CONFIG) --alchemy --ldflags)
 EXEC = a.out
 T_EXEC = test.out
 
