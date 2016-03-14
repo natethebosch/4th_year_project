@@ -5,24 +5,31 @@
  */
 
 #include "WebWorker.h"
-#include "WebServer.h"
 
-#include <algorithm>
-#include <fstream>
-#include <iostream>
-
-
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
+//#include <stdio.h>
+//#include <stdlib.h>
+//#include <sys/stat.h>
+//#include <sys/types.h>
 
 /**
  * WebWorker implementation
  */
+
+int WebWorker::worker_ct = 0;
+
+WebWorker::WebWorker(char* dir) :
+Task(
+     (std::string("webworker_") + std::to_string(WebWorker::worker_ct++)).c_str(),
+     10
+ )
+{
+    _rootDir = std::string(dir);
+    
+    mimeTypes.insert(std::pair<std::string, std::string>("js", "application/javascript"));
+    mimeTypes.insert(std::pair<std::string, std::string>("json", "application/json"));
+    mimeTypes.insert(std::pair<std::string, std::string>("html", "text/html"));
+    mimeTypes.insert(std::pair<std::string, std::string>("css", "text/css"));
+}
 
 HTTPMethod WebWorker::getMethod(std::string str){
     if(str == std::string("OPTIONS"))
@@ -54,7 +61,7 @@ std::pair<std::string, std::string> WebWorker::getHeaderForString(std::string in
 }
 
 // todo resolve hex values in url
-URL decodeURL(std::string url){
+URL WebWorker::decodeURL(std::string url){
     URL u;
     size_t p0, p1;
     
@@ -282,7 +289,7 @@ void WebWorker::run(void *cookie){
         if(url.path == std::string("/"))
             url.path = "/index.html";
         else
-            url.path = WEB_ROOT + url.path;
+            url.path = _rootDir + url.path;
         
         std::ifstream myfile;
         myfile.open (url.path.c_str(), std::ios::in);

@@ -19,7 +19,17 @@
 /**
  * WebServer implementation
  */
+// init static variables
+Mutex WebServer::mu_tasks;
+std::queue<WebTask*> WebServer::tasks;
 
+WebServer::WebServer(const char* _dir) : Task("WebServer", 10){
+    dir = (char*)_dir;
+    
+    for(int i = 0; i < WEBSERVER_WORKER_POOL_SIZE; i++){
+        workerPool[i] = new WebWorker(dir);
+    }
+}
 
 void WebServer::run(void* args) {
     // variables
@@ -139,20 +149,20 @@ void WebServer::run(void* args) {
 
 void WebServer::addTask(WebTask *tsk){
     // keep trying until lock is achieved
-    while(!mu_tasks.lock()){}
+    while(!WebServer::mu_tasks.lock()){}
     
     tasks.push(tsk);
     
-    mu_tasks.release();
+    WebServer::mu_tasks.release();
 }
 
 WebTask* WebServer::fetchTask(Task *caller){
     WebTask* tsk = NULL;
     
     // blocks here until a thread is available
-    if(mu_tasks.lock()){
+    if(WebServer::mu_tasks.lock()){
         if(tasks.empty()){
-            mu_tasks.release();
+            WebServer::mu_tasks.release();
             caller->sleep(100);
         }else{
             tsk = tasks.front();

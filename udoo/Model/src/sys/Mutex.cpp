@@ -8,6 +8,35 @@
 
 #include "Mutex.h"
 
+// init static variable
+int Mutex::mutex_count = 0;
+
+Mutex::Mutex(){
+    // make string of format mut_##
+    std::string st("mut_");
+    st += std::to_string(Mutex::mutex_count++);
+    
+    // create mutex and display messages according to status flag
+    int status = rt_mutex_create(&mutex, st.c_str());
+    
+    switch(status){
+        case 0:
+            return;
+        case ENOMEM:
+            Debug::output("the system fails to get enough dynamic memory from the global real-time heap in order to register the mutex.");
+            break;
+        case EEXIST:
+            Debug::output("the name is already in use by some registered object.");
+            break;
+        case EPERM:
+            Debug::output("this service was called from an asynchronous context.");
+            break;
+        default:
+            Debug::output("Unknown error");
+            break;
+    }
+}
+
 
 bool Mutex::lock(RTIME timeout){
     int status = rt_mutex_acquire(&mutex, timeout);

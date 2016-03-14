@@ -6,21 +6,30 @@
 SHELL = /bin/sh
 CXX = g++
  
-FLAGS        = 
-XENO_CFLAGS=-I/usr/include/xenomai -D_GNU_SOURCE -D_REENTRANT -D__XENO__
-D_LIB_CFLAGS=-I/home/nate/dlib-current
+FLAGS        =
+XENO_CONFIG := /usr/xenomai/bin/xeno-config
+XENO_CFLAGS=$(shell $(XENO_CONFIG) --alchemy --cflags)
+D_LIB_CFLAGS=-I/usr/dlib
 STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11 
-CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS)
+CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall
 SOURCES = $(shell find ./src -name '*.cpp')
 T_SOURCES = $(shell find ./src -name '*.cpp' | grep -v 'Main.cpp') $(shell find ./test -name '*.cpp')
 HEADERS = $(shell find ./src -name '*.h')
 OBJECTS = $(SOURCES:.cpp=.o)
 T_OBJECTS = $(T_SOURCES:.cpp=.o)
-LDFLAGS=-lstdc++ -lnative -lxenomai -L/usr/xenomai/lib -lpthread
+LDFLAGS=-lstdc++ -lpthread -Wall $(shell $(XENO_CONFIG) --alchemy --ldflags)
 EXEC = a.out
 T_EXEC = test.out
 
-all: $(EXEC)
+$(info )
+$(info *************************************************)
+$(info Performing build...)
+$(info Please ensure you have /usr/dlib as a symbolic)
+$(info link to your dlib location)
+$(info *************************************************)
+$(info )
+
+all: $(EXEC)	
 
 test: $(T_EXEC)
 	

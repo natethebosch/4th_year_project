@@ -11,8 +11,9 @@
 #include "BlockingQueueStatus.h"
 #include "../../sys/Debug.h"
 
-#include <native/queue.h>
-#include <xenomai/native/timer.h>
+// xenomai
+#include <queue.h>
+#include <timer.h>
 
 
 template <class T>

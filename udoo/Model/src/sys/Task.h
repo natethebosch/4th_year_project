@@ -10,7 +10,9 @@
 
 #define TASK_WAIT_FOR_FIRST_RUN 1000
 
-#include <native/task.h>
+// xenomai
+#include <task.h>
+
 #include <stdlib.h>
 #include "../sys/Debug.h"
 
