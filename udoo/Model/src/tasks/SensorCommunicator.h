@@ -47,7 +47,7 @@ public:
     SensorCommunicator(BlockingQueueSender<SensorDataPoint> *_queue);
     ~SensorCommunicator();
     
-    void run(void* args);
+    virtual void run(void* args);
     /**
      * Receives string and decodes it
      * @param str should be in format x,y,value where x,y and value are max 16 characters

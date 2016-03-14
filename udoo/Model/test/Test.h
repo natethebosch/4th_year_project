@@ -10,6 +10,7 @@
 #define __TESTING_H__
 
 #include <iostream>
+#include <stdlib.h>
 
 class Test{
 public:

@@ -12,6 +12,7 @@ XENO_CFLAGS=$(shell $(XENO_CONFIG) --alchemy --cflags)
 D_LIB_CFLAGS=-I/usr/dlib
 STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11 
 CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall
+DEBUG_FLAGS = -g
 SOURCES = $(shell find ./src -name '*.cpp')
 T_SOURCES = $(shell find ./src -name '*.cpp' | grep -v 'Main.cpp') $(shell find ./test -name '*.cpp')
 HEADERS = $(shell find ./src -name '*.h')
@@ -20,6 +21,7 @@ T_OBJECTS = $(T_SOURCES:.cpp=.o)
 LDFLAGS=-lstdc++ -lpthread -Wall -ldl  $(shell $(XENO_CONFIG) --alchemy --ldflags)
 EXEC = a.out
 T_EXEC = test.out
+D_EXEC = debug.out
 
 $(info )
 $(info *************************************************)
@@ -32,6 +34,9 @@ $(info )
 all: $(EXEC)	
 
 test: $(T_EXEC)
+
+debug: $(D_EXEC)
+
 	
 $(EXEC) : $(OBJECTS)
 	$(CXX) $(OBJECTS) -o $(EXEC) $(LDFLAGS)
@@ -39,8 +44,11 @@ $(EXEC) : $(OBJECTS)
 $(T_EXEC) : $(T_OBJECTS)
 	$(CXX) $(T_OBJECTS) -o $(T_EXEC) $(LDFLAGS)
 
+$(D_EXEC) : $(OBJECTS)
+	$(CXX) -g $(T_OBJECTS) -o $(D_EXEC) $(LDFLAGS)
+
 %.o: %.cpp
-	$(CXX) -c $(CPPFLAGS) $< -o $@
+	$(CXX) $(DEBUG_FLAGS) -c $(CPPFLAGS) $< -o $@
 	
 clean:
 	rm -f $(EXEC) $(OBJECTS)

@@ -68,6 +68,7 @@ public:
     array2d<hsi_pixel>& compileImage();
     array2d<hsi_pixel>& getImage();
     float* getData();
+    void run();
     
     //constructor/reseter
     void empty();
@@ -77,7 +78,7 @@ public:
         input = _input;
     };
     
-    void run(){
+    virtual void run(void* cookie){
         // image processor main logic goes here
           SensorDataPoint dp;
           float lasty=0.0;
