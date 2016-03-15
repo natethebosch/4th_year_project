@@ -30,7 +30,7 @@ enum SensorCommunicatorDecoderState{
 
 class SensorCommunicator: public Task {
     
-    BlockingQueueSender<SensorDataPoint> *queue;
+    BlockingQueue<SensorDataPoint> *queue;
     
     // Serial Interface stuff
     int tty_fd;
@@ -44,7 +44,7 @@ class SensorCommunicator: public Task {
     
 public:
     
-    SensorCommunicator(BlockingQueueSender<SensorDataPoint> *_queue);
+    SensorCommunicator(BlockingQueue<SensorDataPoint> *_queue);
     ~SensorCommunicator();
     
     virtual void run(void* args);

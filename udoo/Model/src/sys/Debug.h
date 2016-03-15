@@ -14,16 +14,22 @@
 
 class Debug {
 public:
-    static void output(const char* msg){
-        if(DEBUG){
+    static void output(const char* msg, bool skipDebugInfo){
+        if(DEBUG && !skipDebugInfo){
             std::cout << "DEBUG: " << msg << "\n";
             std::cout << "... jumping to stacktrace...\n";
             std::cout.flush();
 //            printSomething();
-            std::cout << Backtrace();
+//            std::cout << Backtrace();
             std::cout << "done stacktrace...\n";
             std::cout.flush();
+        }else{
+            std::cout << "DEBUG: " << msg << "\n";
         }
+    }
+    
+    static void output(const char* msg){
+        output(msg, true);
     }
 private:
 

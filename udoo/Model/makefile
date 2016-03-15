@@ -4,21 +4,31 @@
 # Nate Bosscher
 #
 SHELL = /bin/sh
-CXX = g++
- 
-FLAGS        =
+CXX = gcc
+
+FLAGS =
+
 XENO_CONFIG := /usr/xenomai/bin/xeno-config
 XENO_CFLAGS=$(shell $(XENO_CONFIG) --alchemy --cflags)
+
 D_LIB_CFLAGS=-I/usr/dlib
-STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11 
+STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11
 CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall
 DEBUG_FLAGS = -g
+
 SOURCES = $(shell find ./src -name '*.cpp')
 T_SOURCES = $(shell find ./src -name '*.cpp' | grep -v 'Main.cpp') $(shell find ./test -name '*.cpp')
+
 HEADERS = $(shell find ./src -name '*.h')
+
 OBJECTS = $(SOURCES:.cpp=.o)
 T_OBJECTS = $(T_SOURCES:.cpp=.o)
-LDFLAGS=-lstdc++ -lpthread -Wall -ldl  $(shell $(XENO_CONFIG) --alchemy --ldflags)
+
+LDFLAGS= -Wall -lstdc++ -lpthread -ldl -lm $(shell $(XENO_CONFIG) --alchemy --ldflags)
+
+PRECOMPILE = $(shell )
+#POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
+
 EXEC = a.out
 T_EXEC = test.out
 D_EXEC = debug.out
@@ -31,24 +41,38 @@ $(info link to your dlib location)
 $(info *************************************************)
 $(info )
 
+# Perform pre-compile commands
+$(info )
+$(info *************************************************)
+$(info Performing pre-compile commands...)
+
+$(shell find . -name "*.o" -type f -delete)
+$(shell rm *.out)
+
+$(info *************************************************)
+$(info )
+
+
 all: $(EXEC)	
 
 test: $(T_EXEC)
 
 debug: $(D_EXEC)
-
 	
 $(EXEC) : $(OBJECTS)
 	$(CXX) $(OBJECTS) -o $(EXEC) $(LDFLAGS)
 
 $(T_EXEC) : $(T_OBJECTS)
-	$(CXX) $(T_OBJECTS) -o $(T_EXEC) $(LDFLAGS)
+	$(CXX) $(T_OBJECTS) -o $(T_EXEC) \
+	$(LDFLAGS)
 
-$(D_EXEC) : $(OBJECTS)
-	$(CXX) -g $(T_OBJECTS) -o $(D_EXEC) $(LDFLAGS)
+$(D_EXEC) : $(T_OBJECTS)
+	$(CXX) $(DEBUG_FLAGS) $(T_OBJECTS) -o $(D_EXEC) \
+	$(LDFLAGS)
 
-%.o: %.cpp
+%.o : %.cpp
 	$(CXX) $(DEBUG_FLAGS) -c $(CPPFLAGS) $< -o $@
-	
+
 clean:
 	rm -f $(EXEC) $(OBJECTS)
+	rm -f $(EXEC) $(T_OBJECTS)

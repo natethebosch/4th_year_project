@@ -59,7 +59,7 @@ private:
     void yCompile();
     void xCompileTo(int botY);
     
-    BlockingQueueReceiver<SensorDataPoint> *input;
+    BlockingQueue<SensorDataPoint> *input;
     
 public:
     
@@ -73,7 +73,7 @@ public:
     //constructor/reseter
     void empty();
     
-    ImageProcessor(BlockingQueueReceiver<SensorDataPoint>* _input): Task("ImageProcessor", 20){
+    ImageProcessor(BlockingQueue<SensorDataPoint>* _input): Task("ImageProcessor", 20){
     	empty();
         input = _input;
     };
@@ -105,7 +105,7 @@ public:
 			   		imgpros = new ImageProcessor (0);
 				  }
                }catch(BlockingQueueStatus s){
-                   if(s == BLOCKING_QUEUE_TIMEOUT){
+                   if(s == BQ_TIMEOUT){
                        continue;
                    }else{
                        Debug::output("Irrecoverable error. Exiting...");

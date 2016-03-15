@@ -15,10 +15,24 @@
 class Test{
 public:
     std::string error;
+    int testSeg;
+    
+    Test(){
+        testSeg = 0;
+    }
     
     virtual bool test(){
         std::cout << "No test method has been defined";
         return false;
+    }
+    
+    /**
+     * prints out the test segment number for debugging
+     */
+    void testSegment(){
+        std::cout << "\tTest segment " << testSeg << "\n";
+        std::cout.flush();
+        testSeg++;
     }
 };
 
