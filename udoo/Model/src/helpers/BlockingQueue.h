@@ -35,12 +35,12 @@ public:
         // check for errors
         if(status != 0){
             switch(status){
-                case ENOMEM: Debug::output("ENOMEM"); break;
-                case EEXIST: Debug::output("EEXIST"); break;
-                case EINVAL: Debug::output("EINVAL"); break;
-                case EPERM: Debug::output("EPERM"); break;
-                case ENOSYS: Debug::output("ENOSYS"); break;
-                case ENOENT: Debug::output("ENOENT"); break;
+                case -ENOMEM: Debug::output("ENOMEM"); break;
+                case -EEXIST: Debug::output("EEXIST"); break;
+                case -EINVAL: Debug::output("EINVAL"); break;
+                case -EPERM: Debug::output("EPERM"); break;
+                case -ENOSYS: Debug::output("ENOSYS"); break;
+                case -ENOENT: Debug::output("ENOENT"); break;
                 default:
                     Debug::output("Unknown error");
                     break;
@@ -64,59 +64,51 @@ public:
      */
     T take(RTIME timeout) throw (BlockingQueueStatus){
         // alocate memory for type T
-        T* buff = (T*)malloc(sizeof(T));
-
-        printf("Timeout of : %lu\n", timeout);
-        printf("Sizeof buff: %d bytes\n", sizeof(T));
+        void* buff;
         
-        printf("hi\n");
-        
-        
-        size_t status = EINTR;
+        ssize_t status = -EINTR;
         size_t maxct = 100;
         size_t ct = 0;
         
         // continue looping if interrupted by thread
-        while(status == EINTR && ct < maxct){
-            printf("hi1\n");
-            
-            if(ct != 0 && status == EINTR){
+        while(status == -EINTR && ct < maxct){
+            if(ct != 0 && status == -EINTR){
                 Debug::output("EINTR");
             }
             
-            printf("hi2\n");
-            
             // read from queue or timeout
-            status = rt_queue_receive(&queue, (void**)&buff, timeout);
-            printf("hi3\n");
+            status = rt_queue_receive(&queue, &buff, timeout);
             ct++;
         }
         
-        printf("hi4\n");
+        // if there's a failure, free the memory before throwing error
+        if(status <= 0){
+            rt_queue_free(&queue, buff);
+        }
         
-        // decode status
+        // decode status for errors
         switch(status){
-            case ETIMEDOUT:
+            case -ETIMEDOUT:
                 Debug::output("ETIMEDOUT");
-                throw BQ_FAIL;
+                throw BQ_TIMEOUT;
                 break;
-            case EWOULDBLOCK:
+            case -EWOULDBLOCK:
                 Debug::output("EWOULDBLOCK");
                 throw BQ_FAIL;
                 break;
-            case EINTR:
+            case -EINTR:
                 Debug::output("EINTR -- maxct exceeded");
                 throw BQ_FAIL;
                 break;
-            case EINVAL:
+            case -EINVAL:
                 Debug::output("EINVAL");
                 throw BQ_FAIL;
                 break;
-            case EIDRM:
+            case -EIDRM:
                 Debug::output("EIDRM");
                 throw BQ_FAIL;
                 break;
-            case EPERM:
+            case -EPERM:
                 Debug::output("EPERM");
                 throw BQ_FAIL;
                 break;
@@ -125,7 +117,14 @@ public:
                 break;
         }
         
-        return *buff;
+        // copy to non-queue-managed portion of memory
+        T output;
+        memcpy(&output, buff, sizeof(T));
+        
+        // free the queue memory
+        rt_queue_free(&queue, buff);
+        
+        return output;
     }
     
     /**
@@ -149,8 +148,8 @@ public:
         int status = rt_queue_send(&queue, buff, sizeof(item), Q_NORMAL);
         switch(status){
             case 0:    Debug::output("No tasks waiting on queue"); break;
-            case EINVAL: Debug::output("EINVAL"); throw BQ_FAIL; break;
-            case ENOMEM: Debug::output("ENOMEM"); throw BQ_FAIL; break;
+            case -EINVAL: Debug::output("EINVAL"); throw BQ_FAIL; break;
+            case -ENOMEM: Debug::output("ENOMEM"); throw BQ_FAIL; break;
         }
     }
     

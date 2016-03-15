@@ -10,10 +10,28 @@
 #include <sstream>
 #include <stdlib.h>
 
+// xenomai
+#include <task.h>
+
 #include "../src/helpers/BlockingQueue.h"
 #include "./Test.h"
 
 using namespace std;
+
+void addRandomIntToQueue(void *arg){
+    printf("Started addRandomIntToQueue\n");
+    printf("yeild...\n");
+    
+    // allow other task to continue
+    rt_task_yield();
+    
+    printf("continue\n");
+    
+    
+    
+    
+    printf("finished add\n");
+}
 
 class TBlockingQueue : public Test{
 public:
@@ -47,13 +65,11 @@ public:
             bq->put(&send);
         }catch(BlockingQueueStatus status){
             ostringstream stringStream;
-            stringStream << "should have sent value. Instead threw " << status;
+            cout << "should have sent value. Instead threw " << status;
+            cout.flush();
             error = stringStream.str();
             return false;
         }
-        
-        // update status
-        testSegment();
         
         int value;
         
