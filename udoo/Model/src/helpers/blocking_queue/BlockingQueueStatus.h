@@ -10,7 +10,9 @@
 
 
 typedef enum BlockingQueueStatus{
-    BLOCKING_QUEUE_NO_ALLOC, BLOCKING_QUEUE_TIMEOUT, BLOCKING_QUEUE_FAIL_RECV
+    BQ_TIMEOUT,
+    BQ_FAIL,
+    BQ_UNKNOWN
 } BlockingQueueStatus;
 
 

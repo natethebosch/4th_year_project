@@ -1,27 +1,94 @@
-Starting test sequence
 
-DEBUG: Timeout Interrupted
-... jumping to stacktrace...
-./debug.out() [0x804b497]
-./debug.out() [0x8054e66]
-./debug.out() [0x8054479]
-./debug.out(main+0x70) [0x80541b8]
-./debug.out(__wrap_main+0x47) [0x8055077]
-/lib/i386-linux-gnu/i686/cmov/libc.so.6(__libc_start_main+0xf3) [0xb73dca63]
-./debug.out() [0x804ab2d]
-1    0x804b497 ./debug.out() [0x804b497]
-2    0x8054e66 ./debug.out() [0x8054e66]
-3    0x8054479 ./debug.out() [0x8054479]
-4    0x80541b8 main + 112
-5    0x8055077 __wrap_main + 71
-6   0xb73dca63 __libc_start_main + 243
-7    0x804ab2d ./debug.out() [0x804ab2d]
-done stacktrace...
-Test 1 failed:
-should have got value. Instead threw 1
+*************************************************
+Performing build...
+Please ensure you have /usr/dlib as a symbolic
+link to your dlib location
+*************************************************
 
-
-Phase 1 - Scheduling
-Sleeping for 2 seconds while tasks complete
-Phase 2 - Cookie passing
-Testing Complete!
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -I/usr/include/c++/4.9.2 -std=c++11 -Wall src/tasks/ImageProcessor.cpp -o src/tasks/ImageProcessor.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -I/usr/include/c++/4.9.2 -std=c++11 -Wall src/tasks/SensorCommunicator.cpp -o src/tasks/SensorCommunicator.o
+In file included from src/tasks/SensorCommunicator.cpp:14:0:
+src/tasks/SensorCommunicator.h:33:5: error: ‘BlockingQueue’ does not name a type
+     BlockingQueue<SensorDataPoint> *queue;
+     ^
+src/tasks/SensorCommunicator.h:47:43: error: expected ‘)’ before ‘<’ token
+     SensorCommunicator(BlockingQueue<SensorDataPoint> *_queue);
+                                           ^
+src/tasks/SensorCommunicator.cpp:21:39: error: expected constructor, destructor, or type conversion before ‘(’ token
+ SensorCommunicator::SensorCommunicator(BlockingQueue<SensorDataPoint> *_queue) : Task("SensorComm", 80) {
+                                       ^
+makefile:53: recipe for target 'src/tasks/SensorCommunicator.o' failed
+make: *** [src/tasks/SensorCommunicator.o] Error 1
+make: *** Waiting for unfinished jobs....
+In file included from /usr/dlib/dlib/serialize.h:157:0,
+                 from /usr/dlib/dlib/pixel.h:7,
+                 from src/tasks/ImageProcessor.h:26,
+                 from src/tasks/ImageProcessor.cpp:8:
+/usr/dlib/dlib/smart_pointers/shared_ptr.h:299:18: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+             std::auto_ptr<Y>& r
+                  ^
+In file included from /usr/include/c++/5/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/5/locale:43,
+                 from /usr/include/c++/5/iomanip:43,
+                 from /usr/dlib/dlib/serialize.h:140,
+                 from /usr/dlib/dlib/pixel.h:7,
+                 from src/tasks/ImageProcessor.h:26,
+                 from src/tasks/ImageProcessor.cpp:8:
+/usr/include/c++/5/bits/unique_ptr.h:49:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^
+In file included from /usr/dlib/dlib/serialize.h:157:0,
+                 from /usr/dlib/dlib/pixel.h:7,
+                 from src/tasks/ImageProcessor.h:26,
+                 from src/tasks/ImageProcessor.cpp:8:
+/usr/dlib/dlib/smart_pointers/shared_ptr.h:331:18: warning: ‘template<class> class std::auto_ptr’ is deprecated [-Wdeprecated-declarations]
+             std::auto_ptr<Y>& r
+                  ^
+In file included from /usr/include/c++/5/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/5/locale:43,
+                 from /usr/include/c++/5/iomanip:43,
+                 from /usr/dlib/dlib/serialize.h:140,
+                 from /usr/dlib/dlib/pixel.h:7,
+                 from src/tasks/ImageProcessor.h:26,
+                 from src/tasks/ImageProcessor.cpp:8:
+/usr/include/c++/5/bits/unique_ptr.h:49:28: note: declared here
+   template<typename> class auto_ptr;
+                            ^
+In file included from src/tasks/ImageProcessor.cpp:8:0:
+src/tasks/ImageProcessor.h:62:5: error: ‘BlockingQueueReceiver’ does not name a type
+     BlockingQueueReceiver<SensorDataPoint> *input;
+     ^
+src/tasks/ImageProcessor.h:76:41: error: expected ‘)’ before ‘<’ token
+     ImageProcessor(BlockingQueueReceiver<SensorDataPoint>* _input): Task("ImageProcessor", 20){
+                                         ^
+src/tasks/ImageProcessor.h: In member function ‘virtual void ImageProcessor::run(void*)’:
+src/tasks/ImageProcessor.h:86:57: error: no matching function for call to ‘ImageProcessor::ImageProcessor(int)’
+           ImageProcessor *imgpros = new ImageProcessor(0);
+                                                         ^
+src/tasks/ImageProcessor.h:35:7: note: candidate: ImageProcessor::ImageProcessor() <deleted>
+ class ImageProcessor: public Task {
+       ^
+src/tasks/ImageProcessor.h:35:7: note:   candidate expects 0 arguments, 1 provided
+src/tasks/ImageProcessor.h:35:7: note: candidate: ImageProcessor::ImageProcessor(ImageProcessor&) <deleted>
+src/tasks/ImageProcessor.h:35:7: note:   no known conversion for argument 1 from ‘int’ to ‘ImageProcessor&’
+src/tasks/ImageProcessor.h:35:7: note: candidate: ImageProcessor::ImageProcessor(ImageProcessor&&) <deleted>
+src/tasks/ImageProcessor.h:35:7: note:   no known conversion for argument 1 from ‘int’ to ‘ImageProcessor&&’
+src/tasks/ImageProcessor.h:94:24: error: ‘input’ was not declared in this scope
+                   dp = input->take();
+                        ^
+src/tasks/ImageProcessor.h:105:40: error: no matching function for call to ‘ImageProcessor::ImageProcessor(int)’
+         imgpros = new ImageProcessor (0);
+                                        ^
+src/tasks/ImageProcessor.h:35:7: note: candidate: ImageProcessor::ImageProcessor() <deleted>
+ class ImageProcessor: public Task {
+       ^
+src/tasks/ImageProcessor.h:35:7: note:   candidate expects 0 arguments, 1 provided
+src/tasks/ImageProcessor.h:35:7: note: candidate: ImageProcessor::ImageProcessor(ImageProcessor&) <deleted>
+src/tasks/ImageProcessor.h:35:7: note:   no known conversion for argument 1 from ‘int’ to ‘ImageProcessor&’
+src/tasks/ImageProcessor.h:35:7: note: candidate: ImageProcessor::ImageProcessor(ImageProcessor&&) <deleted>
+src/tasks/ImageProcessor.h:35:7: note:   no known conversion for argument 1 from ‘int’ to ‘ImageProcessor&&’
+src/tasks/ImageProcessor.h:108:28: error: ‘BLOCKING_QUEUE_TIMEOUT’ was not declared in this scope
+                    if(s == BLOCKING_QUEUE_TIMEOUT){
+                            ^
+makefile:53: recipe for target 'src/tasks/ImageProcessor.o' failed
+make: *** [src/tasks/ImageProcessor.o] Error 1

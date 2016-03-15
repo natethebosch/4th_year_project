@@ -18,7 +18,7 @@
  * SensorCommunicator implementation
  */
 
-SensorCommunicator::SensorCommunicator(BlockingQueueSender<SensorDataPoint> *_queue) : Task("SensorComm", 80) {
+SensorCommunicator::SensorCommunicator(BlockingQueue<SensorDataPoint> *_queue) : Task("SensorComm", 80) {
     
     position = 0;
     

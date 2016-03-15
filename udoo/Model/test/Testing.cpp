@@ -7,16 +7,24 @@
 //
 
 #include <stdio.h>
-#include <stdlib.h>
+#include <signal.h>
+#include <unistd.h>
 #include <iostream>
+#include <sys/mman.h>
+
+// xenomai
+#include <task.h>
+#include <timer.h>
 
 #include "./TBlockingQueue.h"
 #include "./TTask.h"
 
 using namespace std;
 
-int main(int argc, char** argv){
-    
+// xenomai task
+RT_TASK task;
+
+void test(void *args){
     int test_number = 0;
     
     std::cout << "Starting test sequence\n\n";
@@ -53,6 +61,24 @@ int main(int argc, char** argv){
     delete ttk;
     
     std::cout << "Testing Complete!\n";
+    
+    rt_task_delete(&task);
+}
+
+int main(int argc, char** argv){
+    
+    /* Avoids memory swapping for this program */
+    mlockall(MCL_CURRENT|MCL_FUTURE);
+    
+    rt_task_create(&task, "test", 0, 99, T_JOINABLE);
+    rt_task_start(&task, &test, NULL);
+    
+    // wait for task to complete
+    rt_task_join(&task);
+    rt_task_delete(&task);
+    
+    
+    std::cout.flush();
     
     return 0;
 }

@@ -19,15 +19,17 @@ class TBlockingQueue : public Test{
 public:
     
     bool test(){
+        BlockingQueue<int> _bq("Test-1");
+        BlockingQueue<int> *bq = &_bq;
         
-        BlockingQueue<int> bq("Test-1");
-        BlockingQueueReceiver<int> *bqr = bq.getReceiver();
+        // update status
+        testSegment();
         
         // test receiver timeout
         try{
-            bqr->take(1000);
+            bq->take(1);
         }catch(BlockingQueueStatus status){
-            if(status != BLOCKING_QUEUE_TIMEOUT){
+            if(status != BQ_TIMEOUT){
                 ostringstream stringStream;
                 stringStream << "should have timed out. Instead threw " << status;
                 error = stringStream.str();
@@ -36,12 +38,13 @@ public:
             }
         }
         
-        BlockingQueueSender<int> *bqs = bq.getSender();
+        // update status
+        testSegment();
         
         int send = rand();
         
         try{
-            bqs->put(&send);
+            bq->put(&send);
         }catch(BlockingQueueStatus status){
             ostringstream stringStream;
             stringStream << "should have sent value. Instead threw " << status;
@@ -49,10 +52,13 @@ public:
             return false;
         }
         
+        // update status
+        testSegment();
+        
         int value;
         
         try{
-            value = bqr->take(1000);
+            value = bq->take();
         }catch(BlockingQueueStatus status){
             ostringstream stringStream;
             stringStream << "should have got value. Instead threw " << status;
