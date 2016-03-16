@@ -22,7 +22,7 @@
 #define BQ_SIZE 10 * 1000 // 10kbs
 
 
-template <class T>
+template <typename T>
 class BlockingQueue {
 private:
     RT_QUEUE queue;
@@ -48,12 +48,12 @@ public:
         }
     }
     
-    ~BlockingQueue(){
+    ~BlockingQueue<T>(){
         rt_queue_delete(&this->queue);
         // no error detection
     }
     
-    BlockingQueue& operator =(const BlockingQueue& rhs) {
+    BlockingQueue<T>& operator =(const BlockingQueue<T>& rhs) {
         queue = rhs.queue;
         return this;
     }

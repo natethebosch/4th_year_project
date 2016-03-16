@@ -30,10 +30,11 @@
 
 
 void Main::initial() {
-    BlockingQueue<SensorDataPoint> queue("Serial2ImageProcessorQueue");
+    BlockingQueue<SensorDataPoint>* queue;
+    queue = new BlockingQueue<SensorDataPoint>("Serial2ImageProcessorQueue");
     
-    SensorCommunicator comm(queue.getSender());
-    ImageProcessor imgProcessor(queue.getReceiver());
+    SensorCommunicator comm(queue);
+    ImageProcessor imgProcessor(queue);
     WebServer ws("/home/webdir");
     
     // more to go here
