@@ -16,7 +16,6 @@
 #define HEIGHT 		500
 #define WIDTH 		480
 #define MAJORXS 	24
-#define MAXREADING 	(255*MAJORXS)
 #define xSpacing	(WIDTH/MAJORXS)
 
 #include <vector>
@@ -54,7 +53,7 @@ private:
     array2d<hsi_pixel> img;
     
     //holds the added data points as well as the interpolated values between
-    float sensorData[HEIGHT][WIDTH];
+    int sensorData[HEIGHT][WIDTH];
     
     void yCompile();
     void xCompileTo(int botY);
@@ -67,7 +66,7 @@ public:
     void displayData ();
     array2d<hsi_pixel>& compileImage();
     array2d<hsi_pixel>& getImage();
-    float* getData();
+    int* getData();
     void run();
     
     //constructor/reseter

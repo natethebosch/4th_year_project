@@ -150,7 +150,7 @@ array2d<hsi_pixel>& ImageProcessor::compileImage(){
 			if (sensorData[row][column]){
 				pixel->i=150;
 				pixel->s=255;
-				pixel->h=((sensorData[row][column]*255)/MAXREADING);
+				pixel->h=(sensorData[row][column]);
 			}
 		}
 	}
@@ -165,7 +165,7 @@ array2d<hsi_pixel>& ImageProcessor::getImage(){
 /**returns a refernece to the array containing the numerical data
 *from the scan and the interpolation*/
 
-float* ImageProcessor::getData(){
+int* ImageProcessor::getData(){
 	return *sensorData;
 }
 
