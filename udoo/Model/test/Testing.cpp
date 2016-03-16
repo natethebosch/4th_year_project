@@ -42,7 +42,9 @@ void test(void *args){
         std::cout << "Test " << test_number << " failed:\n";
         std::cout << tbq->error << "\n";
         std::cout << "\n\n";
-    }
+    }else{
+    	std::cout << "Test " << test_number << " succeeded!\n\n";
+	}
     
     delete tbq;
     
@@ -57,18 +59,19 @@ void test(void *args){
         std::cout << "Test " << test_number << " failed:\n";
         std::cout << ttk->error << "\n";
         std::cout << "\n\n";
-    }
+    }else{
+    	std::cout << "Test " << test_number << " succeeded!\n\n";
+	}
     
     delete ttk;
     
-    std::cout <<"testing ImageProcessor\n";
-    testImg();
+    std::cout <<"Testing ImageProcessor\n";
+    ImageTest* imgtest= new ImageTest;
+    imgtest->test();
     
     std::cout << "Testing Complete!\n";
     
-    rt_task_delete(&task);
-    
-
+	return;
 }
 
 int main(int argc, char** argv){
@@ -82,7 +85,6 @@ int main(int argc, char** argv){
     // wait for task to complete
     rt_task_join(&task);
     rt_task_delete(&task);
-    
     
     std::cout.flush();
     

@@ -7,15 +7,21 @@
 #include <termios.h>
 #include "../src/tasks/ImageProcessor.h"
 
-
-void testImg(){
-  	SensorDataPoint dp;
+class ImageTest: public Test {
+	
+void test()
+{
+	Debug::output("acess imagetest\n");
+	SensorDataPoint dp;
+	Debug::output("made sensor data point\n");
     BlockingQueue<SensorDataPoint>* queue;
+    Debug::output("initialised queue\n");
     queue = new BlockingQueue<SensorDataPoint>("Serial2ImageProcessorQueue");
-    
+    Debug::output("made queue\n");
     ImageProcessor imgProcessor(queue);
+    Debug::output("made image processor\n");
     imgProcessor.start();
-    
+    Debug::output("started image processor\n");
 
     
     for (int i=0; i<24; i++){
@@ -28,4 +34,4 @@ void testImg(){
 		}
 	}
 }
-
+};

@@ -52,7 +52,9 @@ public:
     
     // cookie should be an *int
     void run(void* cookie){
-        result = *(int*)cookie;
+        result = *((int*)cookie);
+		std::cout << "Got cookie value '" << result << "'\n";
+		std::cout.flush();
     }
 };
 
@@ -75,6 +77,8 @@ public:
         std::cout.flush();
         usleep(2000);
         
+        printf("Current time: %l \t ta0 completed at: %l \t ta1 completed at: %l\n", rt_timer_read(), ta0->completedAt, ta1->completedAt);
+        
         // t0 should have completed after t1
         if(ta0->completedAt < ta1->completedAt){
             return false;
@@ -83,13 +87,18 @@ public:
         std::cout << "Phase 2 - Cookie passing\n";
         
         TTaskJob2 *tb0 = new TTaskJob2("Some bTask", 10);
-        int value = rand();
+        int *value = (int*) malloc(sizeof(int));
+		*value = rand();
         
-        tb0->start(&value);
-        usleep(1);
+        std::cout << "passing cookie value of '" << *value << "'\n";
+        
+        tb0->start(value);
+        usleep(10);
 
         // should be the same value
-        if(tb0->result != value){
+        if(tb0->result != *value){
+        	std::cout << "got result of " << tb0->result << " expeced " << value << "\n";
+        	std::cout.flush();
             return false;
         }
         

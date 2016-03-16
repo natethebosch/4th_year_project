@@ -76,16 +76,16 @@ bool Task::start(void* args){
     // check for errors
     if(status != 0){
         switch(status){
-            case EINVAL:
+            case -EINVAL:
                 Debug::output("Invalid task descriptor");
                 break;
-            case EIDRM:
+            case -EIDRM:
                 Debug::output("Task descriptor has already been deleted");
                 break;
-            case EBUSY:
+            case -EBUSY:
                 Debug::output("Task has already started");
                 break;
-            case EPERM:
+            case -EPERM:
                 Debug::output("Task is being called from an async context");
                 break;
             default:

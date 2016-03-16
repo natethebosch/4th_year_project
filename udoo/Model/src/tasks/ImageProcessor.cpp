@@ -105,6 +105,8 @@ void ImageProcessor::yCompile(){
 
 /**interpolates allong the rows between the major columns*/
 void ImageProcessor::xCompileTo(int botY){
+	Debug::output("x Compiling to ");
+	Debug::output(to_string(botY).c_str());
 	for (int row = currentXCompile; row<=botY; row++){
 		for (int column=1; column<WIDTH; column++){
 			
@@ -121,6 +123,7 @@ void ImageProcessor::xCompileTo(int botY){
 			}
 		}
 	}
+	Debug::output("\nCompiled\n");
 	currentXCompile=botY;
 }
 
