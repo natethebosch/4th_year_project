@@ -6,8 +6,8 @@
 #define MAXVALUE 255
 #define BEAMOPEN    1
 #define BEAMCLOSED  0
-#define HOLEDIST    2.415 //mm
-#define BRIDGEDIST  1.067 //mm
+#define HOLEDIST    7.558 //mm
+#define BRIDGEDIST  2.925 //mm
 
 //array to hold sensor locations
 //basically 24 constants but can't itterate #defines
