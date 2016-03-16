@@ -13,6 +13,7 @@
 //basically 24 constants but can't itterate #defines
 int sensorLocations[24]={0};
 
+//variables
 int sensorValue=0;
 int movedY = 0;
 int xVal =0;
@@ -45,6 +46,10 @@ void loop() {
       yVal=int(float(holes*HOLEDIST) + float (bridges*BRIDGEDIST));
       
       //send data to udoo
+      Serial.print(xVal);
+      Serial.print(yVal);
+      Serial.print(sensorValue);
+      Serial.print('\n');
       
     }
   }
