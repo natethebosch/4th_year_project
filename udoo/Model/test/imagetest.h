@@ -8,8 +8,8 @@
 #include "../src/tasks/ImageProcessor.h"
 
 class ImageTest: public Test {
-	
-void test()
+public:	
+virtual bool test()
 {
 	Debug::output("acess imagetest\n");
 	SensorDataPoint dp;
@@ -33,5 +33,6 @@ void test()
     		queue->put (&dp);
 		}
 	}
+	return true;
 }
 };
