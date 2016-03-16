@@ -91,6 +91,13 @@ public:
     void sleep(size_t clockTicks){
         waitForClockTicks(clockTicks);
     }
+    
+    /**
+     * blocks until task is complete
+     */
+    void join(){
+        rt_task_join(&task_desc);
+    }
 };
 
 #endif //_TASK_H
