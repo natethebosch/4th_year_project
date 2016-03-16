@@ -22,7 +22,6 @@
 
 class TTaskJob : public Task{
 public:
-    float result;
     RTIME completedAt = 0;
     
     TTaskJob(const char* taskName, int priority) : Task(taskName, priority){
@@ -31,12 +30,19 @@ public:
     
     // cookie should be an *int
     void run(void* cookie){
-        result = 0;
-        float sqrt12 = sqrt(12);
+        // pause until other task is created
+        yeild();
         
-        for(size_t i = 0; i < 1e6; i++){
-            result += sqrt12 * pow(-3.0, i) / (2.0 * (float)i + 1);
+        // create tmp file
+        std::FILE *tmpf = std::tmpfile();
+        
+        // write "Hello world!" over and over again into tmp file
+        for(size_t i = 0; i < 2e7; i++){
+            std::fputs("Hello, world!", tmpf);
         }
+        
+        // delete tmp file
+        std::fclose(tmpf);
         
         completedAt = rt_timer_read();
     }
@@ -52,7 +58,8 @@ public:
     
     // cookie should be an *int
     void run(void* cookie){
-        result = *(int*)cookie;
+        result = *((int*)cookie);
+        printf("Got cookie value of %d\n", result);
     }
 };
 
@@ -73,24 +80,36 @@ public:
         
         std::cout << "Sleeping for 2 seconds while tasks complete\n";
         std::cout.flush();
-        usleep(2000);
+
+        ta1->join();
+        ta0->join();
         
         // t0 should have completed after t1
         if(ta0->completedAt < ta1->completedAt){
+            printf("Tasks should have completed \nta0->completedAt = %llu, \nta1->completedAt = %llu, \ncurrent time: %llu\n\n", ta0->completedAt, ta1->completedAt, rt_timer_read());
+            
             return false;
+        }else{
+            std::cout << "Phase 1 - Passed!\n\n";
         }
         
         std::cout << "Phase 2 - Cookie passing\n";
         
         TTaskJob2 *tb0 = new TTaskJob2("Some bTask", 10);
-        int value = rand();
+        int *value = (int*)malloc(sizeof(int));
+        *value = rand();
         
-        tb0->start(&value);
+        printf("Sending cookie value of %d\n", *value);
+        
+        tb0->start(value);
         usleep(1);
 
         // should be the same value
-        if(tb0->result != value){
+        if(tb0->result != *value){
+            printf("result should be %d, got %d", *value, tb0->result);
             return false;
+        }else{
+            std::cout << "Phase 2 - Passed!\n\n";
         }
         
         return true;

@@ -10,7 +10,7 @@
 */
 Task::Task(const char* taskName, int priority){
    // create task
-   int status = rt_task_create(&this->task_desc, taskName, 0, priority, 0);
+   int status = rt_task_create(&this->task_desc, taskName, 0, priority, T_JOINABLE);
 
    // check for errors
    if(status == 0){
@@ -19,13 +19,13 @@ Task::Task(const char* taskName, int priority){
    }else{
        // handle error
        switch(status){
-           case ENOMEM:
+           case -ENOMEM:
                Debug::output("Not enough memory to create task");
                break;
-           case EEXIST:
+           case -EEXIST:
                Debug::output("A task with that name already exists");
                break;
-           case EPERM:
+           case -EPERM:
                Debug::output("Called from an Async context");
                break;
            default:
@@ -44,16 +44,16 @@ Task::~Task(){
     // check for errors
     if(status != 0){
         switch(status){
-            case EINVAL: 
+            case -EINVAL:
                 Debug::output("task is not a task descriptor.");
                 break;
-            case EPERM: 
+            case -EPERM:
                 Debug::output("task is NULL but not called from a task context, or this service was called from an asynchronous context");
                 break;
-            case EINTR:
+            case -EINTR:
                 Debug::output("rt_task_unblock() has been invoked for the caller while it was waiting for task to exit a safe section. In such a case, the deletion process has been aborted and task remains unaffected.");
                 break;
-            case EIDRM:
+            case -EIDRM:
                 Debug::output("task is a deleted task descriptor.");
                 break;
             default:
@@ -76,16 +76,16 @@ bool Task::start(void* args){
     // check for errors
     if(status != 0){
         switch(status){
-            case EINVAL:
+            case -EINVAL:
                 Debug::output("Invalid task descriptor");
                 break;
-            case EIDRM:
+            case -EIDRM:
                 Debug::output("Task descriptor has already been deleted");
                 break;
-            case EBUSY:
+            case -EBUSY:
                 Debug::output("Task has already started");
                 break;
-            case EPERM:
+            case -EPERM:
                 Debug::output("Task is being called from an async context");
                 break;
             default:
