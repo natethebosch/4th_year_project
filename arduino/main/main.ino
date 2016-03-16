@@ -47,7 +47,9 @@ void loop() {
       
       //send data to udoo
       Serial.print(xVal);
+      Serial.print(',');
       Serial.print(yVal);
+      Serial.print(',');
       Serial.print(sensorValue);
       Serial.print('\n');
       

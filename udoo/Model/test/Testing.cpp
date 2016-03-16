@@ -18,6 +18,7 @@
 
 #include "./TBlockingQueue.h"
 #include "./TTask.h"
+#include "./imagetest.h"
 
 using namespace std;
 
@@ -60,9 +61,14 @@ void test(void *args){
     
     delete ttk;
     
+    std::cout <<"testing ImageProcessor\n";
+    testImg();
+    
     std::cout << "Testing Complete!\n";
     
     rt_task_delete(&task);
+    
+
 }
 
 int main(int argc, char** argv){

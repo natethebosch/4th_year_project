@@ -21,6 +21,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <time.h>
 
 #include "dlib/pixel.h"
 #include "dlib/array2d.h"
@@ -55,6 +56,11 @@ private:
     //holds the added data points as well as the interpolated values between
     int sensorData[HEIGHT][WIDTH];
     
+    //holds date/timestamp image name
+    time_t timer;
+    struct tm *timeinfo;
+    string fileName;
+    
     void yCompile();
     void xCompileTo(int botY);
     
@@ -81,7 +87,6 @@ public:
         // image processor main logic goes here
           SensorDataPoint dp;
           float lasty=0.0;
-          
           ImageProcessor *imgpros = new ImageProcessor(0);
 
           
@@ -97,8 +102,13 @@ public:
 
                   //finishs this image and moves on to the next one
 				  if (lasty>(dp.y+1)){
-                  	//Sends the image and the numerical data set to the web server
+                  	//generates date/time stamp to save the image
+                  	time(&timer);
+                  	timeinfo=localtime(&timer);
+                  	fileName=asctime(timeinfo);
                   	
+                  	//saves image as image in as the file specified by the time stamp
+					save_bmp(compileImage(), "/"+fileName+".bmp");
                   	
 			   		//creates a new ImageProcessor object to hold the next scan
 			   		imgpros = new ImageProcessor (0);
