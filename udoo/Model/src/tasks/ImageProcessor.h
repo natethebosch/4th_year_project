@@ -92,8 +92,8 @@ public:
                try{
                   dp = input->take();
                 
-                   // y value multiplied by 5 since height is 500 and the scanner is 100cm long
-                  imgpros->addData(dp.value, int(dp.y*5));
+                   // y value divided by 2 since height is 500 and the scanner is 1000mm long
+                  imgpros->addData(dp.value, int(dp.y/2));
 
                   //finishs this image and moves on to the next one
 				  if (lasty>(dp.y+1)){
