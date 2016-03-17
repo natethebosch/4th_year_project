@@ -17,7 +17,7 @@ bool ImageTest::test(int i)
 {
 	SensorDataPoint* dp;
     BlockingQueue<SensorDataPoint>* queue;
-    queue = new BlockingQueue<SensorDataPoint>("Serial2ImageProcessorQueue");
+    queue = new BlockingQueue<SensorDataPoint>("Serial2ImageProcessorQueue", 24*24);
     ImageProcessor imgProcessor(queue);
     imgProcessor.start();
 
