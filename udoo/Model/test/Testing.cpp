@@ -19,6 +19,7 @@
 #include "./TBlockingQueue.h"
 #include "./TTask.h"
 #include "./imagetest.h"
+#include "./TWebServer.h"
 
 using namespace std;
 
@@ -69,9 +70,21 @@ void test(void *args){
     ImageTest* imgtest= new ImageTest;
     imgtest->test(0);
     
+    /**************************
+     * Web server Test
+     **************************/
+    
+    TWebServer* twb = new TWebServer();
+    test_number++;
+    
+    if(!twb->test()){
+        std::cout << "Test " << test_number << " failed:\n";
+        std::cout << twb->error << "\n";
+        std::cout << "\n\n";
+    }
+    
     std::cout << "Testing Complete!\n";
     
-	return;
 }
 
 int main(int argc, char** argv){

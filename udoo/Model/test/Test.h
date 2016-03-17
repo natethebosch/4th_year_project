@@ -19,6 +19,7 @@ public:
     
     Test(){
         testSeg = 0;
+        error = "";
     }
     
     virtual bool test(){

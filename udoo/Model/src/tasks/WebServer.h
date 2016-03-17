@@ -26,11 +26,16 @@ class WebServer: public Task {
     char* dir;
     WebWorker* workerPool[WEBSERVER_WORKER_POOL_SIZE];
     
+    void stopWorkers();
+    
 public:
     
     static Mutex mu_tasks;
     static std::queue<WebTask*> tasks;
     
+    /**
+     * Creates webserver at absolute path given by _dir
+     */
     WebServer(const char* _dir);
     
     static WebTask* fetchTask(Task *caller);

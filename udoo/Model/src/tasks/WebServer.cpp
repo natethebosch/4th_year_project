@@ -15,6 +15,9 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <errno.h>
+#include <string>
+#include <fcntl.h>
+
 
 /**
  * WebServer implementation
@@ -31,6 +34,16 @@ WebServer::WebServer(const char* _dir) : Task("WebServer", 10){
     }
 }
 
+void WebServer::stopWorkers(){
+    std::cout << "Stopping workers...\n";
+    
+    for(int i = 0; i < WEBSERVER_WORKER_POOL_SIZE; i++){
+        workerPool[i]->kill();
+    }
+    
+    std::cout << "Workers stopped...\n";
+}
+
 void WebServer::run(void* args) {
     // variables
     int create_socket, new_socket;
@@ -45,40 +58,100 @@ void WebServer::run(void* args) {
         return;
     }
     
+    // set socket as non-blocking
+    fcntl(create_socket, F_SETFL, O_NONBLOCK);
+    
     address.sin_family = AF_INET;
     address.sin_addr.s_addr = INADDR_ANY;
-    address.sin_port = htons(80);
+    address.sin_port = htons(8000);
     
-    if (bind(create_socket, (struct sockaddr *) &address, sizeof(address)) == 0){
-        printf("Binding Socket\n");
-    }
+    std::string rebindingMsg;
     
-    
-    while (1) {
-        if (listen(create_socket, 10) == -1) {
-            switch(errno){
-                case EADDRINUSE:
-                    Debug::output("Socket address already in use");
-                    break;
-                case EBADF:
-                    Debug::output("The argument sockfd is not a valid descriptor");
-                    break;
-                case ENOTSOCK:
-                    Debug::output("The argument sockfd is not a socket");
-                    break;
-                case EOPNOTSUPP:
-                    Debug::output("The socket is not of a type that supports the listen() operation");
-                    break;
-                default:
-                    Debug::output("Unknown socket error");
-                    break;
-            }
+    // loop until we can bind or we reach the end
+    int i = 0;
+    for(;;){
+        // bind socket
+        if (bind(create_socket, (struct sockaddr *) &address, sizeof(address)) == 0){
+            Debug::output("Binding Socket\n");
+            break;
+        }else{
+            Debug::output("Couldn't Bind Socket\n");
+            
+            rebindingMsg = "Rebinding (retry ";
+            rebindingMsg += std::to_string(i);
+            rebindingMsg += ")\n";
+            
+            Debug::output(rebindingMsg.c_str());
+            
+            // sleep in the hopes of the socket becomming free
+            std::cout << "Sleeping for 1 sec to wait for socket to be free\n";
+            sleep_millis(1000);
+        }
+        
+        // check for task signal
+        if(hasTerminateSignal()){
             return;
         }
         
+        i++;
+    }
+    
+    // start workers
+    for(int i = 0; i < WEBSERVER_WORKER_POOL_SIZE; i++){
+        workerPool[i]->start();
+    }
+    
+    
+    // continuall listen until hasTerminateSignal is true
+    while (1) {
         
+        // check for task signals
+        if(hasTerminateSignal()){
+            stopWorkers();
+            close(create_socket);
+            return;
+        }
+
+        while(listen(create_socket, 10) == -1){
+            switch(errno){
+//                case EAGAIN: -- commented because compiler says EAGAIN == EWOULDBLOCK
+                case EWOULDBLOCK:
+                    
+                    // check for task signals
+                    if(hasTerminateSignal()){
+                        stopWorkers();
+                        close(create_socket);
+                        return;
+                    }else{
+                        yeild();
+                    }
+                    
+                    break;
+                case EADDRINUSE:
+                    Debug::output("Socket address already in use");
+                    return;
+                case EBADF:
+                    Debug::output("The argument sockfd is not a valid descriptor");
+                    return;
+                case ENOTSOCK:
+                    Debug::output("The argument sockfd is not a socket");
+                    return;
+                case EOPNOTSUPP:
+                    Debug::output("The socket is not of a type that supports the listen() operation");
+                    return;
+                default:
+                    Debug::output("Unknown socket error");
+                    return;
+            }
+        }
         
-        if ((new_socket = accept(create_socket, (struct sockaddr *) &address, &addrlen)) == -1) {
+        addrlen = sizeof(address);
+        
+        // accept the new connection
+        new_socket = accept(create_socket, (struct sockaddr *) &address, &addrlen);
+        
+        // check for errors
+        if (new_socket == -1) {
             switch(errno){
                 case EWOULDBLOCK: // , EAGAIN
                     // nothing to do, so yeild to round robin
@@ -130,30 +203,38 @@ void WebServer::run(void* args) {
 #endif
                 default:
                     Debug::output("Unknown error");
+//                    std::cout << "Unknown error" << errno << "\n";
                     break;
             }
         }
         
+        // check if the socket connection worked
         if (new_socket > 0){
+            
             // connected
             tsk = (WebTask*)malloc(sizeof(WebTask));
             tsk->socket = new_socket;
             
             addTask(tsk);
+        }else{
+            
+            // No socket bound
+            yeild();
+            //Debug::output("No socket bound");
         }
     }
-    
-    close(create_socket);    
-
 }
 
 void WebServer::addTask(WebTask *tsk){
+    printf("Trying to lock mu_tasks\n");
     // keep trying until lock is achieved
     while(!WebServer::mu_tasks.lock()){}
     
+    printf("Adding task\n");
     tasks.push(tsk);
     
     WebServer::mu_tasks.release();
+    printf("Released lock\n");
 }
 
 WebTask* WebServer::fetchTask(Task *caller){

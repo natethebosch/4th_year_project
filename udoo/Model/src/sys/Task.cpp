@@ -104,10 +104,10 @@ bool Task::start(void* args){
  * Allows other tasks to work
 */
 void Task::yeild(){
-   if(rt_task_yield()){
+   if(rt_task_yield() == 0){
        return;
    }else{
-       Debug::output("service was called from a context which cannot sleep");
+       Debug::output("Task::yeild service was called from a context which cannot sleep");
    }
 }
 
@@ -124,19 +124,19 @@ bool Task::startPeriodic(size_t periodClockTicks){
     // check for errors
     if(status != 0){
         switch(status){
-            case EINVAL: 
+            case -EINVAL:
                 Debug::output("task is not a task descriptor, or period is different from TM_INFINITE but shorter than the scheduling latency value for the target system, as available from /proc/xenomai/latency.");
                 break;
-            case EIDRM:
+            case -EIDRM:
                 Debug::output("task is a deleted task descriptor");
                 break;
-            case ETIMEDOUT:
+            case -ETIMEDOUT:
                 Debug::output("date is different from TM_INFINITE and represents a date in the past");
                 break;
-            case EWOULDBLOCK:
+            case -EWOULDBLOCK:
                 Debug::output("the system timer is not active");
                 break;
-            case EPERM:
+            case -EPERM:
                 Debug::output("task is NULL but not called from a task context");
                 break;
             default:
@@ -155,16 +155,16 @@ void Task::waitForNextPeriod(){
     while(true){
         status = rt_task_wait_period(NULL);
         switch(status){
-            case ETIMEDOUT:
+            case -ETIMEDOUT:
                 Debug::output("Periodic task timing miss");
                 return;
-            case EPERM:
-                Debug::output("this service was called from a context which cannot sleep");
+            case -EPERM:
+                Debug::output("Task::waitForNextPeriod this service was called from a context which cannot sleep");
                 return;
-            case EINTR:
+            case -EINTR:
                 // rt_task_unblock has been called
                 return;
-            case EWOULDBLOCK:
+            case -EWOULDBLOCK:
                 Debug::output("this task is not registered as periodic");
                 return;
             case 0:
@@ -182,28 +182,26 @@ void Task::waitForNextPeriod(){
  * @param clockTicks long number of ticks to wait.
 */
 void Task::waitForClockTicks(size_t clockTicks){
-   // compute scheduled time from current time
-   RTIME scheduledTimer = clockTicks + rt_timer_read();
 
    // call sleep
-   int status = rt_task_sleep_until(scheduledTimer);
+   int status = rt_task_sleep(clockTicks);
 
    // check for errors
    if(status == 0){
        return;
    }else{
        switch(status){
-           case EINTR: 
+           case -EINTR:
                Debug::output("rt_task_unblock() has been called for the sleeping task before the sleep time has elapsed.");
                break;
-           case ETIMEDOUT:
+           case -ETIMEDOUT:
                Debug::output("Date is in the past");
                break;
-           case EWOULDBLOCK:
+           case -EWOULDBLOCK:
                Debug::output("the system timer is inactive");
                break;
-           case EPERM:
-               Debug::output("this service was called from a context which cannot sleep");
+           case -EPERM:
+               Debug::output("Task::waitForClockTicks this service was called from a context which cannot sleep");
                break;
            default:
                Debug::output("Unknown error");

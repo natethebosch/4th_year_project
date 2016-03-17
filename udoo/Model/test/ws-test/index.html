@@ -1,0 +1,76 @@
+<html>
+    <head>
+        <title>Solar Ground Line Scanner</title>
+
+        <!-- refresh every minute -->
+        <meta http-equiv="refresh" content="60" />    
+
+        <style type="text/css">
+	        #main-image{
+	        	width: 100%;
+	        }
+
+	        body{
+	        	font-family: 'Open Sans', sans-serif;
+	        	background-color: #3C81AE;
+	        }
+
+	        h1, h2{
+				font-size: 20px;
+				margin: 20px 10px;
+				color: #FFD14D;
+	        }
+
+	        h2{
+	        	font-size: 16px;
+	        	color: white;
+	        	margin: 5px;
+	        }
+
+	        #main-placeholder{
+	        	display:block;
+	        	width: 80%;
+	        	margin: auto;
+	        }
+
+	        #main-placeholder > div,
+	        #main-placeholder > a{
+	        	margin: 10px;
+	        } 
+
+	        #main-placeholder > a{
+	        	color: #FF7B4D;
+	        	text-decoration: underline;	
+	        }
+
+	        #main-placeholder > a:hover{
+				text-decoration: none;
+	        }
+
+	        #content-wrapper{
+	        	width: 600px;
+	        	margin:auto;
+	        }
+
+	        hr{
+	        	margin: 20px 0;
+	        }
+
+
+        </style>
+    </head>
+    <body>
+		<div id="content-wrapper">
+	        <h1>Solar Ground Line Scanner</h1>
+
+			<div id="main-placeholder">
+				<h2>Most Recent Image:</h2>
+		        <div><img id="main-image" src="./most-recent-img.jpg" /></div>
+				<hr />
+				<h2>Most Recent Data:</h2>
+		        <a href="./recent-data.csv" target="_blank">Data file</a>
+		    </div>
+		</div>
+
+    </body>
+</html>
