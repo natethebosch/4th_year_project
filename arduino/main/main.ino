@@ -29,6 +29,9 @@ int bridges=0;
 bool broken=0;
 
 void setup() {
+  Serial.begin(115200);
+  Serial.write("Initializing...");
+  
   // Set input pins to input mode
   pinMode (DIPIN, INPUT);
   for (int i=0; i<24; i++){
@@ -40,6 +43,8 @@ void setup() {
   pinMode ((MUXA3), OUTPUT);
   pinMode ((MUXA4), OUTPUT);
   broken=(digitalRead (IRPIN)==BEAMOPEN);
+
+  Serial.println("  done!");
 }
 
 void loop() {
