@@ -59,12 +59,9 @@ public:
     // cookie should be an *int
     void run(void* cookie){
         result = *((int*)cookie);
-<<<<<<< HEAD
 		std::cout << "Got cookie value '" << result << "'\n";
 		std::cout.flush();
-=======
         printf("Got cookie value of %d\n", result);
->>>>>>> refs/remotes/origin/master
     }
 };
 
@@ -103,7 +100,6 @@ public:
         std::cout << "Phase 2 - Cookie passing\n";
         
         TTaskJob2 *tb0 = new TTaskJob2("Some bTask", 10);
-<<<<<<< HEAD
         int *value = (int*) malloc(sizeof(int));
 		*value = rand();
         
@@ -116,7 +112,6 @@ public:
         if(tb0->result != *value){
         	std::cout << "got result of " << tb0->result << " expeced " << value << "\n";
         	std::cout.flush();
-=======
         int *value = (int*)malloc(sizeof(int));
         *value = rand();
         
@@ -124,16 +119,15 @@ public:
         
         tb0->start(value);
         usleep(1);
-
+		}
         // should be the same value
         if(tb0->result != *value){
             printf("result should be %d, got %d", *value, tb0->result);
->>>>>>> refs/remotes/origin/master
             return false;
         }else{
             std::cout << "Phase 2 - Passed!\n\n";
         }
-        
+    
         return true;
     }
 };

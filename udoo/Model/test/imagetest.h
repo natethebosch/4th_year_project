@@ -5,6 +5,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <termios.h>
+#inlcude "./Test.h"
 #include "../src/tasks/ImageProcessor.h"
 
 class ImageTest: public Test {
@@ -30,7 +31,7 @@ virtual bool test()
     		dp.x=n;
     		dp.value=(i+n)*20;
     		
-    		queue->put (&dp);
+    		queue->put(&dp);
 		}
 	}
 	return true;
