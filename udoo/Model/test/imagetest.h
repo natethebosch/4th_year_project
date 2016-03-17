@@ -28,7 +28,7 @@ virtual bool test()
     	for (int n=0;n<24; n++){
     		dp.y=i;
     		dp.x=n;
-    		dp.value=i*n;
+    		dp.value=(i+n)*20;
     		
     		queue->put (&dp);
 		}

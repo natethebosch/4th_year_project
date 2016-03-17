@@ -3,7 +3,6 @@
 #define IRPIN 0
 
 //Constants
-#define MAXVALUE 255
 #define BEAMOPEN    1
 #define BEAMCLOSED  0
 #define HOLEDIST    7.558 //mm
@@ -41,7 +40,7 @@ void loop() {
       //check beam to know y value
       checkBeam();
       //collect data from the sensors
-      sensorValue= (analogRead(sensorLocations[i])*255)/MAXVALUE;
+      sensorValue= analogRead(sensorLocations[i]);
       xVal=i*20;
       yVal=int(float(holes*HOLEDIST) + float (bridges*BRIDGEDIST));
       

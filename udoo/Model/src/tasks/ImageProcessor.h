@@ -17,11 +17,14 @@
 #define WIDTH 		480
 #define MAJORXS 	24
 #define xSpacing	(WIDTH/MAJORXS)
+#define MAXVAL		1023
+#define CHROMA		1
 
 #include <vector>
 #include <iostream>
 #include <string>
 #include <time.h>
+#include <math.h>
 
 #include "dlib/pixel.h"
 #include "dlib/array2d.h"
@@ -51,7 +54,7 @@ private:
     int currentXCompile;
     
     //holds the image
-    array2d<hsi_pixel> img;
+    array2d<rgb_pixel> img;
     
     //holds the added data points as well as the interpolated values between
     int sensorData[HEIGHT][WIDTH];
@@ -70,8 +73,8 @@ public:
     
     void addData (float value, int y);
     void displayData ();
-    array2d<hsi_pixel>& compileImage();
-    array2d<hsi_pixel>& getImage();
+    array2d<rgb_pixel>& compileImage();
+    array2d<rgb_pixel>& getImage();
     int* getData();
     void run();
     

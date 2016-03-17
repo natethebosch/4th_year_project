@@ -11,6 +11,9 @@
 using namespace std;
 using namespace dlib;
 
+float getRed(float hue);
+float getGreen(float hue);
+float getBlue(float hue);
 
 /**
  * initialises an image of HEIGHT and WIDTH
@@ -140,20 +143,20 @@ void ImageProcessor::displayData(){
 }
 
 /**creates an image from the data and returns a refrence to it*/
-array2d<hsi_pixel>& ImageProcessor::compileImage(){
+array2d<rgb_pixel>& ImageProcessor::compileImage(){
 	
 	//creates the image
-	assign_image(img, array2d<hsi_pixel> (HEIGHT, (WIDTH-xSpacing)));
+	assign_image(img, array2d<rgb_pixel> (HEIGHT, (WIDTH-xSpacing)));
 	
-	hsi_pixel* pixel;
+	rgb_pixel* pixel;
 	for (int row=0; row<HEIGHT; row++){
 		for (int column=0; column<(WIDTH-xSpacing); column++){
 			pixel = &img[row][column];
 			//sets the intensity and sateration to levels to make the colour change visable and sets the hue based on the data collected/interpolated
 			if (sensorData[row][column]){
-				pixel->i=150;
-				pixel->s=255;
-				pixel->h=(sensorData[row][column]);
+				pixel->red=int(getRed(sensorData[row][column]*360/MAXVAL));
+				pixel->green=int (getGreen(sensorData[row][column]*360/MAXVAL));
+				pixel->blue= int (getBlue(sensorData[row][column]*360/MAXVAL));
 			}
 		}
 	}
@@ -161,7 +164,7 @@ array2d<hsi_pixel>& ImageProcessor::compileImage(){
 }
 
 /**returns a reference to the rasterized image*/
-array2d<hsi_pixel>& ImageProcessor::getImage(){
+array2d<rgb_pixel>& ImageProcessor:: getImage(){
 	return img;
 }
 
@@ -170,5 +173,37 @@ array2d<hsi_pixel>& ImageProcessor::getImage(){
 
 int* ImageProcessor::getData(){
 	return *sensorData;
+}
+
+float getRed(int hue){
+	if ((hue>=60 && hue<120) || (hue>=240 && hue<300)){
+			return CHROMA*(1-abs(((hue/60)%2)-1))*255;
+	}
+	else if((hue<60)||(hue>=300)){
+			return CHROMA*255;
+		}
+		else return 0;
+}
+
+float getGreen(int hue){
+	if ((hue<60)|| (hue >= 180 && hue < 240)){
+		return CHROMA*(1-abs(((hue/60)%2)-1))*255;
+	}
+	else if (hue>=60&&hue<180){
+			return CHROMA*255;
+		}
+		else return 0;
+}
+
+float getBlue(int hue){
+	if((hue>=120 && hue<180) || (hue<300)){
+			return CHROMA*(1-abs(((hue/60)%2)-1))*255;
+		}
+		else if ((hue>=180 && hue<300)){
+			return CHROMA*255;
+		}
+		else {
+			return 0;
+		}
 }
 
