@@ -67,7 +67,7 @@ void test(void *args){
     
     std::cout <<"Testing ImageProcessor\n";
     ImageTest* imgtest= new ImageTest;
-    imgtest->test();
+    imgtest->test(0);
     
     std::cout << "Testing Complete!\n";
     

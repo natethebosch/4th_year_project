@@ -11,9 +11,9 @@
 using namespace std;
 using namespace dlib;
 
-float getRed(float hue);
-float getGreen(float hue);
-float getBlue(float hue);
+float getRed(int hue);
+float getGreen(int hue);
+float getBlue(int hue);
 
 /**
  * initialises an image of HEIGHT and WIDTH
@@ -24,11 +24,14 @@ void ImageProcessor::empty (){
 	lastY =new int[MAJORXS];
 	currentXCompile=0;
 	first=true;
-	for (int i=0; i<HEIGHT;i++){
-		for (int n=0; n<WIDTH-xSpacing; n++){
-			sensorData[i][n]=0;
-		}		
-	}
+	
+	//sensorData= new matrixHEIGHT, WIDTH);
+	
+//	for (int i=0; i<HEIGHT;i++){
+//		for (int n=0; n<WIDTH-xSpacing; n++){
+//			sensorData[i][n]=0;
+//		}		
+//	}
 }
 
 /**
@@ -40,7 +43,7 @@ void ImageProcessor::addData(float value, int y){
 	currentY[currentX]=y;
 	
 	//assigns the value to the coresponding spot in the data array
-	sensorData[y][currentX*xSpacing]=value;
+	sensorData(y,currentX*xSpacing)=value;
 	
 	//moves to the next major column
 	currentX++;
@@ -92,15 +95,15 @@ void ImageProcessor::yCompile(){
 		currentYloc=currentY[column]; 
 		
 		//value of data point above
-		topVal=sensorData[lastYloc][subColumn];
+		topVal=sensorData(lastYloc,subColumn);
 		
 		//value of data point below
-		botVal=sensorData[currentYloc][subColumn];
+		botVal=sensorData(currentYloc,subColumn);
 		
 		//number of y values that need to be interpolated
 		diff=double(currentYloc-lastYloc);
 		while (row<diff){
-			sensorData[int(row+lastYloc)][subColumn]=((diff-row)/diff)*topVal+(row/diff)*botVal;
+			sensorData(int(row+lastYloc),subColumn)=((diff-row)/diff)*topVal+(row/diff)*botVal;
 			row+=1.0;
 		}
 	}
@@ -122,11 +125,11 @@ void ImageProcessor::xCompileTo(int botY){
 			//if the current column is not a major column set the points value to the weighted average
 			//of the values in the major columns imediatly to its left and right
 			if (shift != 0){
-				sensorData[row][column]= ((xSpacing-shift)/xSpacing)*sensorData[row][leftMajorColumn] +(shift/xSpacing)*sensorData[row][(leftMajorColumn+xSpacing)];
+				sensorData(row,column)= ((xSpacing-shift)/xSpacing)* (sensorData(row,leftMajorColumn) +(shift/xSpacing)*(sensorData(row,(leftMajorColumn+xSpacing))));
 			}
 		}
 	}
-	Debug::output("\nCompiled\n");
+	Debug::output("Compiled");
 	currentXCompile=botY;
 }
 
@@ -134,7 +137,7 @@ void ImageProcessor::xCompileTo(int botY){
 void ImageProcessor::displayData(){
 	for (int a=0; a<HEIGHT; a++){
 			for (int b=0; b<WIDTH; b++){
-				 Debug::output((to_string(sensorData[a][b])).c_str());
+				 Debug::output((to_string(sensorData(a,b))).c_str());
 				 Debug::output("	");
 			}
 			Debug::output("\n\n");
@@ -153,10 +156,10 @@ array2d<rgb_pixel>& ImageProcessor::compileImage(){
 		for (int column=0; column<(WIDTH-xSpacing); column++){
 			pixel = &img[row][column];
 			//sets the intensity and sateration to levels to make the colour change visable and sets the hue based on the data collected/interpolated
-			if (sensorData[row][column]){
-				pixel->red=int(getRed(sensorData[row][column]*360/MAXVAL));
-				pixel->green=int (getGreen(sensorData[row][column]*360/MAXVAL));
-				pixel->blue= int (getBlue(sensorData[row][column]*360/MAXVAL));
+			if (sensorData(row,column)){
+				pixel->red=int(getRed(int(sensorData(row,column)*360/MAXVAL)));
+				pixel->green=int (getGreen(int(sensorData(row,column)*360/MAXVAL)));
+				pixel->blue= int (getBlue(int(sensorData(row,column)*360/MAXVAL)));
 			}
 		}
 	}
@@ -171,9 +174,9 @@ array2d<rgb_pixel>& ImageProcessor:: getImage(){
 /**returns a refernece to the array containing the numerical data
 *from the scan and the interpolation*/
 
-int* ImageProcessor::getData(){
-	return *sensorData;
-}
+//int& ImageProcessor::getData(){
+//	return *sensorData;
+//}
 
 float getRed(int hue){
 	if ((hue>=60 && hue<120) || (hue>=240 && hue<300)){

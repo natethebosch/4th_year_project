@@ -25,6 +25,7 @@
 #include <string>
 #include <time.h>
 #include <math.h>
+#include <stdlib.h>
 
 #include "dlib/pixel.h"
 #include "dlib/array2d.h"
@@ -57,7 +58,7 @@ private:
     array2d<rgb_pixel> img;
     
     //holds the added data points as well as the interpolated values between
-    int sensorData[HEIGHT][WIDTH];
+    matrix<int, HEIGHT+1, WIDTH+1> sensorData;
     
     //holds date/timestamp image name
     time_t timer;
@@ -75,7 +76,7 @@ public:
     void displayData ();
     array2d<rgb_pixel>& compileImage();
     array2d<rgb_pixel>& getImage();
-    int* getData();
+	//vector<vector<int>> getData();
     void run();
     
     //constructor/reseter

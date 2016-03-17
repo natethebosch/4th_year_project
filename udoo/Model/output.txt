@@ -1,0 +1,20 @@
+
+*************************************************
+Performing build...
+Please ensure you have /usr/dlib as a symbolic
+link to your dlib location
+*************************************************
+
+
+*************************************************
+Performing pre-compile commands...
+*************************************************
+
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -I/usr/include/c++/4.9.2 -std=c++11 -Wall src/helpers/BlockingQueue.cpp -o src/helpers/BlockingQueue.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -I/usr/include/c++/4.9.2 -std=c++11 -Wall src/helpers/stacktrace.cpp -o src/helpers/stacktrace.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -I/usr/include/c++/4.9.2 -std=c++11 -Wall src/sys/Debug.cpp -o src/sys/Debug.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -I/usr/include/c++/4.9.2 -std=c++11 -Wall src/sys/GPIO.cpp -o src/sys/GPIO.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -I/usr/include/c++/4.9.2 -std=c++11 -Wall src/sys/Mutex.cpp -o src/sys/Mutex.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -I/usr/include/c++/4.9.2 -std=c++11 -Wall src/sys/Task.cpp -o src/sys/Task.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -I/usr/include/c++/4.9.2 -std=c++11 -Wall src/tasks/ImageProcessor.cpp -o src/tasks/ImageProcessor.o
+makefile:74: recipe for target 'src/tasks/ImageProcessor.o' failed
