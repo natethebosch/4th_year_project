@@ -16,10 +16,12 @@
 #include "./blocking_queue/BlockingQueueStatus.h"
 #include "../sys/Debug.h"
 
+#include "../type/SensorDataPoint.h"
+
 #ifndef BLOCKINGQUEUE_H
 #define BLOCKINGQUEUE_H
 
-#define BQ_SIZE 10 * 1000 // 10kbs
+#define BQ_SIZE 1000 // 1000 items of type T
 
 
 template <typename T>
@@ -28,9 +30,25 @@ private:
     RT_QUEUE queue;
     
 public:
+    /**
+     * instantiates a BlockingQueue of default size
+     */
     BlockingQueue(const char* name){
+        BlockingQueue(name, BQ_SIZE);
+    }
+
+    /**
+     * instantiates a BlockingQueue to fit <count> items of type T
+     */
+    BlockingQueue(const char* name, size_t count){
+        
         // create pipe
-        int status = rt_queue_create(&queue, name, BQ_SIZE, Q_UNLIMITED, Q_FIFO);
+        int status;
+        if(sizeof(T) < 32){
+            status = rt_queue_create(&queue, name, count * 32, Q_UNLIMITED, Q_FIFO);
+        }else{
+            status = rt_queue_create(&queue, name, count * sizeof(T), Q_UNLIMITED, Q_FIFO);
+        }
         
         // check for errors
         if(status != 0){
@@ -137,20 +155,32 @@ public:
     /**
      * adds an item to the queue
      */
-    void put(T* item) throw (BlockingQueueStatus){
+    void put(T item) throw (BlockingQueueStatus){
+        
         // allocate message
         void* buff = rt_queue_alloc(&queue, sizeof(T));
         
         // copy to message buffer
-        memcpy(buff, item, sizeof(T));
+        memcpy(buff, &item, sizeof(T));
         
         // send
         int status = rt_queue_send(&queue, buff, sizeof(item), Q_NORMAL);
         switch(status){
-            case 0:    Debug::output("No tasks waiting on queue"); break;
+            case 0:
+                break;
             case -EINVAL: Debug::output("EINVAL"); throw BQ_FAIL; break;
             case -ENOMEM: Debug::output("ENOMEM"); throw BQ_FAIL; break;
         }
+    }
+    
+    /**
+     * prints current queue usage and queue buffer size
+     */
+    void info(){
+        RT_QUEUE_INFO info;
+        rt_queue_inquire(&queue, &info);
+        
+        printf("Queue Info:\n pool size: %u\n used: %u\n\n", info.poolsize, info.usedmem);
     }
     
 };

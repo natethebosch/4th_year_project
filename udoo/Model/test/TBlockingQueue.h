@@ -27,9 +27,6 @@ void addRandomIntToQueue(void *arg){
     
     printf("continue\n");
     
-    
-    
-    
     printf("finished add\n");
 }
 
@@ -37,7 +34,7 @@ class TBlockingQueue : public Test{
 public:
     
     bool test(){
-        BlockingQueue<int> _bq("Test-1");
+        BlockingQueue<int> _bq("Test-1", 1000);
         BlockingQueue<int> *bq = &_bq;
         
         // update status
@@ -62,7 +59,7 @@ public:
         int send = rand();
         
         try{
-            bq->put(&send);
+            bq->put(send);
         }catch(BlockingQueueStatus status){
             ostringstream stringStream;
             cout << "should have sent value. Instead threw " << status;
@@ -89,6 +86,28 @@ public:
             
             return false;
         }
+        
+        
+        
+        std::cout << "Testing for allocation errors. addint 1000 ints. should segfault if not cleaned properly\n";
+        std::cout.flush();
+        
+        try{
+            printf("\n");
+            for(int i = 0; i < 1000; i++){
+                printf("At %d\n", i);
+                bq->put(send);
+            }
+        }catch(BlockingQueueStatus status){
+            ostringstream stringStream;
+            cout << "should have sent value. Instead threw " << status;
+            cout.flush();
+            error = stringStream.str();
+            return false;
+        }
+        
+        std::cout << "Success!\n";
+        
         
         return true;
 

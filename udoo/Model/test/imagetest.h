@@ -29,7 +29,7 @@ bool ImageTest::test(int i)
     		dp->x=n*20;
     		dp->value=(i+n)*20;
     		
-    		queue->put(dp);
+    		queue->put(*dp);
 		}
 	}
 	free(dp);
