@@ -218,11 +218,11 @@ void WebWorker::run(void *cookie){
         headers.empty();
         
         // add headers to log file
-        std::ofstream log;
-        log.open("log.txt", std::ios_base::app);
-        log << buff;
-        log << "\n\n";
-        log.close();
+//        std::ofstream log;
+//        log.open("log.txt", std::ios_base::app);
+//        log << buff;
+//        log << "\n\n";
+//        log.close();
         
         while(buff[p] != '\0' && !invalidEncoding && continueDecoding){
             switch(state){
