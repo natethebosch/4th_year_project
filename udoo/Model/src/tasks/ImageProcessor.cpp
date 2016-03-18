@@ -38,7 +38,7 @@ void ImageProcessor::run(void* cookie){
     // image processor main logic goes here
       SensorDataPoint dp;
       float lasty=0.0;
-      ImageProcessor *imgpros = new ImageProcessor(0);
+      ImageProcessor *imgpros = this;
 
       
       // infinite loop
@@ -52,18 +52,19 @@ void ImageProcessor::run(void* cookie){
               imgpros->addData(dp.value, int(dp.y/2));
 
               //finishs this image and moves on to the next one
-			  if (lasty>(dp.y+1)){
+			  if (lasty>(dp.y)){
               	//generates date/time stamp to save the image
               	time(&timer);
               	timeinfo=localtime(&timer);
               	fileName="/media/sf_Model/images/";
-				fileName+="image";
-				//fileName+=asctime(timeinfo);
-				fileName+=".bmp";
+				timeName=asctime(timeinfo);
+				fileName+=timeName.substr(0,timeName.size()-1);
+				fileName+=".jpeg";
               	
               	Debug::output(fileName.c_str());
               	//saves image as image in as the file specified by the time stamp
-				save_bmp(compileImage(), fileName);
+				compileImage();
+				save_jpeg(img, fileName, 100);
 				
 				//removes the image from 100 scans ago so as not to fill up memory
 				remove (fileList[listIndex].c_str());
@@ -74,8 +75,9 @@ void ImageProcessor::run(void* cookie){
 				if (listIndex>99) listIndex=0;
               	
 		   		//creates a new ImageProcessor object to hold the next scan
-		   		imgpros = new ImageProcessor (0);
+		   		imgpros->empty();
 			  }
+			  lasty=dp.y/2;
            }catch(BlockingQueueStatus s){
                if(s == BQ_TIMEOUT){
                    continue;
@@ -164,8 +166,8 @@ void ImageProcessor::yCompile(){
 
 /**interpolates allong the rows between the major columns*/
 void ImageProcessor::xCompileTo(int botY){
-	Debug::output("x Compiling to ");
-	Debug::output(to_string(botY).c_str());
+	//Debug::output("x Compiling to ");
+	//Debug::output(to_string(botY).c_str());
 	for (int row = currentXCompile; row<=botY; row++){
 		for (int column=1; column<WIDTH; column++){
 			
@@ -182,7 +184,7 @@ void ImageProcessor::xCompileTo(int botY){
 			}
 		}
 	}
-	Debug::output("Compiled");
+	//Debug::output("Compiled");
 	currentXCompile=botY;
 }
 

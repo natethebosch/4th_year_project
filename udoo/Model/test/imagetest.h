@@ -22,16 +22,26 @@ bool ImageTest::test(int i)
     imgProcessor->start();
 
     dp=(SensorDataPoint*)malloc(sizeof(SensorDataPoint));
-    for (int i=0; i<24; i++){
-    	for (int n=0;n<24; n++){
+    
+    //for (int a=0; a<100; a++){
+	
+		for (int i=0; i<24; i++){
+    		for (int n=0;n<24; n++){
     		
-    		dp->y=i*40;
-    		dp->x=n*20;
-    		dp->value=(i+n)*20;
+    			dp->y=i*40;
+    			dp->x=n*20;
+    			dp->value=(i+n)*20;
     		
-    		queue->put(*dp);
+    			queue->put(*dp);
+			}
 		}
-	}
+	//}
+	
+	dp->y=0;
+	dp->x=0;
+	dp->value=0;
+	queue->put(*dp);
+	
 	free(dp);
 	return true;
 }

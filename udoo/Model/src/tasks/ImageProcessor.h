@@ -20,6 +20,8 @@
 #define MAXVAL		1023
 #define CHROMA		1
 
+#define DLIB_JPEG_SUPPORT
+
 #include <vector>
 #include <iostream>
 #include <string>
@@ -54,8 +56,7 @@ private:
     //holds the y value to which the data array has been completely compiled
     int currentXCompile;
     
-    //holds the image
-    array2d<rgb_pixel> img;
+    
     
     //holds the added data points as well as the interpolated values between
     matrix<int, HEIGHT+1, WIDTH+1> sensorData;
@@ -63,6 +64,7 @@ private:
     //holds date/timestamp image name
     time_t timer;
     struct tm *timeinfo;
+    string timeName;
     string fileName;
     
     //list of saved files
@@ -82,6 +84,8 @@ public:
     array2d<rgb_pixel>& getImage();
 	//vector<vector<int>> getData();
     void run(void* cookie);
+    //holds the image
+    array2d<rgb_pixel> img;
     
     //constructor/reseter
     void empty();
