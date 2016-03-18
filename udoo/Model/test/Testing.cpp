@@ -30,7 +30,8 @@ void test(void *args){
     
     std::cout << "Starting test sequence\n\n";
     std::cout.flush();
-    
+    if (false){
+
     /**************************
      * Blocking Queue Test
      **************************/
@@ -64,6 +65,7 @@ void test(void *args){
 	}
     
     delete ttk;
+}
     
     std::cout <<"Testing ImageProcessor\n";
     ImageTest* imgtest= new ImageTest;

@@ -27,7 +27,7 @@ typedef struct TaskCallbackInfo{
 class Task {
     RT_TASK task_desc;
     
-public: 
+public:
     
     /**
      * Creates a new Xenomai task with the given name and priority

@@ -65,6 +65,10 @@ private:
     struct tm *timeinfo;
     string fileName;
     
+    //list of saved files
+    int listIndex;
+    string fileList[100];
+    
     void yCompile();
     void xCompileTo(int botY);
     
@@ -77,56 +81,18 @@ public:
     array2d<rgb_pixel>& compileImage();
     array2d<rgb_pixel>& getImage();
 	//vector<vector<int>> getData();
-    void run();
+    void run(void* cookie);
     
     //constructor/reseter
     void empty();
     
     ImageProcessor(BlockingQueue<SensorDataPoint> *_input): Task("ImageProcessor", 20){
     	empty();
+    	listIndex=0;
         input = _input;
     };
     
-    virtual void run(void* cookie){
-        // image processor main logic goes here
-          SensorDataPoint dp;
-          float lasty=0.0;
-          ImageProcessor *imgpros = new ImageProcessor(0);
 
-          
-          // infinite loop
-          for(;;){ 
-               // fetch from the buffer
-         
-               try{
-                  dp = input->take();
-                
-                   // y value divided by 2 since height is 500 and the scanner is 1000mm long
-                  imgpros->addData(dp.value, int(dp.y/2));
-
-                  //finishs this image and moves on to the next one
-				  if (lasty>(dp.y+1)){
-                  	//generates date/time stamp to save the image
-                  	time(&timer);
-                  	timeinfo=localtime(&timer);
-                  	fileName=asctime(timeinfo);
-                  	
-                  	//saves image as image in as the file specified by the time stamp
-					save_bmp(compileImage(), "/"+fileName+".bmp");
-                  	
-			   		//creates a new ImageProcessor object to hold the next scan
-			   		imgpros = new ImageProcessor (0);
-				  }
-               }catch(BlockingQueueStatus s){
-                   if(s == BQ_TIMEOUT){
-                       continue;
-                   }else{
-                       Debug::output("Irrecoverable error. Exiting...");
-                       exit(-1);
-                   }
-               }
-          }
-    }
 };
 
 #endif //_IMAGEPROCESSOR_H

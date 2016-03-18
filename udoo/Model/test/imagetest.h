@@ -18,14 +18,14 @@ bool ImageTest::test(int i)
 	SensorDataPoint* dp;
     BlockingQueue<SensorDataPoint>* queue;
     queue = new BlockingQueue<SensorDataPoint>("Serial2ImageProcessorQueue", 24*24);
-    ImageProcessor imgProcessor(queue);
-    imgProcessor.start();
+    ImageProcessor *imgProcessor= new ImageProcessor(queue);
+    imgProcessor->start();
 
     dp=(SensorDataPoint*)malloc(sizeof(SensorDataPoint));
     for (int i=0; i<24; i++){
     	for (int n=0;n<24; n++){
     		
-    		dp->y=i*20;
+    		dp->y=i*40;
     		dp->x=n*20;
     		dp->value=(i+n)*20;
     		
