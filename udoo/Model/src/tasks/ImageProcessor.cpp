@@ -64,7 +64,7 @@ void ImageProcessor::run(void* cookie){
               	Debug::output(fileName.c_str());
               	//saves image as image in as the file specified by the time stamp
 				compileImage();
-				save_jpeg(img, fileName, 100);
+				save_jpeg(getImage(), fileName);
 				
 				//removes the image from 100 scans ago so as not to fill up memory
 				remove (fileList[listIndex].c_str());

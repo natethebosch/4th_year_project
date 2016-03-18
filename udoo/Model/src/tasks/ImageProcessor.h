@@ -19,6 +19,8 @@
 #define xSpacing	(WIDTH/MAJORXS)
 #define MAXVAL		1023
 #define CHROMA		1
+#define DDLIB_JPEG_SUPPORT
+
 
 #include <vector>
 #include <iostream>
