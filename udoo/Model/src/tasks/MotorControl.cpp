@@ -32,7 +32,7 @@ void MotorControl::run(void* cookie){
 
 
 void MotorControl::homeScanner() {
-	io.digitalWrite(MOTORCONTROL, true)
+	io.digitalWrite(MOTORCONTROL, true);
 	io.digitalWrite (MOTORHOME,true);
 	io.digitalWrite(MOTORCONTROL,false);
 	
@@ -43,7 +43,7 @@ void MotorControl::homeScanner() {
 }
 
 void MotorControl::awayScanner() {
-	io.digitalWrite(MOTORCONTROL, true)
+	io.digitalWrite(MOTORCONTROL, true);
 	io.digitalWrite (MOTORAWAY,true);
 	io.digitalWrite(MOTORCONTROL,false);
 	
@@ -54,7 +54,7 @@ void MotorControl::awayScanner() {
 }
 
 void MotorControl::scanHome() {
-	io.digitalWrite(MOTORCONTROL, true)
+	io.digitalWrite(MOTORCONTROL, true);
 	io.digitalWrite (MOTORHOME,true);
 	io.digitalWrite(MOTORCONTROL,false);
 	
@@ -65,7 +65,7 @@ void MotorControl::scanHome() {
 }
 
 void MotorControl::scanAway() {
-	io.digitalWrite(MOTORCONTROL, true)
+	io.digitalWrite(MOTORCONTROL, true);
 	io.digitalWrite (MOTORAWAY,true);
 	io.digitalWrite(MOTORCONTROL,false);
 	
