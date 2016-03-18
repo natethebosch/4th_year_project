@@ -29,6 +29,9 @@ Task(
     mimeTypes.insert(std::pair<std::string, std::string>("json", "application/json"));
     mimeTypes.insert(std::pair<std::string, std::string>("html", "text/html"));
     mimeTypes.insert(std::pair<std::string, std::string>("css", "text/css"));
+    mimeTypes.insert(std::pair<std::string, std::string>("csv", "text/csv"));
+    mimeTypes.insert(std::pair<std::string, std::string>("jpg", "image/jpeg"));
+    mimeTypes.insert(std::pair<std::string, std::string>("png", "image/png"));
 }
 
 HTTPMethod WebWorker::getMethod(std::string str){
@@ -157,12 +160,12 @@ URL WebWorker::decodeURL(std::string url){
 }
 
 void WebWorker::respond404(int socket){
-    std::string buff = "404 Not Found\r\n";
+    std::string buff = "HTTP/1.1 404 Not Found\r\n";
     write(socket, buff.c_str(), buff.size());
 }
 
 void WebWorker::responseInvalid(int socket){
-    std::string buff = "500 Internal Server Error\r\n";
+    std::string buff = "HTTP/1.1 500 Internal Server Error\r\n";
     write(socket, buff.c_str(), buff.size());
 }
 
@@ -188,9 +191,14 @@ void WebWorker::run(void *cookie){
     
     bool continueDecoding;
     bool invalidEncoding;
-    size_t p, p2;
+    size_t p, p2, len;
     
     for(;;){
+        // check for termination
+        if(hasTerminateSignal()){
+            return;
+        }
+        
         wt = ws->fetchTask(this);
         
         // check for no task (some internal error happened)
@@ -207,17 +215,31 @@ void WebWorker::run(void *cookie){
         method = INVALID;
         continueDecoding = true;
         invalidEncoding = false;
+        headers.empty();
+        
+        // add headers to log file
+//        std::ofstream log;
+//        log.open("log.txt", std::ios_base::app);
+//        log << buff;
+//        log << "\n\n";
+//        log.close();
         
         while(buff[p] != '\0' && !invalidEncoding && continueDecoding){
             switch(state){
                 case METHOD:
                     p2 = buff.find_first_of(" ");
                     if(p2 == std::string::npos){
+                        printf("METHOD couldn't find first space\n");
+                        printf("BUFF: %s\n", buff.c_str());
+                        
                         invalidEncoding = true;
                         break;
                     }
                     
                     method = getMethod(buff.substr(p, p2 - p));
+                    
+                    printf("GOT METHOD: %s\n", buff.substr(p, p2 - p).c_str());
+                    
                     if(method != GET){
                         continueDecoding = false;
                     }else{
@@ -228,40 +250,64 @@ void WebWorker::run(void *cookie){
                 case PATH:
                     p2 = buff.find_first_of(" ", p);
                     if(p2 == std::string::npos){
+                        printf("PATH couldn't find first space\n");
+                        printf("BUFF: %s\n", buff.c_str());
+                        
                         invalidEncoding = true;
                         break;
                     }
                     
                     sUrl = buff.substr(p, p2 - p);
+                    printf("Got path: %s\n", sUrl.c_str());
+                    
                     p = p2;
                     state = HTTP_VERSION;
                     break;
                 case HTTP_VERSION:
                     p2 = buff.find_first_of("\r\n", p);
+
                     if(p2 == std::string::npos){
+                        printf("HTTP_VERSION couldn't find <r><n>\n");
+                        printf("BUFF: %s\n", buff.c_str());
+                        
                         invalidEncoding = true;
                         break;
                     }
-                    p = p2;
+                    
+                    printf("GOT VERSION: %s\n", buff.substr(p, p2 - p).c_str());
+                    
+                    p = p2 + 1;
+                    
+                    state = HEADER;
                     break;
                 case HEADER:
+                    
                     p2 = buff.find_first_of("\r\n", p);
                     
                     if(p2 == std::string::npos){
+                        printf("HTTP_VERSION couldn't find <r><n>\n");
+                        printf("BUFF: %s\n", buff.c_str());
+                        
                         invalidEncoding = true;
                         break;
                     }
+                    
+                    printf("HEADER_LINE: %s\n", buff.substr(p, p2 - p).c_str());
+                    
                     if(p2 == p){
                         state = DONE;
                         break;
                     }
                     
                     headers.insert(getHeaderForString(buff.substr(p, p2 - p)));
-                    
-                    p = p2;
+                    p = p2 + 1;
                     
                     break;
                 case DONE:
+                    printf("Done Decoding\n");
+                    
+                    // move to the end
+                    p = buff.find_last_not_of("a");
                     break;
             }
             
@@ -269,7 +315,7 @@ void WebWorker::run(void *cookie){
         }
         
         // check if there was an error while decoding
-        if(!invalidEncoding){
+        if(invalidEncoding){
             responseInvalid(wt->socket);
             close(wt->socket);
             free(wt);
@@ -287,14 +333,18 @@ void WebWorker::run(void *cookie){
         
         // todo check for host name in either absolute url or header
         if(url.path == std::string("/"))
-            url.path = "/index.html";
+            url.path = _rootDir + "/index.html";
         else
             url.path = _rootDir + url.path;
+        
+        printf("Find path: %s\n", url.path.c_str());
         
         std::ifstream myfile;
         myfile.open (url.path.c_str(), std::ios::in);
         
         if(!myfile.is_open()){
+            
+            printf("Respond 404\n");
             respond404(wt->socket);
             
             myfile.close();
@@ -303,32 +353,67 @@ void WebWorker::run(void *cookie){
             continue;
         }
         
-        buff = "200 OK\r\n";
+        printf("Write Ok\n");
+        buff = "HTTP/1.1 200 OK\r\n";
         write(wt->socket, buff.c_str(), buff.size());
         
-        p = url.path.find_last_of('.');
+        printf("Get MIME type\n");
+        
+        p = url.path.find_last_of('.') + 1;
         if(p != std::string::npos){
             ext = url.path.substr(p, std::string::npos);
+            printf("MIME: search for extension %s\n", ext.c_str());
             
             buff = "Content-Type: ";
-            buff += mimeTypes.find(ext)->second;
+            
+            std::map<std::string, std::string>::iterator it = mimeTypes.find(ext);
+            if(it != mimeTypes.end()){
+                buff += it->second;
+            }else{
+                // default type is text/plain
+                buff += "text/plain";
+            }
+            
             buff += "\r\n";
             
             write(wt->socket, buff.c_str(), buff.size());
+            
+            if(ext == "jpg" || ext == "png"){
+                myfile.close();
+                myfile.open (url.path.c_str(), std::ios::in | std::ios::binary);
+            }
         }
         
-        buff = "\r\n";
+        buff = "Content-Length: ";
+        buff += std::to_string(getFileSize(url.path.c_str()));
+        buff += "\r\n";
         write(wt->socket, buff.c_str(), buff.size());
         
-        while(getline(myfile, buff)){
-            write(wt->socket, buff.c_str(), buff.size());
+        buff = "Connection: close\r\n";
+        write(wt->socket, buff.c_str(), buff.size());
+        
+        buff = "\r\n";
+        
+        write(wt->socket, buff.c_str(), buff.size());
+        
+        // write out the file
+        while(!myfile.eof()){
+            myfile.read(buffer, SOCKET_BUFFER_SIZE);
+            write(wt->socket, buffer, SOCKET_BUFFER_SIZE);
         }
         
         
         // garbage cleanup
+        printf("Close file\n");
         myfile.close();
+        printf("Close socket\n");
         close(wt->socket);
     
+        printf("Free task\n");
         free(wt);
+        
+        // clear buffer
+        for(int i = 0; i < SOCKET_BUFFER_SIZE; i++)
+            buffer[i] = '\0';
     }
 }

@@ -39,6 +39,17 @@ class WebWorker : public Task {
     void respond404(int socket);
     void responseInvalid(int socket);
     
+    /**
+     * get filesize in bytes
+     */
+    size_t getFileSize(std::string filename){
+        std::ifstream file(filename.c_str() , std::ios::binary | std::ios::ate);
+        size_t fileSize = file.tellg();
+        file.close();
+        
+        return fileSize;
+    }
+    
 public:
     WebWorker(char* dir);
     
