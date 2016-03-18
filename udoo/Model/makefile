@@ -11,7 +11,7 @@ FLAGS =
 XENO_CONFIG := /usr/xenomai/bin/xeno-config
 XENO_CFLAGS=$(shell $(XENO_CONFIG) --alchemy --cflags)
 
-D_LIB_CFLAGS=-I/usr/dlib
+D_LIB_CFLAGS=-I/usr/dlib -DDLIB_JPEG_SUPPORT
 STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11
 CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall
 DEBUG_FLAGS = -g

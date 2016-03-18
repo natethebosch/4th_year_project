@@ -20,8 +20,6 @@
 #define MAXVAL		1023
 #define CHROMA		1
 
-#define DLIB_JPEG_SUPPORT
-
 #include <vector>
 #include <iostream>
 #include <string>
