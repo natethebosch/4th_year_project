@@ -19,6 +19,10 @@
 #define xSpacing	(WIDTH/MAJORXS)
 #define MAXVAL		1023
 #define CHROMA		1
+#define MAX_IMG_COUNT 10
+#define MAX_CSV_COUNT 10
+#define MAX_CSV_SIZE 5*2e10 // 5kbs
+
 
 #include <vector>
 #include <iostream>
@@ -26,15 +30,15 @@
 #include <time.h>
 #include <math.h>
 #include <stdlib.h>
+#include <fstream>
+#include <sys/types.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
-#include "dlib/pixel.h"
-#include "dlib/array2d.h"
-#include "dlib/image_io.h"
-#include "dlib/image_transforms.h"
-
+#include <Magick++.h>
 
 using namespace std;
-using namespace dlib;
 
 class ImageProcessor: public Task {
 private:
@@ -54,16 +58,46 @@ private:
     //holds the y value to which the data array has been completely compiled
     int currentXCompile;
     
-    //holds the image
-    array2d<rgb_pixel> img;
+    
     
     //holds the added data points as well as the interpolated values between
-    matrix<int, HEIGHT+1, WIDTH+1> sensorData;
+    int sensorData[HEIGHT+1][WIDTH+1];
+    float csvSensorData[HEIGHT+1][WIDTH+1];
     
     //holds date/timestamp image name
     time_t timer;
     struct tm *timeinfo;
+    string timeName;
     string fileName;
+    
+    string _outputDirectory;
+    
+    /**
+     * returns date-time format as YYYY-MM-DD-HH-II-SS
+     */
+    std::string getCurrentDateTime();
+    
+    bool has_suffix(const std::string &str, const std::string &suffix);
+    
+    bool file_exists (const std::string& name);
+    std::vector<std::string> listFilesInDirWithExtension(std::string dir, std::string ext);
+    
+    /**
+     * Updates manifest.json with a list of images and csvs which can be accessed
+     */
+    void updateManifest();
+    
+    /**
+     * Moves current.csv to cache if it's larger than MAX_CSV_SIZE (bytes)
+     * and creates new current.csv if non exists with header fields
+     */
+    void updateCSVFile();
+    
+    /**
+     * Removes oldest photos when outputDirectory contains more than 
+     * MAX_IMG_COUNT images
+     */
+    void cleanOldFiles();
     
     void yCompile();
     void xCompileTo(int botY);
@@ -74,59 +108,25 @@ public:
     
     void addData (float value, int y);
     void displayData ();
-    array2d<rgb_pixel>& compileImage();
-    array2d<rgb_pixel>& getImage();
-	//vector<vector<int>> getData();
-    void run();
+    
+    /**
+     * Creates and image from the data in sensorData and saves it
+     * as the filename specified
+     */
+    void compileImage(std::string filename);
+    
+    void run(void* cookie);
     
     //constructor/reseter
     void empty();
     
-    ImageProcessor(BlockingQueue<SensorDataPoint> *_input): Task("ImageProcessor", 20){
+    ImageProcessor(BlockingQueue<SensorDataPoint> *_input, std::string outputDirectory): Task("ImageProcessor", 20){
     	empty();
         input = _input;
+        _outputDirectory = outputDirectory;
     };
     
-    virtual void run(void* cookie){
-        // image processor main logic goes here
-          SensorDataPoint dp;
-          float lasty=0.0;
-          ImageProcessor *imgpros = new ImageProcessor(0);
 
-          
-          // infinite loop
-          for(;;){ 
-               // fetch from the buffer
-         
-               try{
-                  dp = input->take();
-                
-                   // y value divided by 2 since height is 500 and the scanner is 1000mm long
-                  imgpros->addData(dp.value, int(dp.y/2));
-
-                  //finishs this image and moves on to the next one
-				  if (lasty>(dp.y+1)){
-                  	//generates date/time stamp to save the image
-                  	time(&timer);
-                  	timeinfo=localtime(&timer);
-                  	fileName=asctime(timeinfo);
-                  	
-                  	//saves image as image in as the file specified by the time stamp
-					save_bmp(compileImage(), "/"+fileName+".bmp");
-                  	
-			   		//creates a new ImageProcessor object to hold the next scan
-			   		imgpros = new ImageProcessor (0);
-				  }
-               }catch(BlockingQueueStatus s){
-                   if(s == BQ_TIMEOUT){
-                       continue;
-                   }else{
-                       Debug::output("Irrecoverable error. Exiting...");
-                       exit(-1);
-                   }
-               }
-          }
-    }
 };
 
 #endif //_IMAGEPROCESSOR_H

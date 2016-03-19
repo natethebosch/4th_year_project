@@ -33,7 +33,7 @@ typedef enum {
 class Task {
     RT_TASK task_desc;
     
-public: 
+public:
     
     /**
      * Creates a new Xenomai task with the given name and priority
@@ -103,7 +103,7 @@ public:
      */
     void sleep_millis(size_t ms){
         for(size_t i = 0; i < ms; i++){
-            sleep(rt_timer_ns2ticks(1000));
+            sleep(rt_timer_ns2ticks(1000000));
         }
     }
     

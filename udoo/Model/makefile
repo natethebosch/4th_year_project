@@ -11,12 +11,12 @@ FLAGS =
 XENO_CONFIG := /usr/xenomai/bin/xeno-config
 XENO_CFLAGS=$(shell $(XENO_CONFIG) --alchemy --cflags)
 
-D_LIB_CFLAGS=-I/usr/dlib
+D_LIB_CFLAGS=-I/usr/dlib -DDLIB_NO_GUI_SUPPORT  -I/*/libjpeg
 STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11
-CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall
+CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall `GraphicsMagick++-config --cppflags --cxxflags`
 DEBUG_FLAGS = -g
 
-SOURCES = $(shell find ./src -name '*.cpp')
+SOURCES = $(shell find ./src -name '*.cpp')  -ljpeg
 T_SOURCES = $(shell find ./src -name '*.cpp' | grep -v 'Main.cpp') $(shell find ./test -name '*.cpp')
 
 HEADERS = $(shell find ./src -name '*.h')
@@ -24,7 +24,7 @@ HEADERS = $(shell find ./src -name '*.h')
 OBJECTS = $(SOURCES:.cpp=.o)
 T_OBJECTS = $(T_SOURCES:.cpp=.o)
 
-LDFLAGS= -Wall -lstdc++ -lpthread -ldl -lm $(shell $(XENO_CONFIG) --alchemy --ldflags)
+LDFLAGS= -Wall -lstdc++ -ljpeg -lpthread -ldl -lm $(shell $(XENO_CONFIG) --alchemy --ldflags) `GraphicsMagick++-config --ldflags --libs`
 
 PRECOMPILE = $(shell )
 #POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
