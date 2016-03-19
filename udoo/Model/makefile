@@ -24,7 +24,13 @@ HEADERS = $(shell find ./src -name '*.h')
 OBJECTS = $(SOURCES:.cpp=.o)
 T_OBJECTS = $(T_SOURCES:.cpp=.o)
 
-LDFLAGS= -Wall -lstdc++ -ljpeg -lpthread -ldl -lm $(shell $(XENO_CONFIG) --alchemy --ldflags) `GraphicsMagick++-config --ldflags --libs`
+# XENO_CONFIG causing issues with -fPIC
+#XENO_LD_FLAGS=$(shell $(XENO_CONFIG) --alchemy --ldflags)
+XENO_LD_FLAGS=-lalchemy  -lcopperplate /usr/xenomai/lib/xenomai/bootstrap.o -Wl,--wrap=main -Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib -lmercury -lpthread -lrt
+
+MAGICK_LD_FLAGS=`GraphicsMagick++-config --ldflags --libs`
+
+LDFLAGS= -Wall -lstdc++ -ljpeg -lpthread -ldl -lm -lasound $(XENO_LD_FLAGS) $(MAGICK_LD_FLAGS)
 
 PRECOMPILE = $(shell )
 #POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d

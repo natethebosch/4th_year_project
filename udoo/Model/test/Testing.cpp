@@ -20,6 +20,7 @@
 #include "./TTask.h"
 #include "./TImage.h"
 #include "./TWebServer.h"
+#include "./TAudio.h"
 
 #include <Magick++.h>
 
@@ -33,6 +34,7 @@ void test(void *args){
     
     std::cout << "Starting test sequence\n\n";
     std::cout.flush();
+    
     if (false){
 
     /**************************
@@ -68,7 +70,7 @@ void test(void *args){
 	}
     
     delete ttk;
-}
+
     
     /**************************
      * Image Processor Test
@@ -96,6 +98,21 @@ void test(void *args){
     if(!twb->test()){
         std::cout << "Test " << test_number << " failed:\n";
         std::cout << twb->error << "\n";
+        std::cout << "\n\n";
+    }
+        
+    }
+    
+    /**************************
+     * Audio Test
+     **************************/
+    
+    TAudio *ta = new TAudio();
+    test_number++;
+    
+    if(!ta->test()){
+        std::cout << "Test " << test_number << " failed:\n";
+        std::cout << ta->error << "\n";
         std::cout << "\n\n";
     }
     
