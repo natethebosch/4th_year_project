@@ -9,7 +9,6 @@
 
 
 using namespace std;
-using namespace dlib;
 
 float getRed(int hue);
 float getGreen(int hue);
@@ -24,59 +23,124 @@ void ImageProcessor::empty (){
 	lastY =new int[MAJORXS];
 	currentXCompile=0;
 	first=true;
-	
-	//sensorData= new matrixHEIGHT, WIDTH);
-	
-//	for (int i=0; i<HEIGHT;i++){
-//		for (int n=0; n<WIDTH-xSpacing; n++){
-//			sensorData[i][n]=0;
-//		}		
-//	}
+}
+
+/**
+ * (Source: http://stackoverflow.com/questions/12774207/fastest-way-to-check-if-a-file-exist-using-standard-c-c11-c)
+ */
+bool ImageProcessor::file_exists (const std::string& name) {
+    struct stat buffer;
+    return (stat (name.c_str(), &buffer) == 0);
+}
+
+std::string ImageProcessor::getCurrentDateTime(){
+    char datebuff[32];
+    
+    // initialize datebuff
+    time(&timer);
+    timeinfo=localtime(&timer);
+    
+    strftime (datebuff, 32,"%F-%T", timeinfo);
+    
+    // replace [:\] with -
+    int i = 0;
+    while(datebuff[i] != '\0'){
+        if(datebuff[i] == ':' || datebuff[i] == '\\'){
+            datebuff[i] = '-';
+        }
+        i++;
+    }
+    
+    return std::string(datebuff);
 }
 
 void ImageProcessor::run(void* cookie){
+    
     // image processor main logic goes here
-      SensorDataPoint dp;
-      float lasty=0.0;
-      ImageProcessor *imgpros = this;
+    SensorDataPoint dp;
+    float lasty=0.0;
+    ImageProcessor *imgpros = this;
+    
+    std::string date = getCurrentDateTime();
+    
+    // open default csv file
+    std::string csvCannonicalName = _outputDirectory + "/current.csv";
+    
+    // if file already exists, move it to a timestamp formatted location
+    if(file_exists(csvCannonicalName)){
+        
+        if(rename(csvCannonicalName.c_str(), (_outputDirectory + "/" + date + ".csv").c_str()) != 0){
+            Debug::output("Couldn't move file current.csv");
+        }
+        
+        updateManifest();
+    }
+    
+    updateCSVFile();
 
-      
-      // infinite loop
-      for(;;){ 
-           // fetch from the buffer
+    // infinite loop
+      for(;;){
+          
+          // check if we need to stop
+          if(hasTerminateSignal()){
+              return;
+          }
      
            try{
-              dp = input->take();
+               
+               // loop until the queue gives us an item or hasTerminateSignal causes exit
+               for(;;){
+                   try{
+                       if(hasTerminateSignal()){
+                           return;
+                       }
+                       
+                       // fetch from the buffer
+                       dp = input->take(10);
+                       
+                       // break cause we got something
+                       break;
+                   }catch(BlockingQueueStatus err){
+                       if(err != BQ_TIMEOUT){
+                           Debug::output("Unknown error in ImageProcessor::run input->take");
+                           Debug::output(std::to_string(err).c_str());
+                       }else{
+                           sleep_millis(100);
+                       }
+                   }
+               }
             
+               ofstream csvFile(csvCannonicalName.c_str(), std::fstream::app);
+               csvFile << "\"" << date << "\"," << dp.x << "," << dp.y << ",\"" << dp.value << "\"\n";
+               csvFile.close();
+
                // y value divided by 2 since height is 500 and the scanner is 1000mm long
-              imgpros->addData(dp.value, int(dp.y/2));
+               imgpros->addData(dp.value, int(dp.y/2));
 
               //finishs this image and moves on to the next one
 			  if (lasty>(dp.y)){
-              	//generates date/time stamp to save the image
-              	time(&timer);
-              	timeinfo=localtime(&timer);
-              	fileName="/media/sf_Model/images/";
-				timeName=asctime(timeinfo);
-				fileName+=timeName.substr(0,timeName.size()-1);
-				fileName+=".jpeg";
-              	
-              	Debug::output(fileName.c_str());
-              	//saves image as image in as the file specified by the time stamp
-				compileImage();
-				save_jpeg(getImage(), fileName);
-				
-				//removes the image from 100 scans ago so as not to fill up memory
-				remove (fileList[listIndex].c_str());
-				fileList[listIndex]=fileName;
-				listIndex++;
-				
-				//resets list index after 100 entries
-				if (listIndex>99) listIndex=0;
-              	
-		   		//creates a new ImageProcessor object to hold the next scan
-		   		imgpros->empty();
+                  
+                    // update for the csv
+                    date = getCurrentDateTime();
+
+                    fileName = date;
+                    fileName += ".jpg";
+
+                    Debug::output(fileName.c_str());
+
+                    //saves image as image in as the file specified by the time stamp
+                    compileImage(_outputDirectory + "/" + fileName);
+                  
+                    // clean up filesystem
+                    updateCSVFile();
+                    cleanOldFiles();
+                    updateManifest();
+                  
+
+                    //creates a new ImageProcessor object to hold the next scan
+                    imgpros->empty();
 			  }
+               
 			  lasty=dp.y/2;
            }catch(BlockingQueueStatus s){
                if(s == BQ_TIMEOUT){
@@ -89,6 +153,198 @@ void ImageProcessor::run(void* cookie){
       }
 }
 
+void ImageProcessor::updateCSVFile(){
+    
+    // get file size
+    std::ifstream in((_outputDirectory + "/current.csv").c_str(), std::ifstream::ate | std::ifstream::binary);
+    size_t len = in.tellg();
+    
+    // if file is above allowed, move to cached file
+    if(len > MAX_CSV_SIZE){
+        int result = rename((_outputDirectory + "/current.csv").c_str(), (_outputDirectory + "/" + getCurrentDateTime() + ".csv").c_str());
+        if(result != 0){
+            Debug::output("Couldn't move current.csv");
+        }
+    }
+    
+    // if file doesn't exist, create it and add csv header
+    if(!file_exists(_outputDirectory + "/current.csv")){
+        std::ofstream csvFile;
+        csvFile.open((_outputDirectory + "/current.csv").c_str(), std::ofstream::out);
+        
+        csvFile << "\"Date of Capture Set\",x,y\n";
+        
+        csvFile.close();
+    }
+}
+
+/**
+ * Source: http://stackoverflow.com/questions/20446201/how-to-check-if-string-ends-with-txt
+ */
+bool ImageProcessor::has_suffix(const std::string &str, const std::string &suffix){
+    return str.size() >= suffix.size() &&
+    str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
+}
+
+/**
+ * returns a list of file names within a directory that have
+ * the extension given
+ */
+std::vector<std::string> ImageProcessor::listFilesInDirWithExtension(std::string dir, std::string ext){
+    DIR *d;
+    struct dirent *ent;
+    std::vector<std::string> list;
+    std::string name;
+    
+    // try to open the directory
+    if((d = opendir(_outputDirectory.c_str())) != NULL){
+        
+        // loop over the items
+        while ((ent = readdir (d)) != NULL) {
+            name = std::string(ent->d_name);
+            
+            // check for extension
+            if(has_suffix(name, ext)){
+                list.push_back(name);
+            }
+        }
+        
+        closedir (d);
+    }else{
+        Debug::output("Couldn't open directory for listing");
+    }
+       
+   return list;
+}
+
+/**
+ * Removes oldest photos when outputDirectory contains more than
+ * MAX_IMG_COUNT images
+ */
+void ImageProcessor::cleanOldFiles(){
+    std::vector<std::string> list = listFilesInDirWithExtension(_outputDirectory, ".jpg");
+    std::string cannonicalPath;
+    
+    if(list.size() > MAX_IMG_COUNT){
+        // sort
+        std::sort (list.begin(), list.end());
+        
+        while(list.size() > MAX_IMG_COUNT){
+            
+            // skip current.jpg
+            if(list.back() == "current.jpg"){
+                list.pop_back();
+                continue;
+            }
+            
+            cannonicalPath = _outputDirectory + "/" + list.back();
+            list.pop_back();
+            
+            if(remove(cannonicalPath.c_str()) != 0){
+                Debug::output("Couldn't delete file");
+                Debug::output(cannonicalPath.c_str());
+            }
+        }
+    }
+    
+    // do the same for csvs
+    list = listFilesInDirWithExtension(_outputDirectory, ".csv");
+    
+    if(list.size() > MAX_CSV_COUNT){
+        // sort
+        std::sort (list.begin(), list.end());
+        
+        while(list.size() > MAX_CSV_COUNT){
+            
+            // skip current.csv
+            if(list.back() == "current.csv"){
+                list.pop_back();
+                continue;
+            }
+            
+            cannonicalPath = _outputDirectory + "/" + list.back();
+            list.pop_back();
+            
+            if(remove(cannonicalPath.c_str()) != 0){
+                Debug::output("Couldn't delete file");
+                Debug::output(cannonicalPath.c_str());
+            }
+        }
+    }
+}
+       
+void ImageProcessor::updateManifest(){
+    std::vector<std::string> list;
+    
+    // get output stream
+    std::string cannonicalName = _outputDirectory + "/manifest.json";
+    std::ofstream manifest(cannonicalName.c_str(), std::ofstream::out);
+    
+    // get date (http://stackoverflow.com/questions/9527960/how-do-i-construct-an-iso-8601-datetime-in-c)
+    time_t now;
+    time(&now);
+    char buf[sizeof "2011-10-08T07:07:09Z"];
+    strftime(buf, sizeof buf, "%FT%TZ", gmtime(&now));
+    std::string date = std::string(buf);
+    
+    // write to manifest
+    manifest << "{\n";
+    manifest << "\t\"updatedAt\":\"" << date << "\",\n";
+    manifest << "\t\"images\":[";
+    
+    // get images from dir
+    list = listFilesInDirWithExtension(_outputDirectory, ".jpg");
+    
+    // loop over all images
+    for (std::vector<std::string>::iterator it = list.begin(); it != list.end(); ++it){
+        
+        // add comma only if one line has already been printed
+        if(it != list.begin()){
+            manifest << ",\n";
+        }else{
+            manifest << "\n";
+        }
+        
+        manifest << "\t\t\"" << *it << "\"";
+    }
+    
+    if(list.size() != 0){
+        manifest << "\n";
+    }
+    
+    // end of images property
+    manifest << "\t],\n";
+    
+    
+    manifest << "\t\"csvs\":[";
+    
+    // get images from dir
+    list = listFilesInDirWithExtension(_outputDirectory, ".csv");
+    
+    // loop over all csvs
+    for (std::vector<std::string>::iterator it = list.begin() ; it != list.end(); ++it){
+        
+        // add comma only if one line has already been printed
+        if(it != list.begin()){
+            manifest << ",\n";
+        }else{
+            manifest << "\n";
+        }
+        
+        manifest << "\t\t\"" << *it << "\"";
+    }
+    
+    if(list.size() != 0){
+        manifest << "\n";
+    }
+    
+    // end of csv property
+    manifest << "\t]\n";
+    manifest << "}";
+    
+    manifest.close();
+}
+
 /**
  * adds data point collected by sensors
  */
@@ -98,7 +354,7 @@ void ImageProcessor::addData(float value, int y){
 	currentY[currentX]=y;
 	
 	//assigns the value to the coresponding spot in the data array
-	sensorData(y,currentX*xSpacing)=value;
+	sensorData[y][currentX*xSpacing]=value;
 	
 	//moves to the next major column
 	currentX++;
@@ -150,15 +406,15 @@ void ImageProcessor::yCompile(){
 		currentYloc=currentY[column]; 
 		
 		//value of data point above
-		topVal=sensorData(lastYloc,subColumn);
+		topVal=sensorData[lastYloc][subColumn];
 		
 		//value of data point below
-		botVal=sensorData(currentYloc,subColumn);
+		botVal=sensorData[currentYloc][subColumn];
 		
 		//number of y values that need to be interpolated
 		diff=double(currentYloc-lastYloc);
 		while (row<diff){
-			sensorData(int(row+lastYloc),subColumn)=((diff-row)/diff)*topVal+(row/diff)*botVal;
+			sensorData[int(row+lastYloc)][subColumn]=((diff-row)/diff)*topVal+(row/diff)*botVal;
 			row+=1.0;
 		}
 	}
@@ -180,7 +436,12 @@ void ImageProcessor::xCompileTo(int botY){
 			//if the current column is not a major column set the points value to the weighted average
 			//of the values in the major columns imediatly to its left and right
 			if (shift != 0){
-				sensorData(row,column)= ((xSpacing-shift)/xSpacing)* (sensorData(row,leftMajorColumn) +(shift/xSpacing)*(sensorData(row,(leftMajorColumn+xSpacing))));
+				sensorData[row][column]= (
+                                        ( xSpacing-shift)/xSpacing) *
+                                        ( sensorData[row][leftMajorColumn] +
+                                             (shift/xSpacing)*
+                                             (sensorData[row][(leftMajorColumn+xSpacing)])
+                                        );
 			}
 		}
 	}
@@ -192,7 +453,7 @@ void ImageProcessor::xCompileTo(int botY){
 void ImageProcessor::displayData(){
 	for (int a=0; a<HEIGHT; a++){
 			for (int b=0; b<WIDTH; b++){
-				 Debug::output((to_string(sensorData(a,b))).c_str());
+				 Debug::output((to_string(sensorData[a][b])).c_str());
 				 Debug::output("	");
 			}
 			Debug::output("\n\n");
@@ -200,30 +461,54 @@ void ImageProcessor::displayData(){
 		Debug::output ("\n\n");
 }
 
-/**creates an image from the data and returns a refrence to it*/
-array2d<rgb_pixel>& ImageProcessor::compileImage(){
+/**
+ * Creates and image from the data in sensorData and saves it
+ * as the filename specified
+ */
+void ImageProcessor::compileImage(std::string filename){
+    
+    std::cout << filename << "\n";
 	
-	//creates the image
-	assign_image(img, array2d<rgb_pixel> (HEIGHT, (WIDTH-xSpacing)));
-	
-	rgb_pixel* pixel;
-	for (int row=0; row<HEIGHT; row++){
-		for (int column=0; column<(WIDTH-xSpacing); column++){
-			pixel = &img[row][column];
-			//sets the intensity and sateration to levels to make the colour change visable and sets the hue based on the data collected/interpolated
-			if (sensorData(row,column)){
-				pixel->red=int(getRed(int(sensorData(row,column)*360/MAXVAL)));
-				pixel->green=int (getGreen(int(sensorData(row,column)*360/MAXVAL)));
-				pixel->blue= int (getBlue(int(sensorData(row,column)*360/MAXVAL)));
-			}
-		}
-	}
-	return img;
-}
-
-/**returns a reference to the rasterized image*/
-array2d<rgb_pixel>& ImageProcessor:: getImage(){
-	return img;
+    try{
+        //creates the image
+        Magick::Image image(Magick::Geometry(HEIGHT,WIDTH - xSpacing), "white");
+        
+        // Set the image type to TrueColor DirectClass representation.
+        image.type(Magick::TrueColorType);
+        
+        // Ensure that there is only one reference to underlying image
+        // If this is not done, then image pixels will not be modified.
+        image.modifyImage();
+        
+        // Allocate pixel view
+        Magick::Pixels view(image);
+        
+        // get pixel iterator
+        Magick::PixelPacket *pixels = view.get(0,0,HEIGHT,WIDTH - xSpacing);
+        
+        for(ssize_t y = 0; y < HEIGHT; y++){
+            for(ssize_t x = 0; x < (WIDTH - xSpacing); x++){
+                if (sensorData[y][x]){
+                    *pixels++ = Magick::ColorHSL(float(sensorData[y][x])/float(MAXVAL)*float(360.0), 1, .5);
+                }
+            }
+        }
+        
+        // Save changes to image.
+        view.sync();
+        
+        // save image
+        image.write(filename.c_str());
+        
+        // copy file to current.jpg
+        // (Source: http://stackoverflow.com/questions/10195343/copy-a-file-in-a-sane-safe-and-efficient-way)
+        std::ifstream  src(filename.c_str(), std::ios::binary);
+        std::ofstream  dst((_outputDirectory + "/current.jpg").c_str(),   std::ios::binary);
+        dst << src.rdbuf();
+    
+    }catch( std::exception &error_ ){
+        cout << "Caught exception: " << error_.what() << endl;
+    }
 }
 
 /**returns a refernece to the array containing the numerical data

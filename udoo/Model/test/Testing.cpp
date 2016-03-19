@@ -18,8 +18,10 @@
 
 #include "./TBlockingQueue.h"
 #include "./TTask.h"
-#include "./imagetest.h"
+#include "./TImage.h"
 #include "./TWebServer.h"
+
+#include <Magick++.h>
 
 using namespace std;
 
@@ -68,9 +70,21 @@ void test(void *args){
     delete ttk;
 }
     
+    /**************************
+     * Image Processor Test
+     **************************/
+    
     std::cout <<"Testing ImageProcessor\n";
+    
     ImageTest* imgtest= new ImageTest;
-    imgtest->test(0);
+    test_number++;
+    
+    if(!imgtest->test()){
+        std::cout << "Test " << test_number << " failed:\n";
+        std::cout << imgtest->error << "\n";
+        std::cout << "\n\n";
+
+    }
     
     /**************************
      * Web server Test
@@ -90,6 +104,8 @@ void test(void *args){
 }
 
 int main(int argc, char** argv){
+    
+    Magick::InitializeMagick(*argv);
     
     /* Avoids memory swapping for this program */
     mlockall(MCL_CURRENT|MCL_FUTURE);

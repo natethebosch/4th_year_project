@@ -19,7 +19,9 @@
 #define xSpacing	(WIDTH/MAJORXS)
 #define MAXVAL		1023
 #define CHROMA		1
-#define DDLIB_JPEG_SUPPORT
+#define MAX_IMG_COUNT 10
+#define MAX_CSV_COUNT 10
+#define MAX_CSV_SIZE 5*2e10 // 5kbs
 
 
 #include <vector>
@@ -28,15 +30,15 @@
 #include <time.h>
 #include <math.h>
 #include <stdlib.h>
+#include <fstream>
+#include <sys/types.h>
+#include <dirent.h>
+#include <sys/stat.h>
+#include <unistd.h>
 
-#include "dlib/pixel.h"
-#include "dlib/array2d.h"
-#include "dlib/image_io.h"
-#include "dlib/image_transforms.h"
-
+#include <Magick++.h>
 
 using namespace std;
-using namespace dlib;
 
 class ImageProcessor: public Task {
 private:
@@ -59,7 +61,8 @@ private:
     
     
     //holds the added data points as well as the interpolated values between
-    matrix<int, HEIGHT+1, WIDTH+1> sensorData;
+    int sensorData[HEIGHT+1][WIDTH+1];
+    float csvSensorData[HEIGHT+1][WIDTH+1];
     
     //holds date/timestamp image name
     time_t timer;
@@ -67,9 +70,34 @@ private:
     string timeName;
     string fileName;
     
-    //list of saved files
-    int listIndex;
-    string fileList[100];
+    string _outputDirectory;
+    
+    /**
+     * returns date-time format as YYYY-MM-DD-HH-II-SS
+     */
+    std::string getCurrentDateTime();
+    
+    bool has_suffix(const std::string &str, const std::string &suffix);
+    
+    bool file_exists (const std::string& name);
+    std::vector<std::string> listFilesInDirWithExtension(std::string dir, std::string ext);
+    
+    /**
+     * Updates manifest.json with a list of images and csvs which can be accessed
+     */
+    void updateManifest();
+    
+    /**
+     * Moves current.csv to cache if it's larger than MAX_CSV_SIZE (bytes)
+     * and creates new current.csv if non exists with header fields
+     */
+    void updateCSVFile();
+    
+    /**
+     * Removes oldest photos when outputDirectory contains more than 
+     * MAX_IMG_COUNT images
+     */
+    void cleanOldFiles();
     
     void yCompile();
     void xCompileTo(int botY);
@@ -80,20 +108,22 @@ public:
     
     void addData (float value, int y);
     void displayData ();
-    array2d<rgb_pixel>& compileImage();
-    array2d<rgb_pixel>& getImage();
-	//vector<vector<int>> getData();
+    
+    /**
+     * Creates and image from the data in sensorData and saves it
+     * as the filename specified
+     */
+    void compileImage(std::string filename);
+    
     void run(void* cookie);
-    //holds the image
-    array2d<rgb_pixel> img;
     
     //constructor/reseter
     void empty();
     
-    ImageProcessor(BlockingQueue<SensorDataPoint> *_input): Task("ImageProcessor", 20){
+    ImageProcessor(BlockingQueue<SensorDataPoint> *_input, std::string outputDirectory): Task("ImageProcessor", 20){
     	empty();
-    	listIndex=0;
         input = _input;
+        _outputDirectory = outputDirectory;
     };
     
 
