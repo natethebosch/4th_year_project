@@ -107,7 +107,7 @@ public:
         // decode status for errors
         switch(status){
             case -ETIMEDOUT:
-//                Debug::output("ETIMEDOUT");
+                Debug::output("ETIMEDOUT");
                 throw BQ_TIMEOUT;
                 break;
             case -EWOULDBLOCK:

@@ -19,8 +19,8 @@
 #define xSpacing	(WIDTH/MAJORXS)
 #define MAXVAL		1023
 #define CHROMA		1
-#define MAX_IMG_COUNT 10
-#define MAX_CSV_COUNT 10
+#define MAX_IMG_COUNT 15
+#define MAX_CSV_COUNT 5
 #define MAX_CSV_SIZE 5*2e10 // 5kbs
 
 
@@ -106,7 +106,7 @@ private:
     
 public:
     
-    void addData (float value, int y);
+    void addData (float value, int y, int x);
     void displayData ();
     
     /**
