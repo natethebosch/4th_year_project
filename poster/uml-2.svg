@@ -1,0 +1,1464 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="792px" height="612px" viewBox="792 734.49 792 612" enable-background="new 792 734.49 792 612" xml:space="preserve">
+<g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="39" y="343" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="131" height="72"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="32" y="336" fill="#FFFFFF" width="131" height="72"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M32,336h131v72H32V336z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M32,361h131"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M32,371h131"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 60.5 355.5)" font-family="'Arial-BoldMT'" font-size="13">MotionGuard</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 37 388.5)" font-family="'ArialMT'" font-size="13">+hasReachedHome()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 37 403.5)" font-family="'ArialMT'" font-size="13">+hasReachedAway()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="23" y="55" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="166" height="175"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="16" y="48" fill="#FFFFFF" width="166" height="175"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M16,48h166v175H16V48z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M16,73h166"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M16,126h166"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 60 67.5)" font-family="'Arial-BoldMT'" font-size="13">rMotorControl</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 21 90.5)" font-family="'ArialMT'" font-size="13">+controlPort</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 21 105.5)" font-family="'ArialMT'" font-size="13">+status: MotorControlState</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 21 120.5)" font-family="'ArialMT'" font-size="13">+holeIndex</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 21 143.5)" font-family="'ArialMT'" font-size="13">+homeScanner()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 21 158.5)" font-family="'ArialMT'" font-size="13">+awayScanner()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 21 173.5)" font-family="'ArialMT'" font-size="13">+scanHome()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 21 188.5)" font-family="'ArialMT'" font-size="13">+scanAway()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 21 203.5)" font-family="'ArialMT'" font-size="13">+stopScanner()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 21 218.5)" font-family="'ArialMT'" font-size="13">+loop()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="935" y="151" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="164.946" height="87"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="928" y="144" fill="#FFFFFF" width="164.946" height="87"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M928,144h164.946v87H928V144z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M928,169h164.946"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M928,222h164.946"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 945.4727 163.5)" font-family="'Arial-BoldMT'" font-size="13">SensorCaptureArduino</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 933 186.5)" font-family="'ArialMT'" font-size="13">+sensorIndex: int</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 933 201.5)" font-family="'ArialMT'" font-size="13">+stepIndex: int</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 933 216.5)" font-family="'ArialMT'" font-size="13">+state</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="199" y="263" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="184" height="100"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="192" y="256" fill="#FFFFFF" width="184" height="100"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M192,256h184v100H192V256z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M192,281h184"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M192,334h184"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 248 275.5)" font-family="'Arial-BoldMT'" font-size="13">rtWebServer</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 197 298.5)" font-family="'ArialMT'" font-size="13">+workerPool</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 197 313.5)" font-family="'ArialMT'" font-size="13">+rootDir</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 197 328.5)" font-family="'ArialMT'" font-size="13">+taskQueue: rtBlockingQueue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 197 351.5)" font-family="'ArialMT'" font-size="13">+run()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="247" y="439" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="89" height="57"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="240" y="432" fill="#FFFFFF" width="89" height="57"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M240,432h89v57h-89V432z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M240,457h89"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M240,467h89"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 247 451.5)" font-family="'Arial-BoldMT'" font-size="13">rtWebWorker</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 245 484.5)" font-family="'ArialMT'" font-size="13">+run()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="935" y="575" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="156" height="85"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="928" y="568" fill="#FFFFFF" width="156" height="85"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M928,568h156v85H928V568z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M928,593h156"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M928,616h156"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 954.5 587.5)" font-family="'Arial-BoldMT'" font-size="13">rtImageProcessor</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 933 610.5)" font-family="'ArialMT'" font-size="13">+queue: rtBlockingQueue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 933 633.5)" font-family="'ArialMT'" font-size="13">+run()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 933 648.5)" font-family="'ArialMT'" font-size="13">+generateFileName()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="447" y="71" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="233" height="145"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="440" y="64" fill="#FFFFFF" width="233" height="145"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M440,64h233v145H440V64z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M440,89h233"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M440,172h233"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 542.5 83.5)" font-family="'Arial-BoldMT'" font-size="13">Main</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 445 106.5)" font-family="'ArialMT'" font-size="13">+guard: MotionGuard</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 445 121.5)" font-family="'ArialMT'" font-size="13">+motorControl: rMotorControl</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 445 136.5)" font-family="'ArialMT'" font-size="13">+webServer: rtWebServer</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 445 151.5)" font-family="'ArialMT'" font-size="13">+sensorComm: SensorCommunicator</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 445 166.5)" font-family="'ArialMT'" font-size="13">+imageProcessor: rtImageProcessor</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 445 189.5)" font-family="'ArialMT'" font-size="13">+initial()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 445 204.5)" font-family="'ArialMT'" font-size="13">+run()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M183,135l256,1"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path d="M428.821,140.17L439,136l-10.146-4.249L417,135.914"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M428.821,140.17L439,136l-10.146-4.249L417,135.914L428.821,140.17"
+			/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 270 127)" font-family="'ArialMT'" font-size="13">+motorControl</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M366,255l73-46"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path d="M432.646,217.979L439,209l-10.842,1.856l-7.771,9.872"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M432.646,217.979L439,209l-10.842,1.856l-7.771,9.872
+			L432.646,217.979"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 360 226)" font-family="'ArialMT'" font-size="13">+webServer</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M284,431v-74"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="#FFFFFF" d="M288.209,367.163L284,357l-4.209,10.163L284,379"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M288.209,367.163L284,357l-4.209,10.163L284,379L288.209,367.163"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 233 400)" font-family="'ArialMT'" font-size="13">+workerPool</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M981,567L808,264l-134-68"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path d="M684.968,196.845L674,196l7.158,8.353l12.46,1.603"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M684.968,196.845L674,196l7.158,8.353l12.46,1.603L684.968,196.845"
+			/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 765 261)" font-family="'ArialMT'" font-size="13">+imageProcessor</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M97,335l1-111"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path d="M102.118,234.2L98,224l-4.301,10.125l4.103,11.875"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M102.118,234.2L98,224l-4.301,10.125l4.103,11.875L102.118,234.2"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 62 285)" font-family="'ArialMT'" font-size="13">+guard</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="479" y="359" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="269" height="177"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="472" y="352" fill="#FFFFFF" width="269" height="177"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M472,352h269v177H472V352z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M472,377h269"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M472,387h269"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 588 371.5)" font-family="'Arial-BoldMT'" font-size="13">rtTask</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 404.5)" font-family="'ArialMT'" font-size="13">+Task(taskname: char*, priority: int)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 419.5)" font-family="'Arial-ItalicMT'" font-size="13">+run(void* args)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 434.5)" font-family="'ArialMT'" font-size="13">+bool start(void* args)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 449.5)" font-family="'ArialMT'" font-size="13">+bool startPeriodic(periodClockTicks: size_t)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 464.5)" font-family="'ArialMT'" font-size="13">+void waitForNextPeriod()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 479.5)" font-family="'ArialMT'" font-size="13">+void yeild()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 494.5)" font-family="'ArialMT'" font-size="13">+void waitForClockTicks(ticks: size_t)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 509.5)" font-family="'ArialMT'" font-size="13">+void kill()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 524.5)" font-family="'ArialMT'" font-size="13">+void join()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M927,576l-185-78"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="#FFFFFF" d="M764,498.139L742,498l15.458,15.654"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M764,498.139L742,498l15.458,15.654L764,498.139"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M377,345l94,39"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="#FFFFFF" d="M449,383.987L471,384l-15.547-15.565"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M449,383.987L471,384l-15.547-15.565L449,383.987"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="903" y="327" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="220.821" height="70"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="896" y="320" fill="#FFFFFF" width="220.821" height="70"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M896,320h220.821v70H896V320z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M896,345h220.821"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M896,368h220.821"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 907.9102 339.5)" font-family="'Arial-BoldMT'" font-size="13">rtSensorToImageProcessorQueue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 901 362.5)" font-family="'ArialMT'" font-size="13">+queue: rtBlockingQueue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 901 385.5)" font-family="'ArialMT'" font-size="13">+run()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 1029 266)" font-family="'ArialMT'" font-size="13">Sensor Serial Data Format:</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 1029 281)" font-family="'ArialMT'" font-size="13">x,y,value</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 1029 296)" font-family="'ArialMT'" font-size="13">x,y,value...</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1007,319l2-87"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 935 242)" font-family="'ArialMT'" font-size="13">+Serial Link</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="479" y="567" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="298" height="87"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="472" y="560" fill="#FFFFFF" width="298" height="87"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M472,560h298v87H472V560z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M472,585h298"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M472,595h298"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 573 579.5)" font-family="'Arial-BoldMT'" font-size="13">rtBlockingQueue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 612.5)" font-family="'ArialMT'" font-size="13">+take(): T</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 627.5)" font-family="'ArialMT'" font-size="13">+put(value: T)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 477 642.5)" font-family="'ArialMT'" font-size="13">+rtBlockingQueue(name: const char*, size size_t)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="39" y="439" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="122" height="150"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="32" y="432" fill="#FFFFFF" width="122" height="150"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M32,432h122v150H32V432z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M32,470h122"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 50.5 449.5)" font-family="'ArialMT'" font-size="13">«enumeration»</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 40.5 464.5)" font-family="'Arial-BoldMT'" font-size="13">MotorControlState</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 37 487.5)" font-family="'ArialMT'" font-size="13">HOMING</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 37 502.5)" font-family="'ArialMT'" font-size="13">AWAYING</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 37 517.5)" font-family="'ArialMT'" font-size="13">HOMING_SCAN</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 37 532.5)" font-family="'ArialMT'" font-size="13">AWAYING_SCAN</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 37 547.5)" font-family="'ArialMT'" font-size="13">UNKNOWN</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 37 562.5)" font-family="'ArialMT'" font-size="13">HOME</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 37 577.5)" font-family="'ArialMT'" font-size="13">AWAY</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M568,210l23,141"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="#FFFFFF" d="M579.419,332.295L591,351l5.037-21.416"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M579.419,332.295L591,351l5.037-21.416L579.419,332.295"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M895,379l-153,32"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="#FFFFFF" d="M760.172,398.599L742,411l21.618,4.08"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M760.172,398.599L742,411l21.618,4.08L760.172,398.599"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1006,567V391"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 970 485)" font-family="'ArialMT'" font-size="13">+queue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="1159" y="151" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="182" height="90"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="1152" y="144" fill="#FFFFFF" width="182" height="90"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1152,144h182v90h-182V144z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1152,182h182"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M0,0"/>
+			<text transform="matrix(1 0 0 1 1200.5 161.5)" font-family="'ArialMT'" font-size="13">«enumeration»</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 1162.5 176.5)" font-family="'Arial-BoldMT'" font-size="13">SensorCaptureArduinoState</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 1157 199.5)" font-family="'ArialMT'" font-size="13">WAITING</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 1157 214.5)" font-family="'ArialMT'" font-size="13">SCANNING_ROW</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M0,0"/>
+			<text transform="matrix(1 0 0 1 1157 229.5)" font-family="'ArialMT'" font-size="13">WAITING_FOR_ROW</text>
+		</g>
+	</g>
+</g>
+<g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="64.881" y="1065.74" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="127.337" height="69.987"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="58.078" y="1058.937" fill="#FFFFFF" width="127.336" height="69.986"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M58.078,1058.937h127.336v69.986H58.078V1058.937z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M58.078,1083.237h127.336"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M58.078,1092.958h127.336"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 85.7808 1077.8916)" font-family="'Arial-BoldMT'" font-size="12.6365">MotionGuard</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 62.938 1109.9688)" font-family="'ArialMT'" font-size="12.6365">+hasReachedHome()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 62.938 1124.5488)" font-family="'ArialMT'" font-size="12.6365">+hasReachedAway()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="49.329" y="785.794" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="161.358" height="170.106"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="42.525" y="778.99" fill="#FFFFFF" width="161.358" height="170.105"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M42.525,778.99h161.358v170.105H42.525V778.99z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M42.525,803.291h161.358"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M42.525,854.809h161.358"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 85.2944 797.9443)" font-family="'Arial-BoldMT'" font-size="12.6365">rMotorControl</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 47.3853 820.3018)" font-family="'ArialMT'" font-size="12.6365">+controlPort</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 47.3853 834.8818)" font-family="'ArialMT'" font-size="12.6365">+status: MotorControlState</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 47.3853 849.4629)" font-family="'ArialMT'" font-size="12.6365">+holeIndex</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 47.3853 871.8193)" font-family="'ArialMT'" font-size="12.6365">+homeScanner()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 47.3853 886.4004)" font-family="'ArialMT'" font-size="12.6365">+awayScanner()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 47.3853 900.9805)" font-family="'ArialMT'" font-size="12.6365">+scanHome()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 47.3853 915.5605)" font-family="'ArialMT'" font-size="12.6365">+scanAway()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 47.3853 930.1416)" font-family="'ArialMT'" font-size="12.6365">+stopScanner()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 47.3853 944.7227)" font-family="'ArialMT'" font-size="12.6365">+loop()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="935.826" y="879.109" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="160.334" height="84.567"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="929.021" y="872.306" fill="#FFFFFF" width="160.334" height="84.566"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M929.021,872.306h160.334v84.566H929.021V872.306z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M929.021,896.606h160.334"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M929.021,948.124h160.334"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 946.0078 891.2598)" font-family="'Arial-BoldMT'" font-size="12.6365">SensorCaptureArduino</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 933.8818 913.6172)" font-family="'ArialMT'" font-size="12.6365">+sensorIndex: int</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 933.8818 928.1973)" font-family="'ArialMT'" font-size="12.6365">+stepIndex: int</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 933.8818 942.7783)" font-family="'ArialMT'" font-size="12.6365">+state</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="220.408" y="987.978" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="178.854" height="97.204"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="213.603" y="981.174" fill="#FFFFFF" width="178.855" height="97.203"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M213.603,981.174h178.855v97.203H213.603V981.174z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M213.603,1005.475h178.855"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M213.603,1056.992h178.855"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 268.0376 1000.1279)" font-family="'Arial-BoldMT'" font-size="12.6365">rtWebServer</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 218.4634 1022.4854)" font-family="'ArialMT'" font-size="12.6365">+workerPool</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 218.4634 1037.0654)" font-family="'ArialMT'" font-size="12.6365">+rootDir</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 218.4634 1051.6465)" font-family="'ArialMT'" font-size="12.6365">+taskQueue: rtBlockingQueue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 218.4634 1074.0029)" font-family="'ArialMT'" font-size="12.6365">+run()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="267.065" y="1159.056" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="86.512" height="55.406"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="260.261" y="1152.252" fill="#FFFFFF" width="86.511" height="55.406"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M260.261,1152.252h86.511v55.406h-86.511V1152.252z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M260.261,1176.553h86.511"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M260.261,1186.273h86.511"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 267.0654 1171.207)" font-family="'Arial-BoldMT'" font-size="12.6365">rtWebWorker</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 265.1216 1203.2842)" font-family="'ArialMT'" font-size="12.6365">+run()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="935.826" y="1291.253" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="151.639" height="82.623"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="929.021" y="1284.449" fill="#FFFFFF" width="151.639" height="82.623"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M929.021,1284.449h151.639v82.623H929.021V1284.449z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M929.021,1308.75h151.639"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M929.021,1331.106h151.639"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 954.7812 1303.4033)" font-family="'Arial-BoldMT'" font-size="12.6365">rtImageProcessor</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 933.8818 1325.7607)" font-family="'ArialMT'" font-size="12.6365">+queue: rtBlockingQueue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 933.8818 1348.1172)" font-family="'ArialMT'" font-size="12.6365">+run()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 933.8818 1362.6982)" font-family="'ArialMT'" font-size="12.6365">+generateFileName()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="461.473" y="801.347" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="226.484" height="140.945"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="454.668" y="794.542" fill="#FFFFFF" width="226.484" height="140.945"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M454.668,794.542h226.484v140.945H454.668V794.542z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M454.668,818.844h226.484"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M454.668,899.522h226.484"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 554.3022 813.4971)" font-family="'Arial-BoldMT'" font-size="12.6365">Main</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 459.5288 835.8545)" font-family="'ArialMT'" font-size="12.6365">+guard: MotionGuard</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 459.5288 850.4346)" font-family="'ArialMT'" font-size="12.6365">+motorControl: rMotorControl</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 459.5288 865.0156)" font-family="'ArialMT'" font-size="12.6365">+webServer: rtWebServer</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 459.5288 879.5957)" font-family="'ArialMT'" font-size="12.6365">+sensorComm: SensorCommunicator</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 459.5288 894.1758)" font-family="'ArialMT'" font-size="12.6365">+imageProcessor: rtImageProcessor</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 459.5288 916.5332)" font-family="'ArialMT'" font-size="12.6365">+initial()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 459.5288 931.1133)" font-family="'ArialMT'" font-size="12.6365">+run()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M204.855,863.557l248.841,0.973"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path d="M443.802,868.582l9.894-4.053l-9.863-4.131l-11.522,4.047"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M443.802,868.582l9.894-4.053l-9.863-4.131l-11.522,4.047
+			L443.802,868.582"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 289.4224 855.7812)" font-family="'ArialMT'" font-size="12.6365">+motorControl</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M382.738,980.201l70.958-44.714"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path d="M447.521,944.216l6.176-8.729l-10.539,1.805l-7.554,9.597"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M447.521,944.216l6.176-8.729l-10.539,1.805l-7.554,9.597
+			L447.521,944.216"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 376.9058 952.0127)" font-family="'ArialMT'" font-size="12.6365">+webServer</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M303.031,1151.279v-71.931"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="#FFFFFF" d="M307.123,1089.228l-4.092-9.879l-4.092,9.879l4.092,11.507"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M307.123,1089.228l-4.092-9.879l-4.092,9.879l4.092,11.507
+			L307.123,1089.228"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 253.457 1121.1465)" font-family="'ArialMT'" font-size="12.6365">+workerPool</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M980.541,1283.477L812.377,988.949l-130.252-66.098"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path d="M692.785,923.673l-10.66-0.821l6.958,8.118l12.112,1.559"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M692.785,923.673l-10.66-0.821l6.958,8.118l12.112,1.559
+			L692.785,923.673"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 770.5801 986.0342)" font-family="'ArialMT'" font-size="12.6365">+imageProcessor</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M121.26,1057.964l0.972-107.896"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path d="M126.234,959.983l-4.002-9.915l-4.181,9.842l3.988,11.542"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M126.234,959.983l-4.002-9.915l-4.181,9.842l3.988,11.542
+			L126.234,959.983"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 87.2388 1009.3623)" font-family="'ArialMT'" font-size="12.6365">+guard</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="492.578" y="1081.293" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="261.477" height="172.051"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="485.773" y="1074.489" fill="#FFFFFF" width="261.479" height="172.05"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M485.773,1074.489h261.479v172.05H485.773V1074.489z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M485.773,1098.79h261.479"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M485.773,1108.51h261.479"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 598.5298 1093.4434)" font-family="'Arial-BoldMT'" font-size="12.6365">rtTask</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1125.5205)" font-family="'ArialMT'" font-size="12.6365">+Task(taskname: char*, priority: int)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1140.1016)" font-family="'Arial-ItalicMT'" font-size="12.6365">+run(void* args)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1154.6816)" font-family="'ArialMT'" font-size="12.6365">+bool start(void* args)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1169.2627)" font-family="'ArialMT'" font-size="12.6365">+bool startPeriodic(periodClockTicks: size_t)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1183.8428)" font-family="'ArialMT'" font-size="12.6365">+void waitForNextPeriod()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1198.4238)" font-family="'ArialMT'" font-size="12.6365">+void yeild()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1213.0039)" font-family="'ArialMT'" font-size="12.6365">+void waitForClockTicks(ticks: size_t)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1227.585)" font-family="'ArialMT'" font-size="12.6365">+void kill()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1242.165)" font-family="'ArialMT'" font-size="12.6365">+void join()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M928.051,1292.225l-179.828-75.818"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="#FFFFFF" d="M769.607,1216.541l-21.385-0.135l15.027,15.217"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M769.607,1216.541l-21.385-0.135l15.027,15.217L769.607,1216.541"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M393.43,1067.685l91.371,37.909"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="#FFFFFF" d="M463.417,1105.582l21.385,0.012l-15.112-15.13"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M463.417,1105.582l21.385,0.012l-15.112-15.13L463.417,1105.582"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="904.721" y="1050.188" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="214.646" height="68.043"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="897.916" y="1043.384" fill="#FFFFFF" width="214.646" height="68.042"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M897.916,1043.384h214.646v68.042H897.916V1043.384z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M897.916,1067.685h214.646"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M897.916,1090.041h214.646"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 909.4941 1062.3389)" font-family="'Arial-BoldMT'" font-size="12.6365">rtSensorToImageProcessorQueue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 902.7773 1084.6953)" font-family="'ArialMT'" font-size="12.6365">+queue: rtBlockingQueue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 902.7773 1107.0527)" font-family="'ArialMT'" font-size="12.6365">+run()</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 1027.1973 990.8936)" font-family="'ArialMT'" font-size="12.6365">Sensor Serial Data Format:</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 1027.1973 1005.4746)" font-family="'ArialMT'" font-size="12.6365">x,y,value</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 1027.1973 1020.0547)" font-family="'ArialMT'" font-size="12.6365">x,y,value...</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1005.812,1042.412l1.945-84.567"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 935.8262 967.5654)" font-family="'ArialMT'" font-size="12.6365">+Serial Link</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="492.578" y="1283.477" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="289.667" height="84.567"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="485.773" y="1276.673" fill="#FFFFFF" width="289.666" height="84.566"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M485.773,1276.673h289.666v84.566H485.773V1276.673z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M485.773,1300.974h289.666"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M485.773,1310.693h289.666"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 583.9492 1295.627)" font-family="'Arial-BoldMT'" font-size="12.6365">rtBlockingQueue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1327.7041)" font-family="'ArialMT'" font-size="12.6365">+take(): T</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1342.2852)" font-family="'ArialMT'" font-size="12.6365">+put(value: T)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 490.6338 1356.8652)" font-family="'ArialMT'" font-size="12.6365">+rtBlockingQueue(name: const char*, size size_t)</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="64.881" y="1159.056" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="118.589" height="145.806"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="58.078" y="1152.252" fill="#FFFFFF" width="118.588" height="145.806"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M58.078,1152.252h118.588v145.806H58.078V1152.252z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M58.078,1189.189h118.588"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 76.0601 1169.2627)" font-family="'ArialMT'" font-size="12.6365">«enumeration»</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 66.3398 1183.8428)" font-family="'Arial-BoldMT'" font-size="12.6365">MotorControlState</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 62.938 1206.2002)" font-family="'ArialMT'" font-size="12.6365">HOMING</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 62.938 1220.7803)" font-family="'ArialMT'" font-size="12.6365">AWAYING</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 62.938 1235.3613)" font-family="'ArialMT'" font-size="12.6365">HOMING_SCAN</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 62.938 1249.9414)" font-family="'ArialMT'" font-size="12.6365">AWAYING_SCAN</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 62.938 1264.5225)" font-family="'ArialMT'" font-size="12.6365">UNKNOWN</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 62.938 1279.1025)" font-family="'ArialMT'" font-size="12.6365">HOME</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 62.938 1293.6836)" font-family="'ArialMT'" font-size="12.6365">AWAY</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M579.089,936.46l22.357,137.057"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="#FFFFFF" d="M590.188,1055.335l11.257,18.182l4.896-20.817"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M590.188,1055.335l11.257,18.182l4.896-20.817L590.188,1055.335"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M896.945,1100.734l-148.723,31.104"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="#FFFFFF" d="M765.887,1119.784l-17.664,12.055l21.014,3.966"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M765.887,1119.784l-17.664,12.055l21.014,3.966L765.887,1119.784"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1004.842,1283.477v-171.078"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 969.8477 1203.7695)" font-family="'ArialMT'" font-size="12.6365">+queue</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="1153.562" y="879.109" opacity="0.2" fill="#C0C0C0" enable-background="new    " width="176.91" height="87.483"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<rect x="1146.758" y="872.306" fill="#FFFFFF" width="176.912" height="87.483"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1146.758,872.306h176.912v87.483h-176.912V872.306z"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M1146.758,909.242h176.912"/>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 1193.9023 889.3164)" font-family="'ArialMT'" font-size="12.6365">«enumeration»</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 1156.9648 903.8965)" font-family="'Arial-BoldMT'" font-size="12.6365">SensorCaptureArduinoState</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 1151.6191 926.2539)" font-family="'ArialMT'" font-size="12.6365">WAITING</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 1151.6191 940.834)" font-family="'ArialMT'" font-size="12.6365">SCANNING_ROW</text>
+		</g>
+	</g>
+	<g transform="translate(-6,-38) scale(1,1)">
+		<g>
+			<path d="M26.972,732.332"/>
+			<text transform="matrix(1 0 0 1 1151.6191 955.4141)" font-family="'ArialMT'" font-size="12.6365">WAITING_FOR_ROW</text>
+		</g>
+	</g>
+</g>
+</svg>
