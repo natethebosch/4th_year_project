@@ -10,7 +10,7 @@ README:
 Build requires libjpeg and libpng
 On ubuntu execute:
 
-	apt-get install libjpeg-devel libpng-devel
+	apt-get install libjpeg-dev libpng-dev
 
 Build requires ImageMagick
 On ubuntu execute:
