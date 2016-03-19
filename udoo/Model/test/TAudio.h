@@ -19,10 +19,15 @@ public:
     bool test(){
         
         AudioRecorder ar;
-        
-        AudioRecorder::printInfo();
         std::cout << "Starting record...\n";
-        ar.record();
+        
+        for(size_t i = 0; i < 1000; i++){
+            std::cout << ar.getSampleValue() << "\n";
+        }
+        
+        std::cout.flush();
+        
+        return true;
         
     }
 };

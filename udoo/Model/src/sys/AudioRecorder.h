@@ -20,11 +20,26 @@
 
 class AudioRecorder{
 public:
-    AudioRecorder(){
-        
+    
+    snd_pcm_t *handle;
+    snd_pcm_uframes_t frames;
+    int size;
+    int rc;
+    snd_pcm_hw_params_t *params;
+    unsigned int val;
+    int dir;
+    
+    AudioRecorder();
+    
+    ~AudioRecorder(){
+        snd_pcm_drain(handle);
+        snd_pcm_close(handle);
     }
     
-    void record();
+    /**
+     * returns a 10msec average value
+     */
+    int getSampleValue();
     
     /**
      * prints ASLA info

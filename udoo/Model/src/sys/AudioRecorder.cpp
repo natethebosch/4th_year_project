@@ -9,18 +9,8 @@
 #include "AudioRecorder.h"
 #include <iostream>
 
-void AudioRecorder::record(){
-    std::cout << "Record\n";
-    
+AudioRecorder::AudioRecorder(){
     long loops;
-    int rc;
-    int size;
-    snd_pcm_t *handle;
-    snd_pcm_hw_params_t *params;
-    unsigned int val;
-    int dir;
-    snd_pcm_uframes_t frames;
-    char *buffer;
     
     /* Open PCM device for recording (capture). */
     rc = snd_pcm_open(&handle, "default",
@@ -44,12 +34,12 @@ void AudioRecorder::record(){
     snd_pcm_hw_params_set_access(handle, params,
                                  SND_PCM_ACCESS_RW_INTERLEAVED);
     
-    /* Signed 16-bit little-endian format */
+    /* Signed 8-bit format */
     snd_pcm_hw_params_set_format(handle, params,
-                                 SND_PCM_FORMAT_S16_LE);
+                                 SND_PCM_FORMAT_S8);
     
-    /* Two channels (stereo) */
-    snd_pcm_hw_params_set_channels(handle, params, 2);
+    /* One channel */
+    snd_pcm_hw_params_set_channels(handle, params, 1);
     
     /* 44100 bits/second sampling rate (CD quality) */
     val = 44100;
@@ -74,16 +64,30 @@ void AudioRecorder::record(){
     snd_pcm_hw_params_get_period_size(params,
                                       &frames, &dir);
     size = frames * 4; /* 2 bytes/sample, 2 channels */
-    buffer = (char *) malloc(size);
+}
+
+int AudioRecorder::getSampleValue(){
     
-    /* We want to loop for 5 seconds */
+    frames = 1;
+    char* buffer = (char*)malloc(sizeof(int) * frames);
+    
+    // get actual period
     snd_pcm_hw_params_get_period_time(params,
                                       &val, &dir);
-    loops = 5000000 / val;
+    
+    long loops = 10;
+    int count = (int)loops;
+    long long outputValue = 0;
+    int sample;
     
     while (loops > 0) {
         loops--;
+        
         rc = snd_pcm_readi(handle, buffer, frames);
+        
+        sample = ((int)buffer[0] << 4 | (int)buffer[1]);
+        outputValue += sample;
+        
         if (rc == -EPIPE) {
             /* EPIPE means overrun */
             fprintf(stderr, "overrun occurred\n");
@@ -95,17 +99,11 @@ void AudioRecorder::record(){
         } else if (rc != (int)frames) {
             fprintf(stderr, "short read, read %d frames\n", rc);
         }
-        rc = write(1, buffer, size);
-        if (rc != size)
-            fprintf(stderr,
-                    "short write: wrote %d bytes\n", rc);
     }
     
-    snd_pcm_drain(handle);
-    snd_pcm_close(handle);
     free(buffer);
     
-    std::cout << "Done!\n";
+    return (int)(outputValue / ((float)count));
 }
 
 void AudioRecorder::printInfo(){
