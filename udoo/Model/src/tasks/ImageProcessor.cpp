@@ -430,7 +430,7 @@ void ImageProcessor::xCompileTo(int botY){
 		for (int column=1; column<WIDTH; column++){
 			
 			//finds the x value of the major column to the left of the point 
-			int leftMajorColumn= (column/xSpacing)*xSpacing;
+			int leftMajorColumn= int(column/xSpacing)*xSpacing;
 			
 			//determines how far over from the major column the current column is
 			int shift= column%xSpacing;
@@ -438,12 +438,12 @@ void ImageProcessor::xCompileTo(int botY){
 			//if the current column is not a major column set the points value to the weighted average
 			//of the values in the major columns imediatly to its left and right
 			if (shift != 0){
-				sensorData[row][column]= (
-                                        (float)( xSpacing-shift)/xSpacing) *
-                                        (float)(sensorData[row][leftMajorColumn] +
-                                             (float)(shift/xSpacing)*
+				sensorData[row][column]= 
+										((float)(xSpacing-shift)/xSpacing) *
+                                        (float)(sensorData[row][leftMajorColumn]) +
+                                             (float)((float)shift/xSpacing)*
                                              (float)(sensorData[row][(leftMajorColumn+xSpacing)])
-                                        );
+                                        ;
 			}
 		}
 	}
@@ -492,10 +492,10 @@ void ImageProcessor::compileImage(std::string filename){
             for(ssize_t x = 0; x < (WIDTH - xSpacing); x++){
                 
                     *pixels++ = Magick::ColorHSL(float(sensorData[y][x])/float(MAXVAL)*float(360.0), 1, .5);
-                    cout<<sensorData[y][x]<<" ";
+                    //cout<<sensorData[y][x]<<"	";
                 
             }
-            cout<<"\n";
+            //cout<<"\n";
         }
         
         // Save changes to image.

@@ -25,19 +25,17 @@ public:
         
         ImageProcessor *imgProcessor= new ImageProcessor(queue, "/root/model/test/ws-test");
         imgProcessor->start();
-        
         dp=(SensorDataPoint*)malloc(sizeof(SensorDataPoint));
         
         
         for (int i=0; i<24; i++){
             for (int n=0;n<24; n++){
                 
-                dp->y = i*40;
+                dp->y = i*40+1;
                 dp->x = n*20;
                 
                 // try to get a nice range between 0..1023
-                dp->value = (i) % 1024;
-                
+                dp->value = (i*n*20) % 1024;
                 queue->put(*dp);
             }
         }
@@ -49,7 +47,7 @@ public:
         
         free(dp);
         
-        imgProcessor->kill();
+        //imgProcessor->kill();
         
         return true;
     }
@@ -79,8 +77,7 @@ public:
                     dp->x = n*20;
                     
                     // try to get a nice range between 0..1023
-                    dp->value = (i) % 1024;
-                    
+                    dp->value = (i*n*j) % 1024;
                     queue->put(*dp);
                 }
             }
