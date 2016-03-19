@@ -184,6 +184,12 @@ public:
             throw PORT_NOT_AVAILABLE;
         }
         
+        // update the direction
+        std::ofstream gpioDirection;
+        gpioDirection.open(gpioFilename + "/direction");
+        gpioDirection << "in";
+        gpioDirection.close();
+        
         return;
         
     }
