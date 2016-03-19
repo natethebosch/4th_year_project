@@ -15,4 +15,6 @@ On ubuntu execute:
 Build requires ImageMagick
 On ubuntu execute:
 
-apt-get install graphicsmagick-libmagick-dev-compat
+apt-get install graphicsmagick-libmagick-dev-compat or similar
+
+Comment out debug function in Magick++/image.h to remove conflict with Xenomai
