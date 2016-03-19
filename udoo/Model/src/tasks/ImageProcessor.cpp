@@ -59,7 +59,6 @@ void ImageProcessor::run(void* cookie){
     // image processor main logic goes here
     SensorDataPoint dp;
     float lasty=0.0;
-    ImageProcessor *imgpros = this;
     
     std::string date = getCurrentDateTime();
     
@@ -105,18 +104,20 @@ void ImageProcessor::run(void* cookie){
                            Debug::output("Unknown error in ImageProcessor::run input->take");
                            Debug::output(std::to_string(err).c_str());
                        }else{
+                       		//Debug::output("no input wait");
                            sleep_millis(100);
                        }
                    }
                }
-            
+               // y value divided by 2 since height is 500 and the scanner is 1000mm long
+               addData(dp.value, int(dp.y/2),dp.x);
+               
                ofstream csvFile(csvCannonicalName.c_str(), std::fstream::app);
                csvFile << "\"" << date << "\"," << dp.x << "," << dp.y << ",\"" << dp.value << "\"\n";
                csvFile.close();
 
-               // y value divided by 2 since height is 500 and the scanner is 1000mm long
-               imgpros->addData(dp.value, int(dp.y/2));
 
+               
               //finishs this image and moves on to the next one
 			  if (lasty>(dp.y)){
                   
@@ -138,15 +139,16 @@ void ImageProcessor::run(void* cookie){
                   
 
                     //creates a new ImageProcessor object to hold the next scan
-                    imgpros->empty();
+                    empty();
 			  }
                
-			  lasty=dp.y/2;
+			  lasty=dp.y;
            }catch(BlockingQueueStatus s){
                if(s == BQ_TIMEOUT){
-                   continue;
-               }else{
-                   Debug::output("Irrecoverable error. Exiting...");
+               	Debug::output("queue timout");
+                  continue;
+              }else{
+                 Debug::output("Irrecoverable error. Exiting...");
                    exit(-1);
                }
            }
@@ -227,7 +229,7 @@ void ImageProcessor::cleanOldFiles(){
     
     if(list.size() > MAX_IMG_COUNT){
         // sort
-        std::sort (list.begin(), list.end());
+        std::sort (list.rbegin(), list.rend());
         
         while(list.size() > MAX_IMG_COUNT){
             
@@ -252,7 +254,7 @@ void ImageProcessor::cleanOldFiles(){
     
     if(list.size() > MAX_CSV_COUNT){
         // sort
-        std::sort (list.begin(), list.end());
+        std::sort (list.rbegin(), list.rend());
         
         while(list.size() > MAX_CSV_COUNT){
             
@@ -348,14 +350,14 @@ void ImageProcessor::updateManifest(){
 /**
  * adds data point collected by sensors
  */
-void ImageProcessor::addData(float value, int y){
+void ImageProcessor::addData(float value, int y, int x){
 	
 	//puts the y value into the array of current y values
 	currentY[currentX]=y;
 	
 	//assigns the value to the coresponding spot in the data array
-	sensorData[y][currentX*xSpacing]=value;
-	
+	sensorData[y][x]=value;
+	//cout<< "added data point " << x<<","<<y<<":"<<sensorData[y][x]<<"\n";
 	//moves to the next major column
 	currentX++;
 	
@@ -392,7 +394,7 @@ void ImageProcessor::yCompile(){
 	double topVal;
 	double botVal;
 	
-	//goes through all major columns and interpolates the data for the major columns
+	//goes through all major columns and interpolates the data for the major rows
 	for (int column=0; column < MAJORXS; column++){
 		row=1.0;
 		
@@ -437,10 +439,10 @@ void ImageProcessor::xCompileTo(int botY){
 			//of the values in the major columns imediatly to its left and right
 			if (shift != 0){
 				sensorData[row][column]= (
-                                        ( xSpacing-shift)/xSpacing) *
-                                        ( sensorData[row][leftMajorColumn] +
-                                             (shift/xSpacing)*
-                                             (sensorData[row][(leftMajorColumn+xSpacing)])
+                                        (float)( xSpacing-shift)/xSpacing) *
+                                        (float)(sensorData[row][leftMajorColumn] +
+                                             (float)(shift/xSpacing)*
+                                             (float)(sensorData[row][(leftMajorColumn+xSpacing)])
                                         );
 			}
 		}
@@ -488,10 +490,12 @@ void ImageProcessor::compileImage(std::string filename){
         
         for(ssize_t y = 0; y < HEIGHT; y++){
             for(ssize_t x = 0; x < (WIDTH - xSpacing); x++){
-                if (sensorData[y][x]){
+                
                     *pixels++ = Magick::ColorHSL(float(sensorData[y][x])/float(MAXVAL)*float(360.0), 1, .5);
-                }
+                    cout<<sensorData[y][x]<<" ";
+                
             }
+            cout<<"\n";
         }
         
         // Save changes to image.
