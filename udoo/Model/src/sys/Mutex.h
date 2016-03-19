@@ -52,6 +52,15 @@ public:
     }
     
     void release();
+    
+    Mutex& operator=(const Mutex &value){
+        if(&value != this){
+            rt_mutex_delete(&mutex);
+            this->mutex = value.mutex;
+        }
+        
+        return *this;
+    }
 };
 
 #endif /* Mutex_hpp */

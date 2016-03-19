@@ -13,11 +13,19 @@
 #define GPIO_EXPORT_FILE "/sys/class/gpio/export"
 
 typedef enum{
-    MOTOR_CTRL_EN = 10,
-    MOTOR_PWM_0 = 11,
-    MOTOR_PWM_1 = 12,
-    MOTOR_SENSE = 13,
-    ARDUINO_SERIAL = 14,
+    MOTOR_CTRL_EN = 143,
+    MOTOR_A = 205,
+    MOTOR_B = 35,
+    MOTOR_SENSE = -1,
+
+    MUX_A0 = 101,
+    MUX_A1 = 145,
+    MUX_A2 = 105,
+    MUX_A3 = 57,
+    MUX_A4 = 55,
+    HOME_SENSOR = 123,
+    AWAY_SENSOR = 125,
+    BREAK_BEAM = 127
 } gpio_port;
 
 typedef enum{

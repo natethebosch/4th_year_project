@@ -15,11 +15,9 @@
 
 #include "./tasks/ImageProcessor.h"
 #include "./tasks/MotionGuard.h"
-#include "./tasks/MotorControl.h"
+#include "./tasks/Control.h"
 #include "./tasks/WebServer.h"
-#include "./tasks/SensorCommunicator.h"
 #include "./helpers/BlockingQueue.h"
-#include "./tasks/MotorControl.h"
 #include "./type/SensorDataPoint.h"
 
 
@@ -30,19 +28,20 @@
 
 
 void Main::initial() {
-    BlockingQueue<SensorDataPoint>* queue;
-    queue = new BlockingQueue<SensorDataPoint>("Serial2ImageProcessorQueue");
+    BlockingQueue<SensorDataPoint> *queue;
+    queue = new BlockingQueue<SensorDataPoint>("ImageProcessorQueue");
     
-    SensorCommunicator comm(queue);
-    ImageProcessor imgProcessor(queue);
-    WebServer ws("/home/webdir");
+//    ImageProcessor imgProcessor(queue, std::string(WEB_ROOT));
+    WebServer ws(WEB_ROOT);
     
-    // more to go here
+//    imgProcessor.start();
     
+    Control ctrl(queue);
+    ctrl.start();
     
-    // start tasks
-    comm.startPeriodic(SENSOR_SERIAL_PERIODIC_WATCH);
-    imgProcessor.start();
+    ctrl.join();
+//    imgProcessor.join();
+    ws.join();
 }
 
 int main(int argc, char** argv){
