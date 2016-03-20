@@ -4,16 +4,16 @@
 # Nate Bosscher
 #
 SHELL = /bin/sh
-CXX = gcc
+CXX = gcc -pthread -fPIC
 
 FLAGS =
 
 XENO_CONFIG := /usr/xenomai/bin/xeno-config
-XENO_CFLAGS=$(shell $(XENO_CONFIG) --alchemy --cflags)
+XENO_CFLAGS=$(shell $(XENO_CONFIG) --skin=native --alchemy --cflags)
 
-D_LIB_CFLAGS=-I/usr/dlib -DDLIB_NO_GUI_SUPPORT  -I/*/libjpeg
+D_LIB_CFLAGS=-I/usr/dlib -I/usr/xenomai/include -DDLIB_NO_GUI_SUPPORT  -I/*/libjpeg
 STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11
-CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall `GraphicsMagick++-config --cppflags --cxxflags`
+CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall  `GraphicsMagick++-config --cppflags --cxxflags`
 DEBUG_FLAGS = -g
 
 SOURCES = $(shell find ./src -name '*.cpp')  -ljpeg
@@ -26,7 +26,7 @@ T_OBJECTS = $(T_SOURCES:.cpp=.o)
 
 # XENO_CONFIG causing issues with -fPIC
 #XENO_LD_FLAGS=$(shell $(XENO_CONFIG) --alchemy --ldflags)
-XENO_LD_FLAGS=-lalchemy  -lcopperplate /usr/xenomai/lib/xenomai/bootstrap.o -Wl,--wrap=main -Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib -lmercury -lpthread -lrt
+XENO_LD_FLAGS=-lalchemy  -lcopperplate /usr/xenomai/lib/xenomai/bootstrap.o -Wl,--wrap=main -Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib -lmercury -lpthread -lrt 
 
 MAGICK_LD_FLAGS=`GraphicsMagick++-config --ldflags --libs`
 
