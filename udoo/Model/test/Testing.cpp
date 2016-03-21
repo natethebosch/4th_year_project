@@ -22,6 +22,7 @@
 #include "./TWebServer.h"
 #include "./TAudio.h"
 
+
 #include <Magick++.h>
 
 using namespace std;
@@ -34,8 +35,6 @@ void test(void *args){
     
     std::cout << "Starting test sequence\n\n";
     std::cout.flush();
-    
-    if (false){
 
     /**************************
      * Blocking Queue Test
@@ -99,8 +98,6 @@ void test(void *args){
         std::cout << "Test " << test_number << " failed:\n";
         std::cout << twb->error << "\n";
         std::cout << "\n\n";
-    }
-        
     }
     
     /**************************

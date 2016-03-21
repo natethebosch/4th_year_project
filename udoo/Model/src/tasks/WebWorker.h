@@ -24,7 +24,6 @@
 #include "./WebWorkerStructs.h"
 
 #define SOCKET_BUFFER_SIZE 512
-#define WEB_ROOT "/home/webroot"
 
 class WebWorker : public Task {
     

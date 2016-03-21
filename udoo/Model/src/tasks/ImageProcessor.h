@@ -121,7 +121,7 @@ public:
     void empty();
     
     ImageProcessor(BlockingQueue<SensorDataPoint> *_input, std::string outputDirectory): Task("ImageProcessor", 20){
-    	empty();
+//    	empty();
         input = _input;
         _outputDirectory = outputDirectory;
     };

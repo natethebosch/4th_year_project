@@ -50,6 +50,10 @@ public:
             status = rt_queue_create(&queue, name, count * sizeof(T), Q_UNLIMITED, Q_FIFO);
         }
         
+        std::cout << "Created queue with status " << std::to_string(status) << "\n";
+        std::cout << "queue id " << std::to_string((unsigned long long)&this->queue) << "\n";
+        std::cout.flush();
+        
         // check for errors
         if(status != 0){
             switch(status){
@@ -67,14 +71,17 @@ public:
     }
     
     ~BlockingQueue<T>(){
+        std::cout << "deleted queue " << std::to_string((unsigned long long)&this->queue);
+        std::cout.flush();
+        
         rt_queue_delete(&this->queue);
         // no error detection
     }
-    
-    BlockingQueue<T>& operator =(const BlockingQueue<T>& rhs) {
-        queue = rhs.queue;
-        return this;
-    }
+//
+//    BlockingQueue<T>& operator =(const BlockingQueue<T>& rhs) {
+//        queue = rhs.queue;
+//        return this;
+//    }
     
     /**
      * take an item from the queue
