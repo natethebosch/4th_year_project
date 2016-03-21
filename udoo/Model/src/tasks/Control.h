@@ -72,40 +72,60 @@ public:
     }
     
     void run(void* cookie){
+        Debug::output("Control: goHome");
+        
         // go home
         while(scanHome()){
             yeild();
         }
         
-        holeIndex = 0;
-        scanPosition = HOME;
-        
-        // do scan
-        scanDirection = TOWARDS_AWAY;
-        scanPosition = SCANNING;
-        while(scanAway()){
-            updateHoleIndex();
+        for(;;){
+            if(hasTerminateSignal())
+                return;
             
-            if(isAtScanPosition()){
-                while(performLineScan()){
-                    updateHoleIndex();
+            holeIndex = 0;
+            scanPosition = HOME;
+            
+            // do scan
+            scanDirection = TOWARDS_AWAY;
+            scanPosition = SCANNING;
+            Debug::output("Control: scanAway");
+            while(scanAway()){
+                if(hasTerminateSignal())
+                    return;
+                
+                updateHoleIndex();
+                
+                if(isAtScanPosition()){
+                    Debug::output("Control: performScan");
+                    
+                    while(performLineScan()){
+                        updateHoleIndex();
+                        yeild();
+                    }
+                    
+                    Debug::output("Control: resetLineScanner");
+                    resetLineScanner();
+                }else{
                     yeild();
                 }
+            }
+            
+            scanPosition = AWAY;
+            
+            // go back to starting point
+            scanDirection = TOWARDS_HOME;
+            scanPosition = SCANNING;
+            Debug::output("Control: scanHome");
+            while(scanHome()){
+                if(hasTerminateSignal())
+                    return;
                 
-                resetLineScanner();
-            }else{
+                updateHoleIndex();
                 yeild();
             }
-        }
-        
-        scanPosition = AWAY;
-        
-        // go back to starting point
-        scanDirection = TOWARDS_HOME;
-        scanPosition = SCANNING;
-        while(scanHome()){
-            updateHoleIndex();
-            yeild();
+            
+            Debug::output("Control: goAgain!");
         }
     }
     

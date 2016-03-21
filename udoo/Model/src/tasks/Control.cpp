@@ -100,6 +100,9 @@ bool Control::updateHoleIndex(){
                 holeIndex--;
             }
             
+            std::string s = "Control: hole updated (" << holeIndex << ")";
+            Debug::output(s.c_str());
+            
             return false;
         }else{
             debounceCountDown--;
