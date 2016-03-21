@@ -22,7 +22,7 @@ STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11
 CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall $(MAGICK_CPP)
 DEBUG_FLAGS = -g
 
-SOURCES = $(shell find ./src -name '*.cpp') -L/usr/lib -ljpeg
+SOURCES = $(shell find ./src -name '*.cpp')
 T_SOURCES = $(shell find ./src -name '*.cpp' | grep -v 'Main.cpp') $(shell find ./test -name '*.cpp')
 
 HEADERS = $(shell find ./src -name '*.h')
