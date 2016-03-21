@@ -71,7 +71,11 @@ bool Task::start(void* args){
     tfi->task = this;
     tfi->arg = args;
 
+    Debug::output("Starting task...");
     int status = rt_task_start(&this->task_desc, Task::_run, tfi);
+
+    Debug::output("Status:");
+    Debug::output(std::to_string(status).c_str());
     
     // check for errors
     if(status != 0){

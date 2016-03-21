@@ -28,20 +28,33 @@
 
 
 void Main::initial() {
+        
+
+    Debug::output("Starting main...");
     BlockingQueue<SensorDataPoint> *queue;
     queue = new BlockingQueue<SensorDataPoint>("ImageProcessorQueue");
-    
-   ImageProcessor imgProcessor(queue, std::string(WEB_ROOT));
+    Debug::output("Created blocking-queue");
+
+    ImageProcessor imgProcessor(queue, std::string(WEB_ROOT));
+    Debug::output("Created ImageProcessor");
     WebServer ws(WEB_ROOT);
+    Debug::output("Created Webserver");
     
-   imgProcessor.start();
+    Debug::output("Started ImageProcessor");
+    imgProcessor.start();
+
+    Debug::output("Creating ctrl");
     
     Control ctrl(queue);
+    Debug::output("Ctrl created");
     ctrl.start();
+    Debug::output("started ctrl");
     
+    Debug::output("Waiting for join");
     ctrl.join();
 //    imgProcessor.join();
     ws.join();
+    Debug::output("Done!!");
 }
 
 int main(int argc, char** argv){
