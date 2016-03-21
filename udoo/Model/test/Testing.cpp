@@ -32,64 +32,64 @@ RT_TASK task;
 
 void test(void *args){
     int test_number = 0;
-    
-    std::cout << "Starting test sequence\n\n";
-    std::cout.flush();
-
-    /**************************
-     * Blocking Queue Test
-     **************************/
-    
-    TBlockingQueue* tbq = new TBlockingQueue;
-    test_number++;
-    
-    if(!tbq->test()){
-        std::cout << "Test " << test_number << " failed:\n";
-        std::cout << tbq->error << "\n";
-        std::cout << "\n\n";
-    }else{
-    	std::cout << "Test " << test_number << " succeeded!\n\n";
-	}
-    
-    delete tbq;
-    
-    /**************************
-     * Task Test
-     **************************/
-    
-    TTask* ttk = new TTask;
-    test_number++;
-    
-    if(!ttk->test()){
-        std::cout << "Test " << test_number << " failed:\n";
-        std::cout << ttk->error << "\n";
-        std::cout << "\n\n";
-    }else{
-    	std::cout << "Test " << test_number << " succeeded!\n\n";
-	}
-    
-    delete ttk;
-
-    
-    /**************************
-     * Image Processor Test
-     **************************/
-    
-    std::cout <<"Testing ImageProcessor\n";
-    
-    ImageTest* imgtest= new ImageTest;
-    test_number++;
-    
-    if(!imgtest->test()){
-        std::cout << "Test " << test_number << " failed:\n";
-        std::cout << imgtest->error << "\n";
-        std::cout << "\n\n";
-
-    }
-    
-    /**************************
-     * Web server Test
-     **************************/
+//    
+//    std::cout << "Starting test sequence\n\n";
+//    std::cout.flush();
+//
+//    /**************************
+//     * Blocking Queue Test
+//     **************************/
+//    
+//    TBlockingQueue* tbq = new TBlockingQueue;
+//    test_number++;
+//    
+//    if(!tbq->test()){
+//        std::cout << "Test " << test_number << " failed:\n";
+//        std::cout << tbq->error << "\n";
+//        std::cout << "\n\n";
+//    }else{
+//    	std::cout << "Test " << test_number << " succeeded!\n\n";
+//	}
+//    
+//    delete tbq;
+//    
+//    /**************************
+//     * Task Test
+//     **************************/
+//    
+//    TTask* ttk = new TTask;
+//    test_number++;
+//    
+//    if(!ttk->test()){
+//        std::cout << "Test " << test_number << " failed:\n";
+//        std::cout << ttk->error << "\n";
+//        std::cout << "\n\n";
+//    }else{
+//    	std::cout << "Test " << test_number << " succeeded!\n\n";
+//	}
+//    
+//    delete ttk;
+//
+//    
+//    /**************************
+//     * Image Processor Test
+//     **************************/
+//    
+//    std::cout <<"Testing ImageProcessor\n";
+//    
+//    ImageTest* imgtest= new ImageTest;
+//    test_number++;
+//    
+//    if(!imgtest->test()){
+//        std::cout << "Test " << test_number << " failed:\n";
+//        std::cout << imgtest->error << "\n";
+//        std::cout << "\n\n";
+//
+//    }
+//    
+//    /**************************
+//     * Web server Test
+//     **************************/
     
     TWebServer* twb = new TWebServer();
     test_number++;
