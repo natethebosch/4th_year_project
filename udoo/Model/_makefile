@@ -6,7 +6,11 @@
 SHELL = /bin/sh
 CXX = gcc -shared -pthread -fPIC
 
+ifneq ($(filter arm%,$(UNAME_P)),)
 FLAGS =-march=armv6 -mfpu=vfp -mfloat-abi=hard -marm
+else
+FLAGS = 
+endif
 
 XENO_CONFIG := /usr/xenomai/bin/xeno-config
 XENO_CFLAGS=$(shell $(XENO_CONFIG) --alchemy --cflags)
@@ -26,7 +30,7 @@ T_OBJECTS = $(T_SOURCES:.cpp=.o)
 
 # XENO_CONFIG causing issues with -fPIC
 #XENO_LD_FLAGS=$(shell $(XENO_CONFIG) --alchemy --ldflags)
-XENO_LD_FLAGS=-lalchemy -L/usr/xenomia/lib -lnative -lcopperplate /usr/xenomai/lib/xenomai/bootstrap.o  -Wl,--wrap=main -Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib -lmercury -lpthread -lrt 
+XENO_LD_FLAGS=-Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib/ -lalchemy -lpsos -lmercury -lrt 
 
 MAGICK_LD_FLAGS=`GraphicsMagick++-config --ldflags --libs`
 
@@ -52,8 +56,8 @@ $(info )
 $(info *************************************************)
 $(info Performing pre-compile commands...)
 
-$(shell find . -name "*.o" -type f -delete)
-$(shell rm *.out)
+#$(shell find . -name "*.o" -type f -delete)
+#$(shell rm *.out)
 
 $(info *************************************************)
 $(info )

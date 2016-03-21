@@ -1,33 +1,106 @@
-On branch master
-Your branch is ahead of 'origin/master' by 1 commit.
-  (use "git push" to publish your local commits)
 
-Changes to be committed:
-  (use "git reset HEAD <file>..." to unstage)
+*************************************************
+Performing build...
+Please ensure you have /usr/dlib as a symbolic
+link to your dlib location
+*************************************************
 
-	modified:   makefile
-	new file:   makefileold
-	modified:   src/Main.cpp
-	modified:   src/Main.h
-	new file:   src/includes.h
-	modified:   src/sys/Mutex.cpp
-	modified:   src/sys/Task.h
-	modified:   src/tasks/Control.h
-	modified:   src/tasks/ImageProcessor.h
-	modified:   src/tasks/WebServer.cpp
-	modified:   src/tasks/WebServer.h
-	modified:   src/tasks/WebWorker.h
-	modified:   test.out
-	modified:   test/Testing.cpp
 
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
+*************************************************
+Performing pre-compile commands...
+rm: cannot remove ‘*.out’: No such file or directory
+*************************************************
 
-	modified:   output.txt
-
-Untracked files:
-  (use "git add <file>..." to include in what will be committed)
-
-	../../arduino/arduinocode/
-
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/helpers/BlockingQueue.cpp -o src/helpers/BlockingQueue.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/helpers/stacktrace.cpp -o src/helpers/stacktrace.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/sys/AudioRecorder.cpp -o src/sys/AudioRecorder.o
+src/sys/AudioRecorder.cpp: In constructor ‘AudioRecorder::AudioRecorder()’:
+src/sys/AudioRecorder.cpp:13:10: warning: unused variable ‘loops’ [-Wunused-variable]
+     long loops;
+          ^
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/sys/Debug.cpp -o src/sys/Debug.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/sys/GPIO.cpp -o src/sys/GPIO.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/sys/Lockable.cpp -o src/sys/Lockable.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/sys/Mutex.cpp -o src/sys/Mutex.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/sys/Task.cpp -o src/sys/Task.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/tasks/Control.cpp -o src/tasks/Control.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/tasks/ImageProcessor.cpp -o src/tasks/ImageProcessor.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/tasks/MotionGuard.cpp -o src/tasks/MotionGuard.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/tasks/WebServer.cpp -o src/tasks/WebServer.o
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick src/tasks/WebWorker.cpp -o src/tasks/WebWorker.o
+src/tasks/WebWorker.cpp: In member function ‘virtual void WebWorker::run(void*)’:
+src/tasks/WebWorker.cpp:194:19: warning: unused variable ‘len’ [-Wunused-variable]
+     size_t p, p2, len;
+                   ^
+gcc -g -c  -I/usr/xenomai/include/mercury -I/usr/xenomai/include -D_GNU_SOURCE -D_REENTRANT -D__MERCURY__ -I/usr/xenomai/include/alchemy -I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg  -I/usr/include/c++/4.9.2 -std=c++11 -Wall -I/usr/include/GraphicsMagick test/Testing.cpp -o test/Testing.o
+In file included from test/Testing.cpp:20:0:
+test/./TTask.h: In member function ‘virtual bool TTask::test()’:
+test/./TTask.h:89:137: warning: unknown conversion type character 0x20 in format [-Wformat=]
+         printf("Current time: %l \t ta0 completed at: %l \t ta1 completed at: %l\n", rt_timer_read(), ta0->completedAt, ta1->completedAt);
+                                                                                                                                         ^
+test/./TTask.h:89:137: warning: unknown conversion type character 0x20 in format [-Wformat=]
+test/./TTask.h:89:137: warning: unknown conversion type character 0xa in format [-Wformat=]
+test/./TTask.h:89:137: warning: too many arguments for format [-Wformat-extra-args]
+test/Testing.cpp: In function ‘void test(void*)’:
+test/Testing.cpp:55:12: warning: deleting object of polymorphic class type ‘TBlockingQueue’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+     delete tbq;
+            ^
+test/Testing.cpp:72:12: warning: deleting object of polymorphic class type ‘TTask’ which has non-virtual destructor might cause undefined behaviour [-Wdelete-non-virtual-dtor]
+     delete ttk;
+            ^
+gcc ./src/helpers/BlockingQueue.o ./src/helpers/stacktrace.o ./src/sys/AudioRecorder.o ./src/sys/Debug.o ./src/sys/GPIO.o ./src/sys/Lockable.o ./src/sys/Mutex.o ./src/sys/Task.o ./src/tasks/Control.o ./src/tasks/ImageProcessor.o ./src/tasks/MotionGuard.o ./src/tasks/WebServer.o ./src/tasks/WebWorker.o ./test/Testing.o -o test.out \
+-Wall -lstdc++ -ljpeg -lpthread -ldl -lm -lalchemy  -lcopperplate /usr/xenomai/lib/xenomai/bootstrap.o -Wl,--wrap=main -Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib -lmercury -lpthread -lrt    -L/usr/lib -L/usr/lib/X11 -L/usr/lib -L/usr/lib -lGraphicsMagick -ljbig -lwebp -llcms2 -ltiff -lfreetype -ljasper -ljpeg -lpng12 -lwmflite -lXext -lSM -lICE -lX11 -llzma -lbz2 -lxml2 -lz -lm -lgomp -lpthread
+./src/sys/AudioRecorder.o: In function `AudioRecorder::AudioRecorder()':
+/root/model/src/sys/AudioRecorder.cpp:16: undefined reference to `snd_pcm_open'
+/root/model/src/sys/AudioRecorder.cpp:19: undefined reference to `snd_strerror'
+/root/model/src/sys/AudioRecorder.cpp:26: undefined reference to `snd_pcm_hw_params_sizeof'
+/root/model/src/sys/AudioRecorder.cpp:26: undefined reference to `snd_pcm_hw_params_sizeof'
+/root/model/src/sys/AudioRecorder.cpp:29: undefined reference to `snd_pcm_hw_params_any'
+/root/model/src/sys/AudioRecorder.cpp:35: undefined reference to `snd_pcm_hw_params_set_access'
+/root/model/src/sys/AudioRecorder.cpp:39: undefined reference to `snd_pcm_hw_params_set_format'
+/root/model/src/sys/AudioRecorder.cpp:42: undefined reference to `snd_pcm_hw_params_set_channels'
+/root/model/src/sys/AudioRecorder.cpp:47: undefined reference to `snd_pcm_hw_params_set_rate_near'
+/root/model/src/sys/AudioRecorder.cpp:52: undefined reference to `snd_pcm_hw_params_set_period_size_near'
+/root/model/src/sys/AudioRecorder.cpp:55: undefined reference to `snd_pcm_hw_params'
+/root/model/src/sys/AudioRecorder.cpp:57: undefined reference to `snd_strerror'
+/root/model/src/sys/AudioRecorder.cpp:65: undefined reference to `snd_pcm_hw_params_get_period_size'
+./src/sys/AudioRecorder.o: In function `AudioRecorder::getSampleValue()':
+/root/model/src/sys/AudioRecorder.cpp:76: undefined reference to `snd_pcm_hw_params_get_period_time'
+/root/model/src/sys/AudioRecorder.cpp:86: undefined reference to `snd_pcm_readi'
+/root/model/src/sys/AudioRecorder.cpp:94: undefined reference to `snd_pcm_prepare'
+/root/model/src/sys/AudioRecorder.cpp:96: undefined reference to `snd_strerror'
+./src/sys/AudioRecorder.o: In function `AudioRecorder::printInfo()':
+/root/model/src/sys/AudioRecorder.cpp:117: undefined reference to `snd_pcm_stream_name'
+/root/model/src/sys/AudioRecorder.cpp:122: undefined reference to `snd_pcm_access_name'
+/root/model/src/sys/AudioRecorder.cpp:127: undefined reference to `snd_pcm_format_name'
+/root/model/src/sys/AudioRecorder.cpp:129: undefined reference to `snd_pcm_format_description'
+/root/model/src/sys/AudioRecorder.cpp:129: undefined reference to `snd_pcm_format_name'
+/root/model/src/sys/AudioRecorder.cpp:137: undefined reference to `snd_pcm_subformat_description'
+/root/model/src/sys/AudioRecorder.cpp:137: undefined reference to `snd_pcm_subformat_name'
+/root/model/src/sys/AudioRecorder.cpp:145: undefined reference to `snd_pcm_state_name'
+./src/tasks/ImageProcessor.o: In function `ImageProcessor::compileImage(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >)':
+/root/model/src/tasks/ImageProcessor.cpp:476: undefined reference to `Magick::Color::Color(char const*)'
+/root/model/src/tasks/ImageProcessor.cpp:476: undefined reference to `Magick::Geometry::Geometry(unsigned int, unsigned int, unsigned int, unsigned int, bool, bool)'
+/root/model/src/tasks/ImageProcessor.cpp:476: undefined reference to `Magick::Image::Image(Magick::Geometry const&, Magick::Color const&)'
+/root/model/src/tasks/ImageProcessor.cpp:476: undefined reference to `Magick::Geometry::~Geometry()'
+/root/model/src/tasks/ImageProcessor.cpp:476: undefined reference to `Magick::Color::~Color()'
+/root/model/src/tasks/ImageProcessor.cpp:479: undefined reference to `Magick::Image::type(MagickLib::ImageType)'
+/root/model/src/tasks/ImageProcessor.cpp:483: undefined reference to `Magick::Image::modifyImage()'
+/root/model/src/tasks/ImageProcessor.cpp:486: undefined reference to `Magick::Pixels::Pixels(Magick::Image&)'
+/root/model/src/tasks/ImageProcessor.cpp:489: undefined reference to `Magick::Pixels::get(int, int, unsigned int, unsigned int)'
+/root/model/src/tasks/ImageProcessor.cpp:494: undefined reference to `Magick::ColorHSL::ColorHSL(double, double, double)'
+/root/model/src/tasks/ImageProcessor.cpp:494: undefined reference to `Magick::ColorHSL::~ColorHSL()'
+/root/model/src/tasks/ImageProcessor.cpp:502: undefined reference to `Magick::Pixels::sync()'
+/root/model/src/tasks/ImageProcessor.cpp:505: undefined reference to `Magick::Image::write(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)'
+/root/model/src/tasks/ImageProcessor.cpp:486: undefined reference to `Magick::Pixels::~Pixels()'
+/root/model/src/tasks/ImageProcessor.cpp:476: undefined reference to `Magick::Image::~Image()'
+/root/model/src/tasks/ImageProcessor.cpp:516: undefined reference to `Magick::Geometry::~Geometry()'
+/root/model/src/tasks/ImageProcessor.cpp:516: undefined reference to `Magick::Color::~Color()'
+/root/model/src/tasks/ImageProcessor.cpp:486: undefined reference to `Magick::Pixels::~Pixels()'
+/root/model/src/tasks/ImageProcessor.cpp:476: undefined reference to `Magick::Image::~Image()'
+./test/Testing.o: In function `AudioRecorder::~AudioRecorder()':
+/root/model/test/./../src/sys/AudioRecorder.h:35: undefined reference to `snd_pcm_drain'
+/root/model/test/./../src/sys/AudioRecorder.h:36: undefined reference to `snd_pcm_close'
+collect2: error: ld returned 1 exit status
+makefile:70: recipe for target 'test.out' failed
+make: *** [test.out] Error 1

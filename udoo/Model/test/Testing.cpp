@@ -107,8 +107,7 @@ void test(void *args){
      * Audio Test
      **************************/
 
-    std::cout << "Testing Audio...\n";
-    std::cout.flush();    
+    printf("Hello world!");
     TAudio *ta = new TAudio();
     test_number++;
     
@@ -124,19 +123,25 @@ void test(void *args){
 
 int main(int argc, char** argv){
     
-    Magick::InitializeMagick(*argv);
+    printf("Hello world0\n");
     
-    /* Avoids memory swapping for this program */
-    mlockall(MCL_CURRENT|MCL_FUTURE);
-    
-    rt_task_create(&task, "test", 0, 99, T_JOINABLE);
-    rt_task_start(&task, &test, NULL);
-    
-    // wait for task to complete
-    rt_task_join(&task);
-    rt_task_delete(&task);
-    
-    std::cout.flush();
+//    Magick::InitializeMagick(*argv);
+//    
+//    printf("Hello world1\n");
+//    
+//    /* Avoids memory swapping for this program */
+//    mlockall(MCL_CURRENT|MCL_FUTURE);
+//    
+//    printf("Hello world2\n");
+//    
+//    rt_task_create(&task, "test", 0, 99, T_JOINABLE);
+//    rt_task_start(&task, &test, NULL);
+//    
+//    // wait for task to complete
+//    rt_task_join(&task);
+//    rt_task_delete(&task);
+//    
+//    std::cout.flush();
     
     return 0;
 }

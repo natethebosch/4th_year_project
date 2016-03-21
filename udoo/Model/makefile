@@ -4,19 +4,25 @@
 # Nate Bosscher
 #
 SHELL = /bin/sh
-CXX = gcc -shared -pthread -fPIC
+CXX = gcc
 
-FLAGS =-march=armv6 -mfpu=vfp -mfloat-abi=hard -marm
+FLAGS =
 
 XENO_CONFIG := /usr/xenomai/bin/xeno-config
 XENO_CFLAGS=$(shell $(XENO_CONFIG) --alchemy --cflags)
 
-D_LIB_CFLAGS=-fPIC -I/usr/dlib -I/home/udooer/Downloads/xenomai-2.6.4/ksrc/skins/native -I/usr/xenomai/include/native -I/usr/xenomai/include -I/usr/xenomai/lib -DDLIB_NO_GUI_SUPPORT  -I/*/libjpeg
+MAGICK_CONFIG := /usr/bin/Magick++-config
+MAGICK_CPP=$(shell $(MAGICK_CONFIG) --cppflags)
+MAGICK_LD=$(shell $(MAGICK_CONFIG) --ldflags --libs)
+
+ALSA_LD=-lasound
+
+D_LIB_CFLAGS=-I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg 
 STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11
-CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall -fPIC  `GraphicsMagick++-config --cppflags --cxxflags`
+CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall $(MAGICK_CPP)
 DEBUG_FLAGS = -g
 
-SOURCES = $(shell find ./src -name '*.cpp') 
+SOURCES = $(shell find ./src -name '*.cpp') -L/usr/lib -ljpeg
 T_SOURCES = $(shell find ./src -name '*.cpp' | grep -v 'Main.cpp') $(shell find ./test -name '*.cpp')
 
 HEADERS = $(shell find ./src -name '*.h')
@@ -24,13 +30,7 @@ HEADERS = $(shell find ./src -name '*.h')
 OBJECTS = $(SOURCES:.cpp=.o)
 T_OBJECTS = $(T_SOURCES:.cpp=.o)
 
-# XENO_CONFIG causing issues with -fPIC
-#XENO_LD_FLAGS=$(shell $(XENO_CONFIG) --alchemy --ldflags)
-XENO_LD_FLAGS=-Wl,--dynamic-list=/usr/xenomai/lib/dynlist.ld -L/usr/xenomai/lib/ -lcopperplate -lalchemy -lanalogy -lpsos -lpthread_rt -lmercury -lsmokey -ltrank -luitron -lvrtx -lvxworks -lxenomai -lnative -lmercury -lpthread -lrt 
-
-MAGICK_LD_FLAGS=`GraphicsMagick++-config --ldflags --libs`
-
-LDFLAGS= -Wall -lstdc++ -ljpeg -lpthread -ldl -lm -lasound $(XENO_LD_FLAGS) $(MAGICK_LD_FLAGS)
+LDFLAGS= -Wall -lstdc++ -ljpeg -lpthread -ldl -lm $(shell $(XENO_CONFIG) --alchemy --ldflags) $(MAGICK_LD) $(ALSA_LD)
 
 PRECOMPILE = $(shell )
 #POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
