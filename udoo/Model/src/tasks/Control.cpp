@@ -100,7 +100,10 @@ bool Control::updateHoleIndex(){
                 holeIndex--;
             }
             
-            std::string s = "Control: hole updated (" << holeIndex << ")";
+            std::string s = "";
+            s += "Control: hole updated (";
+            s += std::to_string(holeIndex);
+            s += ")";
             Debug::output(s.c_str());
             
             return false;
