@@ -9,7 +9,8 @@ CXX = gcc
 FLAGS =
 
 XENO_CONFIG := /usr/xenomai/bin/xeno-config
-XENO_CFLAGS=$(shell $(XENO_CONFIG) --alchemy --cflags)
+XENO_CFLAGS=$(shell $(XENO_CONFIG) --skin=alchemy --cflags)
+XENO_LD=$(shell $(XENO_CONFIG) --skin=alchemy --ldflags)
 
 MAGICK_CONFIG := /usr/bin/Magick++-config
 MAGICK_CPP=$(shell $(MAGICK_CONFIG) --cppflags)
@@ -17,7 +18,6 @@ MAGICK_LD=$(shell $(MAGICK_CONFIG) --ldflags --libs)
 
 ALSA_LD=-lasound
 
-D_LIB_CFLAGS=-I/usr/dlib -DDLIB_JPEG_SUPPORT -DDLIB_PNG_SUPPORT -I/*/libjpeg 
 STD_CFLAGS=-I/usr/include/c++/4.9.2 -std=c++11
 CPPFLAGS       = $(FLAGS) $(XENO_CFLAGS) $(D_LIB_CFLAGS) $(STD_CFLAGS) -Wall $(MAGICK_CPP)
 DEBUG_FLAGS = -g
@@ -30,7 +30,7 @@ HEADERS = $(shell find ./src -name '*.h')
 OBJECTS = $(SOURCES:.cpp=.o)
 T_OBJECTS = $(T_SOURCES:.cpp=.o)
 
-LDFLAGS= -Wall -lstdc++ -ljpeg -lpthread -ldl -lm $(shell $(XENO_CONFIG) --alchemy --ldflags) $(MAGICK_LD) $(ALSA_LD)
+LDFLAGS= -L$(shell $(XENO_CONFIG) --skin=alchemy --library-dir) -Wall -lstdc++ -ljpeg -lpthread -ldl -lm $(XENO_LD) $(MAGICK_LD) $(ALSA_LD)
 
 PRECOMPILE = $(shell )
 #POSTCOMPILE = mv -f $(DEPDIR)/$*.Td $(DEPDIR)/$*.d
@@ -42,8 +42,6 @@ D_EXEC = debug.out
 $(info )
 $(info *************************************************)
 $(info Performing build...)
-$(info Please ensure you have /usr/dlib as a symbolic)
-$(info link to your dlib location)
 $(info *************************************************)
 $(info )
 
