@@ -106,7 +106,9 @@ void test(void *args){
     /**************************
      * Audio Test
      **************************/
-    
+
+    std::cout << "Testing Audio...\n";
+    std::cout.flush();    
     TAudio *ta = new TAudio();
     test_number++;
     

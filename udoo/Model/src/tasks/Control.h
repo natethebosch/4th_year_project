@@ -13,6 +13,7 @@
 #include "../sys/GPIO.h"
 #include "../helpers/BlockingQueue.h"
 #include "../sys/AudioRecorder.h"
+#include "timer.h"
 
 typedef enum {
     TOWARDS_HOME,

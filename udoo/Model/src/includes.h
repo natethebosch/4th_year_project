@@ -1,0 +1,7 @@
+#include "/home/udooer/Downloads/xenomai-2.6.4/ksrc/skins/native/timer.c"
+#include "/home/udooer/Downloads/xenomai-2.6.4/ksrc/skins/native/task.c"
+//#include "/home/udooer/Downloads/xenomai-2.6.4/ksrc/skins/native/syscall.c"
+#include "/home/udooer/Downloads/xenomai-2.6.4/ksrc/skins/native/sem.c"
+#include "/home/udooer/Downloads/xenomai-2.6.4/ksrc/skins/native/queue.c"
+#include "/home/udooer/Downloads/xenomai-2.6.4/ksrc/skins/native/pipe.c"
+include "/home/udooer/Downloads/xenomai-2.6.4/ksrc/skins/native/mutex.c"

@@ -27,10 +27,11 @@ class WebServer: public Task {
     WebWorker* workerPool[WEBSERVER_WORKER_POOL_SIZE];
     
     void stopWorkers();
+
     
 public:
     
-    static Mutex mu_tasks;
+    static Mutex* mu_tasks;
     static std::queue<WebTask*> tasks;
     
     /**
