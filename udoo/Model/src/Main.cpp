@@ -31,10 +31,10 @@ void Main::initial() {
     BlockingQueue<SensorDataPoint> *queue;
     queue = new BlockingQueue<SensorDataPoint>("ImageProcessorQueue");
     
-//    ImageProcessor imgProcessor(queue, std::string(WEB_ROOT));
+   ImageProcessor imgProcessor(queue, std::string(WEB_ROOT));
     WebServer ws(WEB_ROOT);
     
-//    imgProcessor.start();
+   imgProcessor.start();
     
     Control ctrl(queue);
     ctrl.start();

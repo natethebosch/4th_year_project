@@ -49,7 +49,7 @@ class WebWorker : public Task {
         
         return fileSize;
     }
-    
+
 public:
     WebWorker(char* dir);
     

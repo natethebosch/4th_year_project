@@ -103,7 +103,7 @@ public:
      */
     void sleep_millis(size_t ms){
         for(size_t i = 0; i < ms; i++){
-            sleep(rt_timer_ns2ticks(1000000));
+            sleep(/*rt_timer_ns2ticks*/(1000000));
         }
     }
     
@@ -123,7 +123,7 @@ public:
         
         TaskSignal* data = (TaskSignal*)malloc(sizeof(TaskSignal));
         
-        msgBlock.data = data;
+        msgBlock.data = (caddr_t)data;
         msgBlock.size = sizeof(TaskSignal);
         
         // get message
@@ -177,7 +177,7 @@ public:
         TaskSignal* data = (TaskSignal*)malloc(sizeof(TaskSignal));
         *data = item;
 
-        msgBlock.data = data;
+        msgBlock.data = (caddr_t)data;
         msgBlock.size = sizeof(TaskSignal);
         
         // send signal

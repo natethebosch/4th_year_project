@@ -106,7 +106,8 @@ void test(void *args){
     /**************************
      * Audio Test
      **************************/
-    
+
+    printf("Hello world!");
     TAudio *ta = new TAudio();
     test_number++;
     
@@ -122,10 +123,15 @@ void test(void *args){
 
 int main(int argc, char** argv){
     
+    
     Magick::InitializeMagick(*argv);
+    
+    printf("Hello world1\n");
     
     /* Avoids memory swapping for this program */
     mlockall(MCL_CURRENT|MCL_FUTURE);
+    
+    printf("Hello world2\n");
     
     rt_task_create(&task, "test", 0, 99, T_JOINABLE);
     rt_task_start(&task, &test, NULL);

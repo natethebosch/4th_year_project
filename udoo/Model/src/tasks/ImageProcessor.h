@@ -42,7 +42,7 @@ using namespace std;
 
 class ImageProcessor: public Task {
 private:
-    
+   
     //hold the x value of the next data point to be added
     int currentX;
     
